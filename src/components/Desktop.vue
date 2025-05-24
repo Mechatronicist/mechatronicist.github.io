@@ -1,20 +1,27 @@
 <script setup lang="ts">
-import { toggleTestWindow, isTestWindowVisible } from '../lib/windows';
+import { onMounted } from 'vue';
+import { toggleTestWindow, isTestWindowVisible, startDragTestWindow, stopDragTestWindow, testWindowX, testWindowY, registerWindowEvents } from '../lib/windows';
+
+onMounted(() => {
+    registerWindowEvents();
+});
 </script>
 
 <template>
     <div id="desktop">
-        <div class="window" v-if="isTestWindowVisible">
-            <div class="header">
-                <div class="title">Test Window</div>
-                <div class="controls">
-                    <div class="exit" @click="toggleTestWindow">x</div>
+
+            <div class="window" v-if="isTestWindowVisible" :style="`transform: translate(${testWindowX}px, ${testWindowY}px);`">
+                <div class="header" @mousedown="startDragTestWindow" @mouseup="stopDragTestWindow" >
+                    <div class="title">Test Window</div>
+                    <div class="controls">
+                        <div class="exit" @click="toggleTestWindow">x</div>
+                    </div>
+                </div>
+                <div class="content">
+                    Test
                 </div>
             </div>
-            <div class="content">
-                Test
-            </div>
-        </div>
+
     </div>
 </template>
 
@@ -31,6 +38,7 @@ import { toggleTestWindow, isTestWindowVisible } from '../lib/windows';
 }
 
 .window {
+    position: absolute;
     border: 1px solid #404040;
     border-radius: 5px;
 
@@ -53,6 +61,7 @@ import { toggleTestWindow, isTestWindowVisible } from '../lib/windows';
 .window .header .title {
     flex: 1;
     cursor: default;
+    user-select: none;
 }
 .window .header .controls {
     display: flex;
@@ -72,6 +81,7 @@ import { toggleTestWindow, isTestWindowVisible } from '../lib/windows';
     background-color: #252525;
 
     cursor: pointer;
+    user-select: none;
 
     transition: background-color 0.25s;
 }
