@@ -46,7 +46,7 @@ export function toggleMinimizeWindow(id: string) {
 export function registerWindowEvents() {
     addEventListener('mousedown', handleDragStartEvents);
     addEventListener('mousemove', (event: MouseEvent) => {
-        handleDragMoveEvents(event, null, false);
+        handleDragMoveEvents(event);
 
         lastMouseX = event.clientX;
         lastMouseY = event.clientY;
@@ -66,7 +66,7 @@ function handleDragStopEvents() {
     }
 }
 
-export function handleDragMoveEvents(mEvent: MouseEvent | null, tEvent: TouchEvent | null, isTouch: boolean) {
+export function handleDragMoveEvents(mEvent: MouseEvent) {
     const deltaX = mEvent!.clientX - lastMouseX
     const deltaY = mEvent!.clientY - lastMouseY
 
