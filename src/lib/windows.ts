@@ -8,9 +8,8 @@ export function registerWindowEvents() {
         lastMouseX = event.clientX;
         lastMouseY = event.clientY;
     });
-
     addEventListener('mousemove', (event: MouseEvent) => {
-        handleDragMoveEvents(event);
+        handleDragMoveEvents(event, null, false);
 
         lastMouseX = event.clientX;
         lastMouseY = event.clientY;
@@ -21,12 +20,32 @@ export function registerWindowEvents() {
             stopDragTestWindow();
         }
     });
+
+    addEventListener('touchstart', (event: TouchEvent) => {
+        const touch = event.touches[0];
+        lastMouseX = touch.clientX;
+        lastMouseY = touch.clientY;
+        isTestWindowDragging.value = true;
+    });
+
+    addEventListener('touchmove', (event: TouchEvent) => {
+        handleDragMoveEvents(null, event, true);
+
+        lastMouseX = event.touches[0].clientX;
+        lastMouseY = event.touches[0].clientY;
+    });
+
+    addEventListener('touchend', () => {
+        if (isTestWindowDragging.value) {
+            stopDragTestWindow();
+        }
+    });
 }
 
-export function handleDragMoveEvents(event: MouseEvent) {
+export function handleDragMoveEvents(mEvent: MouseEvent | null, tEvent: TouchEvent | null, isTouch: boolean) {
     if(isTestWindowDragging.value) {
-        const deltaX = event.clientX - lastMouseX
-        const deltaY = event.clientY - lastMouseY
+        const deltaX = isTouch ? tEvent!.touches[0].clientX : mEvent!.clientX - lastMouseX
+        const deltaY = isTouch ? tEvent!.touches[0].clientY : mEvent!.clientY - lastMouseY
 
         testWindowX.value += deltaX;
         testWindowY.value += deltaY;
