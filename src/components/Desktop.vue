@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { toggleTestWindow, isTestWindowVisible, startDragTestWindow, stopDragTestWindow, testWindowX, testWindowY, registerWindowEvents } from '../lib/windows';
+import { registerWindowEvents, windows, minimizeWindow, closeWindow, startDragWindow } from '../lib/windows';
 
 onMounted(() => {
     registerWindowEvents();
@@ -10,17 +10,20 @@ onMounted(() => {
 <template>
     <div id="desktop">
 
-            <div class="window" v-if="isTestWindowVisible" :style="`transform: translate(${testWindowX}px, ${testWindowY}px);`">
-                <div class="header" @mousedown="startDragTestWindow" @mouseup="stopDragTestWindow" >
+        <template v-for="window in windows">
+            <div class="window" v-if="!window.isMinimized" :style="`transform: translate(${window.position.x}px, ${window.position.y}px); z-index: ${window.zIndex}`">
+                <div class="header" @mousedown="startDragWindow(window.id)">
                     <div class="title">Test Window</div>
                     <div class="controls">
-                        <div class="exit" @click="toggleTestWindow">x</div>
+                        <div class="minimize" @click="minimizeWindow(window.id)">-</div>
+                        <div class="exit" @click="closeWindow(window.id)">x</div>
                     </div>
                 </div>
                 <div class="content">
-                    Test
+                    {{ window.content }}
                 </div>
             </div>
+        </template>
 
     </div>
 </template>
@@ -66,6 +69,29 @@ onMounted(() => {
 .window .header .controls {
     display: flex;
     flex-direction: row;
+
+    gap: 0.5rem;
+}
+.window .header .controls .minimize {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: 24px;
+
+    border: 1px solid #404040;
+    border-radius: 5px;
+
+    background-color: #252525;
+
+    cursor: pointer;
+    user-select: none;
+
+    transition: background-color 0.25s;
+}
+.window .header .controls .minimize:hover {
+    background-color: rgb(0, 140, 255);
 }
 .window .header .controls .exit {
     display: flex;

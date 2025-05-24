@@ -4,6 +4,6 @@ import Taskbar from './components/Taskbar.vue';
 </script>
 
 <template>
-  <Desktop></Desktop>
-  <Taskbar></Taskbar>
+    <Desktop></Desktop>
+    <Taskbar></Taskbar>
 </template>

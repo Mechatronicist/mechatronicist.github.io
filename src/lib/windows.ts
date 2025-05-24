@@ -3,76 +3,88 @@ import { ref } from "vue";
 let lastMouseX = 0;
 let lastMouseY = 0;
 
+interface Vector2 {
+    x: number;
+    y: number;
+}
+
+interface Window {
+    id: string;
+    title: string;
+    position: Vector2;
+    content: string;
+    isDragging: boolean;
+    isMinimized: boolean;
+    zIndex: number;
+}
+
+export const windows = ref<Window[]>([]);
+
+export function createWindow(window: Window) {
+    windows.value.push(window);
+}
+export function closeWindow(id: string) {
+    windows.value = windows.value.filter(w => w.id != id);
+}
+export function minimizeWindow(id: string) {
+    const window = windows.value.find(w => w.id == id);
+    if (!window) {
+        return;
+    }
+
+    window.isMinimized = true;
+}
+export function toggleMinimizeWindow(id: string) {
+        const window = windows.value.find(w => w.id == id);
+    if (!window) {
+        return;
+    }
+
+    window.isMinimized = !window.isMinimized;
+}
+
 export function registerWindowEvents() {
-    addEventListener('mousedown', (event: MouseEvent) => {
-        lastMouseX = event.clientX;
-        lastMouseY = event.clientY;
-    });
+    addEventListener('mousedown', handleDragStartEvents);
     addEventListener('mousemove', (event: MouseEvent) => {
         handleDragMoveEvents(event, null, false);
 
         lastMouseX = event.clientX;
         lastMouseY = event.clientY;
     });
-
-    addEventListener('mouseup', () => {
-        if(isTestWindowDragging.value) {
-            stopDragTestWindow();
-        }
-    });
-
-    addEventListener('touchstart', (event: TouchEvent) => {
-        const touch = event.touches[0];
-        lastMouseX = touch.clientX;
-        lastMouseY = touch.clientY;
-        isTestWindowDragging.value = true;
-    });
-
-    addEventListener('touchmove', (event: TouchEvent) => {
-        handleDragMoveEvents(null, event, true);
-
-        lastMouseX = event.touches[0].clientX;
-        lastMouseY = event.touches[0].clientY;
-    });
-
-    addEventListener('touchend', () => {
-        if (isTestWindowDragging.value) {
-            stopDragTestWindow();
-        }
-    });
+    addEventListener('mouseup', handleDragStopEvents);
 }
 
-export function handleDragMoveEvents(mEvent: MouseEvent | null, tEvent: TouchEvent | null, isTouch: boolean) {
-    if(isTestWindowDragging.value) {
-        const deltaX = isTouch ? tEvent!.touches[0].clientX : mEvent!.clientX - lastMouseX
-        const deltaY = isTouch ? tEvent!.touches[0].clientY : mEvent!.clientY - lastMouseY
-
-        testWindowX.value += deltaX;
-        testWindowY.value += deltaY;
-
-        console.log(deltaX);
-        console.log(deltaY);
+function handleDragStartEvents(event: MouseEvent) {
+    lastMouseX = event.clientX;
+    lastMouseY = event.clientY;
+}
+function handleDragStopEvents() {
+    for(let window of windows.value) {
+        if(window.isDragging) {
+            window.isDragging = false;
+        }
     }
 }
 
-export const isTestWindowVisible = ref<boolean>(false);
-export const isTestWindowDragging = ref<boolean>(false);
-export const testWindowX = ref<number>(10);
-export const testWindowY = ref<number>(10);
+export function handleDragMoveEvents(mEvent: MouseEvent | null, tEvent: TouchEvent | null, isTouch: boolean) {
+    const deltaX = mEvent!.clientX - lastMouseX
+    const deltaY = mEvent!.clientY - lastMouseY
 
-export function startDragTestWindow() {
-    isTestWindowDragging.value = true;
-    console.log("Starting drag move");
+    for(let window of windows.value) {
+        if(window.isDragging) {
+            window.position.x += deltaX;
+            window.position.y += deltaY;
+        }
+    }
 }
-export function stopDragTestWindow() {
-    isTestWindowDragging.value = false;
-    console.log("Stopping drag move");
-}
-export function moveDragTestWindow(event: MouseEvent) {
-    testWindowX.value = event.clientX;
-    testWindowY.value = event.clientY;
-    console.log("Moving window");
-}
-export function toggleTestWindow() {
-    isTestWindowVisible.value = !isTestWindowVisible.value;
+
+export function startDragWindow(id: string) {
+    for(let window of windows.value) {
+        if (window.id !== id) {
+            window.zIndex = 0;
+        } else {
+            window.zIndex = 1;
+            window.isDragging = true;
+        }
+    }
 }

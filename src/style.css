@@ -28,3 +28,19 @@ body {
         transform: scale(100%);
     }
 }
+
+.fade-in-enter-active {
+    animation: fade-in 0.5s;
+}
+.fade-in-leave-active {
+    animation: fade-in 0.5s reverse;
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

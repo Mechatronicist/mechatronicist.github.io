@@ -1,11 +1,26 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { isTestWindowVisible, toggleTestWindow } from '../lib/windows';
+import { createWindow, toggleMinimizeWindow, windows } from '../lib/windows';
 
     const isMenuVisible = ref<boolean>(false);
     
     function toggleMenu() {
         isMenuVisible.value = !isMenuVisible.value;
+    }
+
+    function createTestWindow() {
+        createWindow({
+            id: crypto.randomUUID(),
+            title: "Test Window",
+            position: {
+                x: 10,
+                y: 10
+            },
+            content: "Hello, world!",
+            isDragging: false,
+            isMinimized: false,
+            zIndex: 1
+        });
     }
 
     onMounted(() => {
@@ -27,7 +42,7 @@ import { isTestWindowVisible, toggleTestWindow } from '../lib/windows';
 
 <template>
     <div id="taskbar-menu" v-if="isMenuVisible">
-        <div class="taskbar-menu-item" @click="toggleTestWindow">Test Window</div>
+        <div class="taskbar-menu-item" @click="createTestWindow">Test Window</div>
     </div>
     <div id="taskbar">
         <div id="taskbar-menu-button" @click="toggleMenu">
@@ -35,7 +50,7 @@ import { isTestWindowVisible, toggleTestWindow } from '../lib/windows';
         </div>
 
         <div id="taskbar-windows">
-            <div class="taskbar-window" v-if="isTestWindowVisible" @click="toggleTestWindow">Test Window</div>
+            <div class="taskbar-window" v-for="window in windows" @click="toggleMinimizeWindow(window.id)">{{ window.title }}</div>
         </div>
     </div>
 </template>
@@ -91,6 +106,8 @@ import { isTestWindowVisible, toggleTestWindow } from '../lib/windows';
     #taskbar-windows {
         flex: 1;
         display: flex;
+
+        gap: 0.5rem;
     }
     .taskbar-window {
         border: 1px solid #404040;
@@ -101,5 +118,6 @@ import { isTestWindowVisible, toggleTestWindow } from '../lib/windows';
     }
     .taskbar-window:hover {
         cursor: pointer;
+        background-color: #303030;
     }
 </style>
