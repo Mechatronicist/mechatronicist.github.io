@@ -99,8 +99,8 @@ onMounted(() => {
 
         border-top: 1px solid #303030;
         background: linear-gradient(0deg, black, #101010);
-
         z-index: 2;
+        user-select: none;
     }
 
     #taskbar-menu-button {
