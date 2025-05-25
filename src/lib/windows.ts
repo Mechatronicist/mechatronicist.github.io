@@ -64,7 +64,7 @@ export function createWindow(title: string, content: Component, initialSize?: Ve
             isDragging: false,
             isResizing: false,
             isMinimized: false,
-            iconPath: iconPath ?? '/src/assets/vue.svg',
+            iconPath: iconPath ?? '/vite.svg',
             zIndex: 1
     });
 }

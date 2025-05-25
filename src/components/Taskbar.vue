@@ -19,7 +19,7 @@ function createUuidGeneratorWindow() {
     createWindow("Uuid Generator", UuidGenerator, {
         x: 300,
         y: 200
-    }, "/src/assets/vue.svg");
+    }, "/vite.svg");
 }
 
 function getCurrentTime12h(): string {
