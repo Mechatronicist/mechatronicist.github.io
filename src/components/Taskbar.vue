@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { createWindow, toggleMinimizeWindow, windows } from '../lib/windows';
 import HelloWorld from './HelloWorld.vue';
+import UuidGenerator from './UuidGenerator.vue';
 
     const isMenuVisible = ref<boolean>(false);
     
@@ -11,6 +12,13 @@ import HelloWorld from './HelloWorld.vue';
 
     function createTestWindow(id: number) {
         createWindow(`Test Window ${id}`, HelloWorld);
+    }
+
+    function createUuidGeneratorWindow() {
+        createWindow("Uuid Generator", UuidGenerator, {
+            x: 300,
+            y: 180
+        });
     }
 
     onMounted(() => {
@@ -32,9 +40,11 @@ import HelloWorld from './HelloWorld.vue';
 
 <template>
     <div id="taskbar-menu" v-if="isMenuVisible">
-        <template v-for="id in [1,2,3,4,5]">
+        <template v-for="id in [1,2]">
             <div class="taskbar-menu-item" @click="createTestWindow(id)">Test Window {{ id }}</div>
         </template>
+
+        <div class="taskbar-menu-item" @click="createUuidGeneratorWindow">Uuid Generator</div>
     </div>
     <div id="taskbar">
         <div id="taskbar-menu-button" @click="toggleMenu">

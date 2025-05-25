@@ -6,6 +6,9 @@ let lastMouseY = 0;
 const minWindowWidth = 250;
 const minWindowHeight = 150;
 
+const initialWindowWidth = 300;
+const initailWindowHeight = 200;
+
 interface Vector2 {
     x: number;
     y: number;
@@ -25,9 +28,24 @@ interface Window {
 
 export const windows = ref<Window[]>([]);
 
-export function createWindow(title: string, content: Component) {
+export function createWindow(title: string, content: Component, initialSize?: Vector2) {
     let posX = Math.random() * window.innerWidth - minWindowWidth;
     let posY = Math.random() * window.innerHeight - minWindowHeight;
+
+    if(posX <= 0) {
+        posX = 10;
+    }
+
+    if(posY <= 0) {
+        posY = 10;
+    }
+
+    if(!initialSize) {
+        initialSize = {
+            x: initialWindowWidth,
+            y: initailWindowHeight
+        };
+    }
 
     window.screen.availHeight
     windows.value.push({
@@ -38,8 +56,8 @@ export function createWindow(title: string, content: Component) {
                 y: posY
             },
             size: {
-                x: minWindowWidth,
-                y: minWindowHeight
+                x: initialSize.x,
+                y: initialSize.y
             },
             content: content,
             isDragging: false,
