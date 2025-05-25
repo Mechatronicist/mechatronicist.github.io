@@ -26,12 +26,16 @@ interface Window {
 export const windows = ref<Window[]>([]);
 
 export function createWindow(title: string, content: string) {
+    let posX = Math.random() * window.innerWidth - minWindowWidth;
+    let posY = Math.random() * window.innerHeight - minWindowHeight;
+
+    window.screen.availHeight
     windows.value.push({
             id: crypto.randomUUID(),
             title: title,
             position: {
-                x: 10,
-                y: 10
+                x: posX,
+                y: posY
             },
             size: {
                 x: minWindowWidth,

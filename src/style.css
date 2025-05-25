@@ -5,6 +5,8 @@ body {
     min-height: 100vh;
 
     background: linear-gradient(45deg, #101010, #202020);
+
+    overflow: hidden;
 }
 
 #app {

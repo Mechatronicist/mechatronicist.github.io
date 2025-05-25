@@ -14,7 +14,7 @@ onMounted(() => {
             <div class="window" v-if="!window.isMinimized" 
                 :style="`transform: translate(${window.position.x}px, ${window.position.y}px); width: ${window.size.x}px; height: ${window.size.y}px; z-index: ${window.zIndex}`">
                 <div class="header" @mousedown="startDragWindow(window.id)">
-                    <div class="title">Test Window</div>
+                    <div class="title">{{ window.title }}</div>
                     <div class="controls">
                         <div class="minimize" @click="minimizeWindow(window.id)">-</div>
                         <div class="exit" @click="closeWindow(window.id)">x</div>

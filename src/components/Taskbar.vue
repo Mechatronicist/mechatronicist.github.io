@@ -8,8 +8,8 @@ import { createWindow, toggleMinimizeWindow, windows } from '../lib/windows';
         isMenuVisible.value = !isMenuVisible.value;
     }
 
-    function createTestWindow() {
-        createWindow("Test Window", "Hello World!");
+    function createTestWindow(id: number) {
+        createWindow(`Test Window ${id}`, "Hello World!");
     }
 
     onMounted(() => {
@@ -31,7 +31,9 @@ import { createWindow, toggleMinimizeWindow, windows } from '../lib/windows';
 
 <template>
     <div id="taskbar-menu" v-if="isMenuVisible">
-        <div class="taskbar-menu-item" @click="createTestWindow">Test Window</div>
+        <template v-for="id in [1,2,3,4,5]">
+            <div class="taskbar-menu-item" @click="createTestWindow(id)">Test Window {{ id }}</div>
+        </template>
     </div>
     <div id="taskbar">
         <div id="taskbar-menu-button" @click="toggleMenu">
@@ -54,6 +56,8 @@ import { createWindow, toggleMinimizeWindow, windows } from '../lib/windows';
 
         border-top: 1px solid #303030;
         background: linear-gradient(0deg, black, #101010);
+
+        z-index: 2;
     }
 
     #taskbar-menu-button {
@@ -76,6 +80,10 @@ import { createWindow, toggleMinimizeWindow, windows } from '../lib/windows';
 
         background-color: rgba(0, 0, 0, 0.5);
         border: 1px solid #303030;
+
+        backdrop-filter: blur(10px);
+
+        z-index: 2;
     }
     #taskbar-menu:hover {
         display: flex;
