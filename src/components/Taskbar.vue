@@ -4,38 +4,59 @@ import { createWindow, toggleMinimizeWindow, windows } from '../lib/windows';
 import HelloWorld from './HelloWorld.vue';
 import UuidGenerator from './UuidGenerator.vue';
 
-    const isMenuVisible = ref<boolean>(false);
-    
-    function toggleMenu() {
-        isMenuVisible.value = !isMenuVisible.value;
-    }
+const isMenuVisible = ref<boolean>(false);
+const currentTime = ref<string>("");
 
-    function createTestWindow(id: number) {
-        createWindow(`Test Window ${id}`, HelloWorld);
-    }
+function toggleMenu() {
+    isMenuVisible.value = !isMenuVisible.value;
+}
 
-    function createUuidGeneratorWindow() {
-        createWindow("Uuid Generator", UuidGenerator, {
-            x: 300,
-            y: 180
-        });
-    }
+function createTestWindow(id: number) {
+    createWindow(`Test Window ${id}`, HelloWorld);
+}
 
-    onMounted(() => {
-        addEventListener('click', (event) => {
-            let target = event.target as HTMLElement;
-            if (target) {
-                if (target.id === 'taskbar-menu-icon' || target.id === 'taskbar-menu-button') {
-                    return;
-                }
+function createUuidGeneratorWindow() {
+    createWindow("Uuid Generator", UuidGenerator, {
+        x: 300,
+        y: 200
+    }, "/src/assets/vue.svg");
+}
+
+function getCurrentTime12h(): string {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+    const hourStr = hours.toString().padStart(2, '0');
+    return `${hourStr}:${minutes} ${ampm}`;
+}
+
+function updateCurrentTime() {
+    console.log("Updating time..");
+
+    currentTime.value = getCurrentTime12h();
+}
+
+setInterval(updateCurrentTime, 30000);
+
+onMounted(() => {
+    updateCurrentTime();
+
+    addEventListener('click', (event) => {
+        let target = event.target as HTMLElement;
+        if (target) {
+            if (target.id === 'taskbar-menu-icon' || target.id === 'taskbar-menu-button') {
+                return;
             }
+        }
 
-            if (isMenuVisible.value) {
-                isMenuVisible.value = false;
-                console.log("Closing menu");
-            }
-        });
+        if (isMenuVisible.value) {
+            isMenuVisible.value = false;
+            console.log("Closing menu");
+        }
     });
+});
 </script>
 
 <template>
@@ -44,7 +65,9 @@ import UuidGenerator from './UuidGenerator.vue';
             <div class="taskbar-menu-item" @click="createTestWindow(id)">Test Window {{ id }}</div>
         </template>
 
-        <div class="taskbar-menu-item" @click="createUuidGeneratorWindow">Uuid Generator</div>
+        <div class="taskbar-menu-item" @click="createUuidGeneratorWindow">
+            Uuid Generator
+        </div>
     </div>
     <div id="taskbar">
         <div id="taskbar-menu-button" @click="toggleMenu">
@@ -52,7 +75,16 @@ import UuidGenerator from './UuidGenerator.vue';
         </div>
 
         <div id="taskbar-windows">
-            <div class="taskbar-window" v-for="window in windows" @click="toggleMinimizeWindow(window.id)">{{ window.title }}</div>
+            <div class="taskbar-window" v-for="window in windows" :class="`${window.isMinimized ? 'taskbar-window-minimized' : ''}`" @click="toggleMinimizeWindow(window.id)">
+                <img :src="window.iconPath" class="icon" />
+                <div class="title">{{ window.title }}</div>
+            </div>
+        </div>
+
+        <div id="taskbar-tray">
+            <div id="time">
+                {{ currentTime }}
+            </div>
         </div>
     </div>
 </template>
@@ -90,7 +122,9 @@ import UuidGenerator from './UuidGenerator.vue';
         max-width: 200px;
 
         background-color: rgba(0, 0, 0, 0.5);
+        
         border: 1px solid #303030;
+        border-radius: 0 10px;
 
         backdrop-filter: blur(10px);
 
@@ -118,6 +152,13 @@ import UuidGenerator from './UuidGenerator.vue';
         gap: 0.5rem;
     }
     .taskbar-window {
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+
+        gap: 1rem;
+
         border: 1px solid #404040;
         border-radius: 5px;
         color: white;
@@ -127,5 +168,24 @@ import UuidGenerator from './UuidGenerator.vue';
     .taskbar-window:hover {
         cursor: pointer;
         background-color: #303030;
+    }
+    .taskbar-window .title {
+        font-size: 0.75rem;
+    }
+    .taskbar-window .icon {
+        width: 20px;
+        height: 20px;
+    }
+    .taskbar-window-minimized {
+        color: gray !important;
+        background-color: transparent !important;
+        border: unset !important;
+    }
+    #taskbar-tray {
+        color: white;
+        padding-right: 1rem;
+    }
+    #taskbar-tray #time {
+        font-size: 0.85rem;
     }
 </style>

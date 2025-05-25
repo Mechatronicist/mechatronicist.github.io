@@ -23,12 +23,13 @@ interface Window {
     isDragging: boolean;
     isResizing: boolean;
     isMinimized: boolean;
+    iconPath: string;
     zIndex: number;
 }
 
 export const windows = ref<Window[]>([]);
 
-export function createWindow(title: string, content: Component, initialSize?: Vector2) {
+export function createWindow(title: string, content: Component, initialSize?: Vector2, iconPath?: string) {
     let posX = Math.random() * window.innerWidth - minWindowWidth;
     let posY = Math.random() * window.innerHeight - minWindowHeight;
 
@@ -63,6 +64,7 @@ export function createWindow(title: string, content: Component, initialSize?: Ve
             isDragging: false,
             isResizing: false,
             isMinimized: false,
+            iconPath: iconPath ?? '/src/assets/vue.svg',
             zIndex: 1
     });
 }

@@ -14,6 +14,7 @@ onMounted(() => {
             <div class="window" v-show="!window.isMinimized" 
                 :style="`transform: translate(${window.position.x}px, ${window.position.y}px); width: ${window.size.x}px; height: ${window.size.y}px; z-index: ${window.zIndex}`">
                 <div class="header" @mousedown="startDragWindow(window.id)">
+                    <img :src="`${window.iconPath}`" class="icon" />
                     <div class="title">{{ window.title }}</div>
                     <div class="controls">
                         <div class="minimize" @click="minimizeWindow(window.id)">-</div>
@@ -78,13 +79,17 @@ onMounted(() => {
     flex-direction: row;
 
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
 
     font-weight: bold;
     background: linear-gradient(0deg, #101010, #202020);
     padding: 0.5rem;
 
     cursor: grab;
+}
+.window .header .icon {
+    width: 20px;
+    height: 20px;
 }
 .window .header .title {
     flex: 1;
