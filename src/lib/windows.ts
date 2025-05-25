@@ -97,11 +97,22 @@ export function registerWindowEvents() {
         lastMouseY = event.clientY;
     });
     addEventListener('mouseup', handleDragResizeStopEvents);
+
+    addEventListener('touchstart', handleDragStartEvents);
+    addEventListener('touchmove', (event: TouchEvent) => {
+        handleDragResizeEvents(event);
+
+        lastMouseX = event.touches[0].clientX;
+        lastMouseY = event.touches[0].clientY;
+    });
+    addEventListener('touchend', handleDragResizeStopEvents);
 }
 
-function handleDragStartEvents(event: MouseEvent) {
-    lastMouseX = event.clientX;
-    lastMouseY = event.clientY;
+function handleDragStartEvents(event: MouseEvent | TouchEvent) {
+     const isTouch = event instanceof TouchEvent;
+
+    lastMouseX = (isTouch ? (event as TouchEvent).touches[0].clientX : (event as MouseEvent).clientX);
+    lastMouseY = (isTouch ? (event as TouchEvent).touches[0].clientY : (event as MouseEvent).clientY);
 }
 
 function handleDragResizeStopEvents() {
@@ -116,9 +127,11 @@ function handleDragResizeStopEvents() {
     }
 }
 
-function handleDragResizeEvents(mEvent: MouseEvent) {
-    const deltaX = mEvent!.clientX - lastMouseX
-    const deltaY = mEvent!.clientY - lastMouseY
+function handleDragResizeEvents(event: MouseEvent | TouchEvent) {
+    const isTouch = event instanceof TouchEvent;
+
+    const deltaX = (isTouch ? (event as TouchEvent).touches[0].clientX : (event as MouseEvent).clientX) - lastMouseX
+    const deltaY = (isTouch ? (event as TouchEvent).touches[0].clientY : (event as MouseEvent).clientY) - lastMouseY
 
     for(let window of windows.value) {
         if(window.isDragging) {
@@ -146,6 +159,7 @@ function handleDragResizeEvents(mEvent: MouseEvent) {
 }
 
 export function startDragWindow(id: string) {
+    console.log("Dragging windows");
     for(let window of windows.value) {
         if (window.id !== id) {
             window.zIndex = 0;
