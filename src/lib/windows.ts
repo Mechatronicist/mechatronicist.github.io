@@ -1,4 +1,4 @@
-import { ref, type Component } from "vue";
+import { ref, shallowRef, type Component } from "vue";
 
 let lastMouseX = 0;
 let lastMouseY = 0;
@@ -60,7 +60,7 @@ export function createWindow(title: string, content: Component, initialSize?: Ve
                 x: initialSize.x,
                 y: initialSize.y
             },
-            content: content,
+            content: shallowRef(content),
             isDragging: false,
             isResizing: false,
             isMinimized: false,

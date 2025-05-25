@@ -1,3 +1,17 @@
+<script setup lang="ts">
+import { onMounted } from 'vue';
+
+onMounted(() => {
+    const setVh = () => {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+    setVh();
+    window.addEventListener('resize', setVh);
+    window.addEventListener('orientationchange', setVh);
+});
+</script>
+
 <template>
     <div class="flex-1 flex items-center justify-center">
         <img src="/src/assets/vue.svg" class="rotate" width="40" height="40" />
