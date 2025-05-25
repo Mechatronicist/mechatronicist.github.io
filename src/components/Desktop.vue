@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { registerWindowEvents, windows, minimizeWindow, closeWindow, startDragWindow } from '../lib/windows';
+import { registerWindowEvents, windows, minimizeWindow, closeWindow, startDragWindow, startResizeWindow } from '../lib/windows';
 
 onMounted(() => {
     registerWindowEvents();
@@ -11,7 +11,8 @@ onMounted(() => {
     <div id="desktop">
 
         <template v-for="window in windows">
-            <div class="window" v-if="!window.isMinimized" :style="`transform: translate(${window.position.x}px, ${window.position.y}px); z-index: ${window.zIndex}`">
+            <div class="window" v-if="!window.isMinimized" 
+                :style="`transform: translate(${window.position.x}px, ${window.position.y}px); width: ${window.size.x}px; height: ${window.size.y}px; z-index: ${window.zIndex}`">
                 <div class="header" @mousedown="startDragWindow(window.id)">
                     <div class="title">Test Window</div>
                     <div class="controls">
@@ -22,6 +23,7 @@ onMounted(() => {
                 <div class="content">
                     {{ window.content }}
                 </div>
+                <div class="resizer" @mousedown="startResizeWindow(window.id)"></div>
             </div>
         </template>
 
@@ -50,6 +52,25 @@ onMounted(() => {
 
     box-shadow: rgb(10, 10, 10) 10px 10px 10px;
 }
+.window .resizer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    cursor: se-resize;
+    user-select: none;
+
+    width: 20px;
+    height: 20px;
+
+    margin: 4px;
+
+    background-image: url('/src/assets/drag.png');
+    background-position: center;
+    background-size: cover;
+
+    filter: brightness(30%);
+}
 .window .header {
     display: flex;
     flex-direction: row;
@@ -60,10 +81,11 @@ onMounted(() => {
     font-weight: bold;
     background: linear-gradient(0deg, #101010, #202020);
     padding: 0.5rem;
+
+    cursor: grab;
 }
 .window .header .title {
     flex: 1;
-    cursor: default;
     user-select: none;
 }
 .window .header .controls {

@@ -9,18 +9,7 @@ import { createWindow, toggleMinimizeWindow, windows } from '../lib/windows';
     }
 
     function createTestWindow() {
-        createWindow({
-            id: crypto.randomUUID(),
-            title: "Test Window",
-            position: {
-                x: 10,
-                y: 10
-            },
-            content: "Hello, world!",
-            isDragging: false,
-            isMinimized: false,
-            zIndex: 1
-        });
+        createWindow("Test Window", "Hello World!");
     }
 
     onMounted(() => {
