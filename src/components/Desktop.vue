@@ -11,7 +11,7 @@ onMounted(() => {
     <div id="desktop">
 
         <template v-for="window in windows">
-            <div class="window" v-if="!window.isMinimized" 
+            <div class="window" v-show="!window.isMinimized" 
                 :style="`transform: translate(${window.position.x}px, ${window.position.y}px); width: ${window.size.x}px; height: ${window.size.y}px; z-index: ${window.zIndex}`">
                 <div class="header" @mousedown="startDragWindow(window.id)">
                     <div class="title">{{ window.title }}</div>
