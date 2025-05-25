@@ -21,7 +21,7 @@ onMounted(() => {
                     </div>
                 </div>
                 <div class="content">
-                    {{ window.content }}
+                    <component :is="window.content"></component>
                 </div>
                 <div class="resizer" @mousedown="startResizeWindow(window.id)"></div>
             </div>
@@ -51,6 +51,8 @@ onMounted(() => {
     background-color: #202020;
 
     box-shadow: rgb(10, 10, 10) 10px 10px 10px;
+
+    overflow: hidden;
 }
 .window .resizer {
     position: absolute;
@@ -138,5 +140,7 @@ onMounted(() => {
 }
 .window .content {
     padding: 0.5rem;
+    text-wrap: wrap;
+    word-wrap: break-word;
 }
 </style>

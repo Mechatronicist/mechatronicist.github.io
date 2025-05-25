@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { createWindow, toggleMinimizeWindow, windows } from '../lib/windows';
+import HelloWorld from './HelloWorld.vue';
 
     const isMenuVisible = ref<boolean>(false);
     
@@ -9,7 +10,7 @@ import { createWindow, toggleMinimizeWindow, windows } from '../lib/windows';
     }
 
     function createTestWindow(id: number) {
-        createWindow(`Test Window ${id}`, "Hello World!");
+        createWindow(`Test Window ${id}`, HelloWorld);
     }
 
     onMounted(() => {

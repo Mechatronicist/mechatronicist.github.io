@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { ref, type Component } from "vue";
 
 let lastMouseX = 0;
 let lastMouseY = 0;
@@ -16,7 +16,7 @@ interface Window {
     title: string;
     position: Vector2;
     size: Vector2;
-    content: string;
+    content: Component;
     isDragging: boolean;
     isResizing: boolean;
     isMinimized: boolean;
@@ -25,7 +25,7 @@ interface Window {
 
 export const windows = ref<Window[]>([]);
 
-export function createWindow(title: string, content: string) {
+export function createWindow(title: string, content: Component) {
     let posX = Math.random() * window.innerWidth - minWindowWidth;
     let posY = Math.random() * window.innerHeight - minWindowHeight;
 
