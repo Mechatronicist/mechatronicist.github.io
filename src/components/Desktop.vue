@@ -25,7 +25,7 @@ onMounted(() => {
                     <div class="content">
                         <component :is="window.content"></component>
                     </div>
-                    <div class="resizer" @mousedown="startResizeWindow(window.id)"></div>
+                    <div class="resizer" @mousedown="startResizeWindow(window.id)" @touchstart="startResizeWindow(window.id)"></div>
                 </div>
             </template>
         </TransitionGroup>
