@@ -40,6 +40,15 @@ export function registerWindow(definition: WindowDefinition) {
     windowDefinitions.value.push(definition);
 }
 
+export function canCreateWindow(definitionId: string) {
+    let definition = windowDefinitions.value.find(d => d.id === definitionId);
+    if(!definition) {
+        return false;
+    }
+
+    return true;
+}
+
 export function createWindow(definitionId: string) {
     let definition = windowDefinitions.value.find(d => d.id === definitionId);
     if(!definition) {

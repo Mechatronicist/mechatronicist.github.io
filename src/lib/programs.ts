@@ -21,7 +21,11 @@ export function registerPrograms() {
     registerWindow({
         id: 'terminal',
         name: "Terminal",
-        component: shallowRef(Terminal)
+        component: shallowRef(Terminal),
+        initialSize: {
+            x: 600,
+            y: 380
+        }
     });
 
     registerWindow({

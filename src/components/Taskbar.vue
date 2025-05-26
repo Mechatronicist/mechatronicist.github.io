@@ -106,7 +106,9 @@ let orderedWindowDefinitions = computed(() => {
         gap: 1rem;
 
         border-top: 1px solid #303030;
-        background: linear-gradient(0deg, black, #101010);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(10, 10, 10, 0.5));
+
+        backdrop-filter: blur(10px);
 
         z-index: 2;
         user-select: none;

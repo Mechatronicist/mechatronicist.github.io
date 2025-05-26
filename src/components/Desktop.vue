@@ -41,8 +41,6 @@ onMounted(() => {
     flex-direction: row;
 
     align-items: start;
-
-    background: linear-gradient(45deg, #101010, #202020);
 }
 
 .window {
