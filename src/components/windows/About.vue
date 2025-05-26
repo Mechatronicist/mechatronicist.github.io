@@ -1,7 +1,8 @@
 <template>
     <div class="about">
-        <p>Powered by Vite + Vue & PrimeVue.</p>
-        <p>Read the <a class="source-link" href="https://github.com/lewpar/lewpar.github.io" target="_blank">source code</a></p>
+        <div class="title">L(ewis)-OS</div>
+        <div>Powered by Vite + Vue & PrimeVue.</div>
+        <div>Read the <a class="source-link" href="https://github.com/lewpar/lewpar.github.io" target="_blank">source code</a>.</div>
     </div>
 </template>
 
@@ -10,7 +11,7 @@
     display: flex;
     flex-direction: column;
 
-    gap: 0.5rem;
+    gap: 1rem;
 
     padding: 0.5rem;
 }

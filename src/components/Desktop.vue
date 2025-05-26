@@ -83,13 +83,14 @@ onMounted(() => {
     flex-direction: row;
 
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
 
     font-weight: bold;
     background: linear-gradient(0deg, #101010, #202020);
     padding: 0.5rem;
 
     cursor: grab;
+    user-select: none;
 }
 .window .header .icon {
     width: 30px;
