@@ -1,4 +1,4 @@
-import { ref, shallowRef, type Component } from "vue";
+import { ref, type Component } from "vue";
 
 let lastMouseX = 0;
 let lastMouseY = 0;
@@ -14,12 +14,11 @@ interface Vector2 {
     y: number;
 }
 
-interface Window {
+interface WindowState {
     id: string;
-    title: string;
+    definition: WindowDefinition;
     position: Vector2;
     size: Vector2;
-    content: Component;
     isDragging: boolean;
     isResizing: boolean;
     isMinimized: boolean;
@@ -27,36 +26,53 @@ interface Window {
     zIndex: number;
 }
 
-export const windows = ref<Window[]>([]);
+interface WindowDefinition {
+    id: string;
+    name: string;
+    component: Component;
+    initialSize?: Vector2;
+    iconPath?: string;
+}
 
-export function createWindow(title: string, content: Component, initialSize?: Vector2, iconPath?: string) {
-    if(!initialSize) {
-        initialSize = {
+export const windows = ref<WindowState[]>([]);
+export const windowDefinitions = ref<WindowDefinition[]>([]);
+
+export function registerWindow(definition: WindowDefinition) {
+    windowDefinitions.value.push(definition);
+}
+
+export function createWindow(definitionId: string) {
+    let definition = windowDefinitions.value.find(d => d.id === definitionId);
+    if(!definition) {
+        console.error(`Failed to create window, no definition with id '${definitionId}' exists.`);
+        return;
+    }
+
+    if(!definition.initialSize) {
+        definition.initialSize = {
             x: initialWindowWidth,
             y: initailWindowHeight
         };
     }
 
-    let posX = (window.innerWidth - initialSize.x) / 2;
-    let posY = (window.innerHeight - initialSize.y) / 2;
+    let posX = (window.innerWidth - definition.initialSize.x) / 2;
+    let posY = (window.innerHeight - definition.initialSize.y) / 2;
 
-    window.screen.availHeight
     windows.value.push({
             id: crypto.randomUUID(),
-            title: title,
+            definition: definition,
             position: {
                 x: posX,
                 y: posY
             },
             size: {
-                x: initialSize.x,
-                y: initialSize.y
+                x: definition.initialSize.x,
+                y: definition.initialSize.y
             },
-            content: shallowRef(content),
             isDragging: false,
             isResizing: false,
             isMinimized: false,
-            iconPath: iconPath ?? '/vite.svg',
+            iconPath: definition.iconPath ?? '/vite.svg',
             zIndex: 1
     });
 }
@@ -132,7 +148,7 @@ function handleDragResizeEvents(event: MouseEvent | TouchEvent) {
         }
 
         if(window.isResizing) {
-            console.log(`Resizing ${window.title}`);
+            console.log(`Resizing ${window.definition.name}`);
             let newWidth = window.size.x + deltaX;
             let newHeight = window.size.y + deltaY;
 

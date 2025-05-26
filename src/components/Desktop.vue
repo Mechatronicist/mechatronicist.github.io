@@ -16,14 +16,14 @@ onMounted(() => {
                     :style="`left: ${window.position.x}px; top: ${window.position.y}px; width: ${window.size.x}px; height: ${window.size.y}px; z-index: ${window.zIndex}`">
                     <div class="header" @mousedown="startDragWindow(window.id)" @touchstart="startDragWindow(window.id)">
                         <img :src="`${window.iconPath}`" class="icon" />
-                        <div class="title">{{ window.title }}</div>
+                        <div class="title">{{ window.definition.name }}</div>
                         <div class="controls">
                             <div class="minimize" @click="minimizeWindow(window.id)">-</div>
                             <div class="exit" @click="closeWindow(window.id)">x</div>
                         </div>
                     </div>
                     <div class="content">
-                        <component :is="window.content"></component>
+                        <component :is="window.definition.component"></component>
                     </div>
                     <div class="resizer" @mousedown="startResizeWindow(window.id)" @touchstart="startResizeWindow(window.id)"></div>
                 </div>
@@ -46,6 +46,9 @@ onMounted(() => {
 }
 
 .window {
+    display: flex;
+    flex-direction: column;
+
     position: absolute;
     border: 1px solid #404040;
     border-radius: 5px;
@@ -96,6 +99,9 @@ onMounted(() => {
 .window .header .title {
     flex: 1;
     user-select: none;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .window .header .controls {
     display: flex;
@@ -146,8 +152,15 @@ onMounted(() => {
     background-color: red;
 }
 .window .content {
-    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    
     text-wrap: wrap;
     word-wrap: break-word;
+
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 </style>

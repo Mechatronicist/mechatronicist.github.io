@@ -1,25 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { createWindow, toggleMinimizeWindow, windows } from '../lib/windows';
-import HelloWorld from './HelloWorld.vue';
-import UuidGenerator from './UuidGenerator.vue';
+import { createWindow, toggleMinimizeWindow, windowDefinitions, windows } from '../lib/windows';
 
 const isMenuVisible = ref<boolean>(false);
 const currentTime = ref<string>("");
 
 function toggleMenu() {
     isMenuVisible.value = !isMenuVisible.value;
-}
-
-function createTestWindow(id: number) {
-    createWindow(`Test Window ${id}`, HelloWorld);
-}
-
-function createUuidGeneratorWindow() {
-    createWindow("Uuid Generator", UuidGenerator, {
-        x: 300,
-        y: 200
-    }, "/vite.svg");
 }
 
 function getCurrentTime12h(): string {
@@ -71,13 +58,9 @@ function setTaskbarHeight() {
     <div id="taskbar">
         <Transition name="fade-in">
             <div id="taskbar-menu" v-if="isMenuVisible">
-                <template v-for="id in [1,2]">
-                    <div class="taskbar-menu-item" @click="createTestWindow(id)">Test Window {{ id }}</div>
+                <template v-for="definition in windowDefinitions">
+                    <div class="taskbar-menu-item" @click="createWindow(definition.id)">{{ definition.name }}</div>
                 </template>
-
-                <div class="taskbar-menu-item" @click="createUuidGeneratorWindow">
-                    Uuid Generator
-                </div>
             </div>
         </Transition>
 
@@ -92,7 +75,7 @@ function setTaskbarHeight() {
                 <div v-for="window in windows" :key="window.id"
                     :class="`${window.isMinimized ? 'taskbar-window-minimized' : 'taskbar-window'}`" @click="toggleMinimizeWindow(window.id)">
                     <img :src="window.iconPath" class="icon" />
-                    <div class="title">{{ window.title }}</div>
+                    <div class="title">{{ window.definition.name }}</div>
                 </div>
             </TransitionGroup>
         </div>
