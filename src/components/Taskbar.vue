@@ -63,7 +63,10 @@ let orderedWindowDefinitions = computed(() => {
         <Transition name="fade-in">
             <div id="taskbar-menu" v-if="isMenuVisible">
                 <template v-for="definition in orderedWindowDefinitions">
-                    <div class="taskbar-menu-item" @click="createWindow(definition.id)">{{ definition.name }}</div>
+                    <div class="taskbar-menu-item" @click="createWindow(definition.id)">
+                        <img :src="`${definition.iconPath ?? '/vite.svg'}`" class="icon" />
+                        {{ definition.name }}
+                    </div>
                 </template>
             </div>
         </Transition>
@@ -78,7 +81,7 @@ let orderedWindowDefinitions = computed(() => {
             <TransitionGroup name="fade-in">
                 <div v-for="window in windows" :key="window.id"
                     :class="`${window.isMinimized ? 'taskbar-window-minimized' : 'taskbar-window'}`" @click="toggleMinimizeWindow(window.id)">
-                    <img :src="window.iconPath" class="icon" />
+                    <img :src="`${window.definition.iconPath ?? '/vite.svg'}`" class="icon" />
                     <div class="title">{{ window.definition.name }}</div>
                 </div>
             </TransitionGroup>
@@ -144,8 +147,13 @@ let orderedWindowDefinitions = computed(() => {
         height: 40px;
     }
     .taskbar-menu-item {
+        display: flex;
+        flex-direction: row;
+
+        gap: 0.5rem;
+
         color: white;
-        padding: 0.5rem;
+        padding: 1rem;
 
         transition: background-color 0.25s;
 
@@ -153,6 +161,10 @@ let orderedWindowDefinitions = computed(() => {
     }
     .taskbar-menu-item:hover {
         background-color: #202020;
+    }
+    .taskbar-menu-item img {
+        width: 20px;
+        height: 20px;
     }
 
     #taskbar-windows {
@@ -168,8 +180,7 @@ let orderedWindowDefinitions = computed(() => {
         gap: 0.5rem;
     }
     .taskbar-window {
-        flex: 0 0 150px;
-        width: 150px;
+        max-width: 150px;
 
         display: flex;
         flex-direction: row;
@@ -184,7 +195,7 @@ let orderedWindowDefinitions = computed(() => {
         color: white;
         background-color: #202020;
 
-        padding: 0.5rem;
+        padding: 0.5rem 1rem;
     }
     .taskbar-window:hover {
         cursor: pointer;

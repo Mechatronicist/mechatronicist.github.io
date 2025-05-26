@@ -22,7 +22,6 @@ interface WindowState {
     isDragging: boolean;
     isResizing: boolean;
     isMinimized: boolean;
-    iconPath: string;
     zIndex: number;
 }
 
@@ -72,7 +71,6 @@ export function createWindow(definitionId: string) {
             isDragging: false,
             isResizing: false,
             isMinimized: false,
-            iconPath: definition.iconPath ?? '/vite.svg',
             zIndex: 1
     });
 }
