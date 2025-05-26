@@ -8,7 +8,8 @@ export function registerPrograms() {
     registerWindow({
         id: 'about',
         name: "About",
-        component: shallowRef(About)
+        component: shallowRef(About),
+        openOnStartup: true
     });
 
     registerWindow({

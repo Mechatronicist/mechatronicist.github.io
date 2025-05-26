@@ -31,6 +31,7 @@ interface WindowDefinition {
     component: Component;
     initialSize?: Vector2;
     iconPath?: string;
+    openOnStartup?: boolean;
 }
 
 export const windows = ref<WindowState[]>([]);
@@ -83,6 +84,15 @@ export function createWindow(definitionId: string) {
             zIndex: 1
     });
 }
+
+export function launchStartupWindows() {
+    for(let definition of windowDefinitions.value) {
+        if(definition.openOnStartup) {
+            createWindow(definition.id);
+        }
+    }  
+}
+
 export function focusWindow(id: string) {
     for(let window of windows.value) {
         if(window.id === id) {

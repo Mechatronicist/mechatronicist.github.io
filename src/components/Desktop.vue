@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { registerWindowEvents, windows, minimizeWindow, closeWindow, startDragWindow, startResizeWindow, focusWindow } from '../lib/windows';
+import { registerWindowEvents, windows, minimizeWindow, closeWindow, startDragWindow, startResizeWindow, focusWindow, launchStartupWindows } from '../lib/windows';
 
 onMounted(() => {
     registerWindowEvents();
+    launchStartupWindows();
 });
 </script>
 
