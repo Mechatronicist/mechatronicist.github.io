@@ -10,23 +10,25 @@ onMounted(() => {
 <template>
     <div id="desktop">
 
-        <template v-for="window in windows">
-            <div class="window" v-show="!window.isMinimized" 
-                :style="`transform: translate(${window.position.x}px, ${window.position.y}px); width: ${window.size.x}px; height: ${window.size.y}px; z-index: ${window.zIndex}`">
-                <div class="header" @mousedown="startDragWindow(window.id)" @touchstart="startDragWindow(window.id)">
-                    <img :src="`${window.iconPath}`" class="icon" />
-                    <div class="title">{{ window.title }}</div>
-                    <div class="controls">
-                        <div class="minimize" @click="minimizeWindow(window.id)">-</div>
-                        <div class="exit" @click="closeWindow(window.id)">x</div>
+        <TransitionGroup name="scale-in">
+            <template v-for="window in windows" :key="window.id">
+                <div class="window" v-show="!window.isMinimized" 
+                    :style="`left: ${window.position.x}px; top: ${window.position.y}px; width: ${window.size.x}px; height: ${window.size.y}px; z-index: ${window.zIndex}`">
+                    <div class="header" @mousedown="startDragWindow(window.id)" @touchstart="startDragWindow(window.id)">
+                        <img :src="`${window.iconPath}`" class="icon" />
+                        <div class="title">{{ window.title }}</div>
+                        <div class="controls">
+                            <div class="minimize" @click="minimizeWindow(window.id)">-</div>
+                            <div class="exit" @click="closeWindow(window.id)">x</div>
+                        </div>
                     </div>
+                    <div class="content">
+                        <component :is="window.content"></component>
+                    </div>
+                    <div class="resizer" @mousedown="startResizeWindow(window.id)"></div>
                 </div>
-                <div class="content">
-                    <component :is="window.content"></component>
-                </div>
-                <div class="resizer" @mousedown="startResizeWindow(window.id)"></div>
-            </div>
-        </template>
+            </template>
+        </TransitionGroup>
 
     </div>
 </template>

@@ -30,23 +30,15 @@ interface Window {
 export const windows = ref<Window[]>([]);
 
 export function createWindow(title: string, content: Component, initialSize?: Vector2, iconPath?: string) {
-    let posX = Math.random() * window.innerWidth - minWindowWidth;
-    let posY = Math.random() * window.innerHeight - minWindowHeight;
-
-    if(posX <= 0) {
-        posX = 10;
-    }
-
-    if(posY <= 0) {
-        posY = 10;
-    }
-
     if(!initialSize) {
         initialSize = {
             x: initialWindowWidth,
             y: initailWindowHeight
         };
     }
+
+    let posX = (window.innerWidth - initialSize.x) / 2;
+    let posY = (window.innerHeight - initialSize.y) / 2;
 
     window.screen.availHeight
     windows.value.push({

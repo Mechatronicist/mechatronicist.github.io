@@ -74,11 +74,16 @@ onMounted(() => {
             <img id="taskbar-menu-icon" src="/src/assets/vue.svg" />
         </div>
 
+        <div class="separator"></div>
+
         <div id="taskbar-windows">
-            <div class="taskbar-window" v-for="window in windows" :class="`${window.isMinimized ? 'taskbar-window-minimized' : ''}`" @click="toggleMinimizeWindow(window.id)">
-                <img :src="window.iconPath" class="icon" />
-                <div class="title">{{ window.title }}</div>
-            </div>
+            <TransitionGroup name="fade-in">
+                <div v-for="window in windows" :key="window.id"
+                    :class="`${window.isMinimized ? 'taskbar-window-minimized' : 'taskbar-window'}`" @click="toggleMinimizeWindow(window.id)">
+                    <img :src="window.iconPath" class="icon" />
+                    <div class="title">{{ window.title }}</div>
+                </div>
+            </TransitionGroup>
         </div>
 
         <div id="taskbar-tray">
@@ -147,11 +152,20 @@ onMounted(() => {
 
     #taskbar-windows {
         flex: 1;
+
         display: flex;
+        flex-direction: row;
+
+        flex-wrap: wrap;
+
+        min-width: 0;
 
         gap: 0.5rem;
     }
     .taskbar-window {
+        flex: 0 0 150px;
+        width: 150px;
+
         display: flex;
         flex-direction: row;
 
@@ -161,8 +175,10 @@ onMounted(() => {
 
         border: 1px solid #404040;
         border-radius: 5px;
+
         color: white;
         background-color: #202020;
+
         padding: 0.5rem;
     }
     .taskbar-window:hover {
@@ -171,6 +187,10 @@ onMounted(() => {
     }
     .taskbar-window .title {
         font-size: 0.75rem;
+        
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .taskbar-window .icon {
         width: 20px;
@@ -187,5 +207,13 @@ onMounted(() => {
     }
     #taskbar-tray #time {
         font-size: 0.85rem;
+    }
+
+    .separator {
+        border-left: 1px solid #303030;
+        border-right: 1px solid rgb(0, 0, 0);
+
+        width: 2px;
+        height: 60%;
     }
 </style>
