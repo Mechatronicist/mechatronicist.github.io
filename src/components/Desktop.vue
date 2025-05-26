@@ -13,7 +13,7 @@ onMounted(() => {
 
         <TransitionGroup name="scale-in">
             <template v-for="window in windows" :key="window.id">
-                <div class="window" v-show="!window.isMinimized" @mouseup="focusWindow(window.id)" @touchstart="focusWindow(window.id)"
+                <div class="window" v-show="!window.isMinimized" @mousedown="focusWindow(window.id)" @touchstart="focusWindow(window.id)"
                     :style="`left: ${window.position.x}px; top: ${window.position.y}px; width: ${window.size.x}px; height: ${window.size.y}px; z-index: ${window.zIndex}`">
                     <div class="header" @mousedown="startDragWindow(window.id)" @touchstart="startDragWindow(window.id)">
                         <img :src="`${window.definition.iconPath ?? '/default.png'}`" class="icon" />
