@@ -13,12 +13,21 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="flex-1 flex items-center justify-center">
+    <div class="loading">
         <img src="/src/assets/vue.svg" class="rotate" width="40" height="40" />
     </div>
 </template>
 
 <style scoped>
+.loading {
+    flex: 1;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: black;
+}
 .rotate {
     animation-name: rotate;
     animation-duration: 1s;

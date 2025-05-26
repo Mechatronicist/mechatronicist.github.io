@@ -33,12 +33,10 @@ function getCurrentTime12h(): string {
 }
 
 function updateCurrentTime() {
-    console.log("Updating time..");
-
     currentTime.value = getCurrentTime12h();
 }
 
-setInterval(updateCurrentTime, 30000);
+setInterval(updateCurrentTime, 1000);
 
 onMounted(() => {
     updateCurrentTime();
