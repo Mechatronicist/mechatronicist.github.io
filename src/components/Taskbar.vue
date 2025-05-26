@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { createWindow, toggleMinimizeWindow, windowDefinitions, windows } from '../lib/windows';
 
 const isMenuVisible = ref<boolean>(false);
@@ -52,13 +52,17 @@ function setTaskbarHeight() {
         document.documentElement.style.setProperty('--taskbar-height', `${window.getComputedStyle(taskbar).height}`);
     }
 }
+
+let orderedWindowDefinitions = computed(() => {
+    return windowDefinitions.value.sort((a, b) => a.name.localeCompare(b.name));
+})
 </script>
 
 <template>
     <div id="taskbar">
         <Transition name="fade-in">
             <div id="taskbar-menu" v-if="isMenuVisible">
-                <template v-for="definition in windowDefinitions">
+                <template v-for="definition in orderedWindowDefinitions">
                     <div class="taskbar-menu-item" @click="createWindow(definition.id)">{{ definition.name }}</div>
                 </template>
             </div>
