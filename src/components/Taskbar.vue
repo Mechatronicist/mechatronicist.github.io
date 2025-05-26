@@ -80,7 +80,7 @@ let orderedWindowDefinitions = computed(() => {
         <div id="taskbar-windows">
             <TransitionGroup name="fade-in">
                 <div v-for="window in windows" :key="window.id"
-                    :class="`${window.isMinimized ? 'taskbar-window-minimized' : 'taskbar-window'}`" @click="toggleMinimizeWindow(window.id)">
+                    :class="`taskbar-window ${window.isMinimized ? 'taskbar-window-minimized' : ''}`" @click="toggleMinimizeWindow(window.id)">
                     <img :src="`${window.definition.iconPath ?? '/vite.svg'}`" class="icon" />
                     <div class="title">{{ window.definition.name }}</div>
                 </div>
@@ -215,7 +215,7 @@ let orderedWindowDefinitions = computed(() => {
     .taskbar-window-minimized {
         color: gray !important;
         background-color: transparent !important;
-        border: unset !important;
+        border: 0 !important;
     }
     #taskbar-tray {
         color: white;
