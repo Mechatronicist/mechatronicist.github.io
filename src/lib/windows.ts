@@ -83,6 +83,16 @@ export function createWindow(definitionId: string) {
             zIndex: 1
     });
 }
+export function focusWindow(id: string) {
+    for(let window of windows.value) {
+        if(window.id === id) {
+            window.zIndex = 1;
+        } else {
+            window.zIndex = 0;
+        }
+    }    
+}
+
 export function closeWindow(id: string) {
     windows.value = windows.value.filter(w => w.id != id);
 }
@@ -174,12 +184,8 @@ function handleDragResizeEvents(event: MouseEvent | TouchEvent) {
 }
 
 export function startDragWindow(id: string) {
-    console.log("Dragging windows");
     for(let window of windows.value) {
-        if (window.id !== id) {
-            window.zIndex = 0;
-        } else {
-            window.zIndex = 1;
+        if (window.id === id) {
             window.isDragging = true;
         }
     }

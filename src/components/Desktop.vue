@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { registerWindowEvents, windows, minimizeWindow, closeWindow, startDragWindow, startResizeWindow } from '../lib/windows';
+import { registerWindowEvents, windows, minimizeWindow, closeWindow, startDragWindow, startResizeWindow, focusWindow } from '../lib/windows';
 
 onMounted(() => {
     registerWindowEvents();
@@ -12,7 +12,7 @@ onMounted(() => {
 
         <TransitionGroup name="scale-in">
             <template v-for="window in windows" :key="window.id">
-                <div class="window" v-show="!window.isMinimized" 
+                <div class="window" v-show="!window.isMinimized" @mouseup="focusWindow(window.id)" @touchstart="focusWindow(window.id)"
                     :style="`left: ${window.position.x}px; top: ${window.position.y}px; width: ${window.size.x}px; height: ${window.size.y}px; z-index: ${window.zIndex}`">
                     <div class="header" @mousedown="startDragWindow(window.id)" @touchstart="startDragWindow(window.id)">
                         <img :src="`${window.definition.iconPath ?? '/vite.svg'}`" class="icon" />
