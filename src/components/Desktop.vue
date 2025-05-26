@@ -42,7 +42,7 @@ onMounted(() => {
 
     align-items: start;
 
-    margin: 1rem;
+    background: linear-gradient(45deg, #101010, #202020);
 }
 
 .window {

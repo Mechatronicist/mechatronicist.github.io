@@ -54,22 +54,35 @@ onMounted(() => {
             console.log("Closing menu");
         }
     });
+
+    setTaskbarHeight();
 });
+
+function setTaskbarHeight() {
+    const taskbar = document.getElementById('taskbar');
+
+    if (taskbar) {
+        document.documentElement.style.setProperty('--taskbar-height', `${window.getComputedStyle(taskbar).height}`);
+    }
+}
 </script>
 
 <template>
-    <div id="taskbar-menu" v-if="isMenuVisible">
-        <template v-for="id in [1,2]">
-            <div class="taskbar-menu-item" @click="createTestWindow(id)">Test Window {{ id }}</div>
-        </template>
-
-        <div class="taskbar-menu-item" @click="createUuidGeneratorWindow">
-            Uuid Generator
-        </div>
-    </div>
     <div id="taskbar">
+        <Transition name="fade-in">
+            <div id="taskbar-menu" v-if="isMenuVisible">
+                <template v-for="id in [1,2]">
+                    <div class="taskbar-menu-item" @click="createTestWindow(id)">Test Window {{ id }}</div>
+                </template>
+
+                <div class="taskbar-menu-item" @click="createUuidGeneratorWindow">
+                    Uuid Generator
+                </div>
+            </div>
+        </Transition>
+
         <div id="taskbar-menu-button" @click="toggleMenu">
-            <img id="taskbar-menu-icon" src="/src/assets/vue.svg" />
+            <img id="taskbar-menu-icon" src="/src/assets/menu.png" />
         </div>
 
         <div class="separator"></div>
@@ -97,11 +110,14 @@ onMounted(() => {
         display: flex;
         flex-direction: row;
 
+        position: relative;
+
         align-items: center;
         gap: 1rem;
 
         border-top: 1px solid #303030;
         background: linear-gradient(0deg, black, #101010);
+
         z-index: 2;
         user-select: none;
     }
@@ -118,9 +134,9 @@ onMounted(() => {
         display: flex;
         flex-direction: column;
 
-        position: relative;
+        position: absolute;
 
-        bottom: 0;
+        bottom: calc(var(--taskbar-height));
 
         max-width: 200px;
 
@@ -135,6 +151,10 @@ onMounted(() => {
     }
     #taskbar-menu:hover {
         display: flex;
+    }
+    #taskbar-menu-icon {
+        width: 40px;
+        height: 40px;
     }
     .taskbar-menu-item {
         color: white;
