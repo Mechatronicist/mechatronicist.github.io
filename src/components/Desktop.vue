@@ -15,7 +15,7 @@ onMounted(() => {
                 <div class="window" v-show="!window.isMinimized" @mouseup="focusWindow(window.id)" @touchstart="focusWindow(window.id)"
                     :style="`left: ${window.position.x}px; top: ${window.position.y}px; width: ${window.size.x}px; height: ${window.size.y}px; z-index: ${window.zIndex}`">
                     <div class="header" @mousedown="startDragWindow(window.id)" @touchstart="startDragWindow(window.id)">
-                        <img :src="`${window.definition.iconPath ?? '/vite.svg'}`" class="icon" />
+                        <img :src="`${window.definition.iconPath ?? '/default.png'}`" class="icon" />
                         <div class="title">{{ window.definition.name }}</div>
                         <div class="controls">
                             <div class="minimize" @click="minimizeWindow(window.id)">-</div>
@@ -91,8 +91,8 @@ onMounted(() => {
     cursor: grab;
 }
 .window .header .icon {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
 }
 .window .header .title {
     flex: 1;

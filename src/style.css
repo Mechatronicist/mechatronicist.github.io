@@ -8,7 +8,7 @@ body {
     display: flex;
     min-height: calc(var(--vh) * 100);
 
-    background: url('/src/assets/vue.svg');
+    background: url('/background.jpeg');
     background-size: cover;
 
     overflow: hidden;
@@ -49,5 +49,21 @@ body {
 
     to {
         opacity: 1;
+    }
+}
+
+.slide-up-enter-active {
+    animation: slide-up 0.5s;
+}
+.slide-up-leave-active {
+    animation: slide-up 0.5s reverse;
+}
+@keyframes slide-up {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0%);
     }
 }

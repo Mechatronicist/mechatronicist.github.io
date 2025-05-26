@@ -14,7 +14,7 @@ onMounted(() => {
 
 <template>
     <div class="loading">
-        <img src="/src/assets/vue.svg" class="rotate" width="40" height="40" />
+        <img src="/default.png" class="rotate" width="180" height="180" />
     </div>
 </template>
 

@@ -4,6 +4,7 @@ import { createWindow, toggleMinimizeWindow, windowDefinitions, windows } from '
 
 const isMenuVisible = ref<boolean>(false);
 const currentTime = ref<string>("");
+const showTaskbar = ref<boolean>(false);
 
 function toggleMenu() {
     isMenuVisible.value = !isMenuVisible.value;
@@ -42,14 +43,18 @@ onMounted(() => {
         }
     });
 
-    setTaskbarHeight();
+    showTaskbar.value = true;
+    setTimeout(() => {
+        setTaskbarHeight();
+    }, 1000);
 });
 
 function setTaskbarHeight() {
     const taskbar = document.getElementById('taskbar');
 
     if (taskbar) {
-        document.documentElement.style.setProperty('--taskbar-height', `${window.getComputedStyle(taskbar).height}`);
+        let height = window.getComputedStyle(taskbar).height;
+        document.documentElement.style.setProperty('--taskbar-height', `${height}`);
     }
 }
 
@@ -59,40 +64,42 @@ let orderedWindowDefinitions = computed(() => {
 </script>
 
 <template>
-    <div id="taskbar">
-        <Transition name="fade-in">
-            <div id="taskbar-menu" v-if="isMenuVisible">
-                <template v-for="definition in orderedWindowDefinitions">
-                    <div class="taskbar-menu-item" @click="createWindow(definition.id)">
-                        <img :src="`${definition.iconPath ?? '/vite.svg'}`" class="icon" />
-                        {{ definition.name }}
-                    </div>
-                </template>
-            </div>
-        </Transition>
-
-        <div id="taskbar-menu-button" @click="toggleMenu">
-            <img id="taskbar-menu-icon" src="/src/assets/menu.png" />
-        </div>
-
-        <div class="separator"></div>
-
-        <div id="taskbar-windows">
-            <TransitionGroup name="fade-in">
-                <div v-for="window in windows" :key="window.id"
-                    :class="`taskbar-window ${window.isMinimized ? 'taskbar-window-minimized' : ''}`" @click="toggleMinimizeWindow(window.id)">
-                    <img :src="`${window.definition.iconPath ?? '/vite.svg'}`" class="icon" />
-                    <div class="title">{{ window.definition.name }}</div>
+    <Transition name="slide-up">
+        <div id="taskbar" v-if="showTaskbar">
+            <Transition name="fade-in">
+                <div id="taskbar-menu" v-if="isMenuVisible">
+                    <template v-for="definition in orderedWindowDefinitions">
+                        <div class="taskbar-menu-item" @click="createWindow(definition.id)">
+                            <img :src="`${definition.iconPath ?? '/default.png'}`" class="icon" />
+                            {{ definition.name }}
+                        </div>
+                    </template>
                 </div>
-            </TransitionGroup>
-        </div>
+            </Transition>
 
-        <div id="taskbar-tray">
-            <div id="time">
-                {{ currentTime }}
+            <div id="taskbar-menu-button" @click="toggleMenu">
+                <img id="taskbar-menu-icon" src="/src/assets/menu.png" />
+            </div>
+
+            <div class="separator"></div>
+
+            <div id="taskbar-windows">
+                <TransitionGroup name="fade-in">
+                    <div v-for="window in windows" :key="window.id"
+                        :class="`taskbar-window ${window.isMinimized ? 'taskbar-window-minimized' : ''}`" @click="toggleMinimizeWindow(window.id)">
+                        <img :src="`${window.definition.iconPath ?? '/default.png'}`" class="icon" />
+                        <div class="title">{{ window.definition.name }}</div>
+                    </div>
+                </TransitionGroup>
+            </div>
+
+            <div id="taskbar-tray">
+                <div id="time">
+                    {{ currentTime }}
+                </div>
             </div>
         </div>
-    </div>
+    </Transition>
 </template>
 
 <style scoped>
