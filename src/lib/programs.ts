@@ -1,17 +1,10 @@
 import { shallowRef } from "vue";
-import HelloWorld from "../components/HelloWorld.vue";
-import UuidGenerator from "../components/UuidGenerator.vue";
-import Terminal from "../components/Terminal.vue";
+
 import { registerWindow } from "./windows";
-import About from "../components/About.vue";
+import About from "../components/windows/About.vue";
+import Terminal from "../components/windows/Terminal.vue";
 
 export function registerPrograms() {
-    registerWindow({
-        id: 'uuid-gen',
-        name: "UUID Generator",
-        component: shallowRef(UuidGenerator)
-    });
-
     registerWindow({
         id: 'about',
         name: "About",
@@ -26,11 +19,5 @@ export function registerPrograms() {
             x: 600,
             y: 380
         }
-    });
-
-    registerWindow({
-        id: "test",
-        name: "Test Window",
-        component: shallowRef(HelloWorld)
     });
 }

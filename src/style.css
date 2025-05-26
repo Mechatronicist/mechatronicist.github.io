@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 * {
     font-family: 'Courier New', Courier, monospace;
 }
@@ -7,6 +5,8 @@
 body {
     display: flex;
     min-height: calc(var(--vh) * 100);
+
+    margin: 0;
 
     background: url('/background.jpeg');
     background-size: cover;
