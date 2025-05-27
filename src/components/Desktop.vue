@@ -13,7 +13,7 @@ onMounted(() => {
 
         <TransitionGroup name="scale-in">
             <template v-for="window in windows" :key="window.id">
-                <div class="window" v-show="!window.isMinimized" @pointerdown="focusWindow(window.id)"
+                <div :class="`window ${ window.isFocused ? 'focused' : '' }`" v-show="!window.isMinimized" @pointerdown="focusWindow(window.id)"
                     :style="`left: ${window.position.x}px; top: ${window.position.y}px; width: ${window.size.x}px; height: ${window.size.y}px; z-index: ${window.zIndex}`">
                     <div class="header" @pointerdown="startDragWindow(window.id)">
                         <img :src="`${window.definition.iconPath ?? '/default.png'}`" class="icon" />
@@ -87,7 +87,6 @@ onMounted(() => {
 
     font-weight: bold;
     background: linear-gradient(0deg, #101010, #202020);
-    padding: 0.5rem;
 
     cursor: grab;
     user-select: none;
@@ -95,6 +94,9 @@ onMounted(() => {
 .window .header .icon {
     width: 30px;
     height: 30px;
+
+    margin: 0.5rem;
+    margin-right: 0;
 }
 .window .header .title {
     flex: 1;
@@ -102,25 +104,22 @@ onMounted(() => {
 
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    margin: 0.5rem;
+    margin-left: 0;
 }
 .window .header .controls {
     display: flex;
     flex-direction: row;
 
-    gap: 0.5rem;
+    height: 100%;
 }
 .window .header .controls .minimize {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 24px;
-    height: 24px;
-
-    border: 1px solid #404040;
-    border-radius: 5px;
-
-    background-color: #252525;
+    width: 40px;
 
     cursor: pointer;
     user-select: none;
@@ -135,13 +134,7 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
 
-    width: 24px;
-    height: 24px;
-
-    border: 1px solid #404040;
-    border-radius: 5px;
-
-    background-color: #252525;
+    width: 40px;
 
     cursor: pointer;
     user-select: none;
@@ -162,5 +155,8 @@ onMounted(() => {
 
     overflow-y: auto;
     overflow-x: hidden;
+}
+.focused {
+    border: 1px solid rgb(100, 100, 100) !important;
 }
 </style>

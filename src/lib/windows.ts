@@ -31,6 +31,7 @@ interface WindowDefinition {
     name: string;
     component: Component;
     initialSize?: Vector2;
+    initialPosition?: Vector2;
     iconPath?: string;
     openOnStartup?: boolean;
 }
@@ -67,6 +68,11 @@ export function createWindow(definitionId: string) {
 
     let posX = (window.innerWidth - definition.initialSize.x) / 2;
     let posY = (window.innerHeight - definition.initialSize.y) / 2;
+
+    if (definition.initialPosition) {
+        posX = definition.initialPosition.x;
+        posY = definition.initialPosition.y;
+    }
 
     const windowId = crypto.randomUUID();
 
