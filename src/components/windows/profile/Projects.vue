@@ -12,7 +12,7 @@
                     <div class="tag">.NET</div>
                 </div>
                 <div class="links">
-                    <a href="https://github.com/lewpar/WireGuardCommand">GitHub</a>
+                    <a href="https://github.com/lewpar/WireGuardCommand" target="_blank">GitHub</a>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
                     <div class="tag">Markdown</div>
                 </div>
                 <div class="links">
-                    <a href="https://cyberbilby.com">Visit</a>
+                    <a href="https://cyberbilby.com" target="_blank">Visit</a>
                 </div>
             </div>
         </div>
