@@ -10,7 +10,8 @@ export function registerPrograms() {
         id: 'about',
         name: "About",
         component: shallowRef(About),
-        openOnStartup: true
+        openOnStartup: true,
+        iconPath: "/about.png"
     });
 
     registerWindow({
@@ -20,7 +21,8 @@ export function registerPrograms() {
         initialSize: {
             x: 600,
             y: 380
-        }
+        },
+        iconPath: "/terminal.png"
     });
 
     registerWindow({

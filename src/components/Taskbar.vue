@@ -5,6 +5,7 @@ import { createWindow, minimizeOrFocusWindow, windowDefinitions, windows } from 
 const isMenuVisible = ref<boolean>(false);
 const currentTime = ref<string>("");
 const showTaskbar = ref<boolean>(false);
+const menuSearchTerm = ref<string>("");
 
 function toggleMenu() {
     isMenuVisible.value = !isMenuVisible.value;
@@ -32,14 +33,15 @@ onMounted(() => {
     addEventListener('click', (event) => {
         let target = event.target as HTMLElement;
         if (target) {
-            if (target.id === 'taskbar-menu-icon' || target.id === 'taskbar-menu-button') {
+            if (target.id === 'taskbar-menu-icon' || 
+                target.id === 'taskbar-menu-button' ||
+                target.id === 'taskbar-menu-search') {
                 return;
             }
         }
 
         if (isMenuVisible.value) {
             isMenuVisible.value = false;
-            console.log("Closing menu");
         }
     });
 
@@ -59,7 +61,15 @@ function setTaskbarHeight() {
 }
 
 let orderedWindowDefinitions = computed(() => {
-    return windowDefinitions.value.sort((a, b) => a.name.localeCompare(b.name));
+    if (menuSearchTerm.value !== "") {
+        return windowDefinitions.value
+            .filter(wd => wd.name.toLocaleLowerCase()
+            .includes(menuSearchTerm.value.toLocaleLowerCase()))
+            .sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    return windowDefinitions.value
+        .sort((a, b) => a.name.localeCompare(b.name));
 })
 </script>
 
@@ -68,11 +78,17 @@ let orderedWindowDefinitions = computed(() => {
         <div id="taskbar" v-if="showTaskbar">
             <Transition name="fade-in">
                 <div id="taskbar-menu" v-if="isMenuVisible">
+                    <input id="taskbar-menu-search" type="text" v-model="menuSearchTerm" placeholder="Search.." />
+
                     <template v-for="definition in orderedWindowDefinitions">
                         <div class="taskbar-menu-item" @click="createWindow(definition.id)">
                             <img :src="`${definition.iconPath ?? '/default.png'}`" class="icon" />
                             {{ definition.name }}
                         </div>
+                    </template>
+
+                    <template v-if="orderedWindowDefinitions.length < 1">
+                        <div style="font-size: 0.75rem">No programs found..</div>
                     </template>
                 </div>
             </Transition>
@@ -135,16 +151,19 @@ let orderedWindowDefinitions = computed(() => {
         display: flex;
         flex-direction: column;
 
+        gap: 0.5rem;
+
         position: absolute;
 
         bottom: calc(var(--taskbar-height));
 
         max-width: 200px;
+        padding: 0.5rem;
 
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: #101010;
         
         border: 1px solid #303030;
-        border-radius: 0 10px;
+        border-radius: 0 10px 0 0;
 
         backdrop-filter: blur(10px);
 
@@ -157,11 +176,25 @@ let orderedWindowDefinitions = computed(() => {
         width: 40px;
         height: 40px;
     }
+    #taskbar-menu-search {
+        padding: 0.5rem;
+
+        color: white;
+        background-color: #202020;
+
+        border: 1px solid #303030;
+        border-radius: 5px;
+    }
     .taskbar-menu-item {
         display: flex;
         flex-direction: row;
 
+        align-items: center;
+
         gap: 0.5rem;
+
+        font-size: 0.75rem;
+        border-radius: 5px;
 
         color: white;
         padding: 1rem;
