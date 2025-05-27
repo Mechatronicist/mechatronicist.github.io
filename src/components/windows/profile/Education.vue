@@ -4,7 +4,9 @@
             <img src="/src/assets/menu.png" class="image" />
             <div class="details">
                 <div class="title">Diploma of Information Technology</div>
-                <div class="subtext">Kangan Institute - 2025 - Current</div>
+                <div class="subtext">
+                    <a href="https://www.kangan.edu.au/" target="_blank">Kangan Institute</a> - 2025 - Current
+                </div>
             </div>
         </div>
 
@@ -12,7 +14,9 @@
             <img src="/src/assets/menu.png" class="image" />
             <div class="details">
                 <div class="title">Certificate IV in Cyber Security</div>
-                <div class="subtext">Kangan Institute - 2023 - 2024</div>
+                <div class="subtext">
+                    <a href="https://www.kangan.edu.au/" target="_blank">Kangan Institute</a> - 2023 - 2024
+                </div>
             </div>
         </div>
 
@@ -20,7 +24,9 @@
             <img src="/src/assets/menu.png" class="image" />
             <div class="details">
                 <div class="title">Certificate III in Information Technology</div>
-                <div class="subtext">Victoria University - 2023</div>
+                <div class="subtext">
+                    <a href="https://www.vu.edu.au/" target="_blank">Victoria University</a> - 2023
+                </div>
             </div>
         </div>
     </div>

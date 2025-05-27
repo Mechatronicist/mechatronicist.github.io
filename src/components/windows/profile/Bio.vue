@@ -1,9 +1,9 @@
 <template>
     <div class="bio">
-        <img src="/src/assets/menu.png" class="headshot" />
+        <img src="/headshot.png" class="image" />
         <div class="info">
             <div class="title">Lewis Parmenter</div>
-            <div>Software Developer with 3+ years of experience developing software in languages such as: C# (ASP.NET), JavaScript/TypeScript, Python, C++. Additional experience with Git, Terraform, AWS + Azure, and Docker.</div>
+            <div class="subtext">Software Developer with 3+ years of experience developing software in languages such as: C# (ASP.NET), JavaScript/TypeScript, Python, C++. Additional experience with Git, Terraform, AWS + Azure, and Docker.</div>
 
             <div class="title">Socials</div>
             <div class="social">
@@ -18,14 +18,20 @@
 .bio {
     display: flex;
     flex-direction: row;
+
+    align-items: center;
     
-    gap: 0.5rem;
+    gap: 2rem;
 
     padding: 1rem;
 }
-.bio .headshot {
-    width: 200px;
+.bio .image {
+    width: 150px;
+    height: 150px;
+
     object-fit: contain;
+
+    border-radius: 50%;
 }
 .bio .info {
     display: flex;
@@ -38,8 +44,13 @@
     flex-direction: row;
 
     gap: 0.5rem;
+
+    font-size: 0.9rem;
 }
 .bio .info .title {
     font-weight: bold;
+}
+.bio .info .subtext {
+    font-size: 0.9rem;
 }
 </style>

@@ -54,4 +54,7 @@
     font-style: italic;
     font-size: 0.75rem;
 }
+.experience .entry .details .description {
+    font-size: 0.9rem;
+}
 </style>
