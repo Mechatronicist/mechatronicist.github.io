@@ -3,6 +3,14 @@
         <div class="entry">
             <img src="/src/assets/menu.png" class="image" />
             <div class="details">
+                <div class="title">Diploma of Information Technology</div>
+                <div class="subtext">Kangan Institute - 2025 - Current</div>
+            </div>
+        </div>
+
+        <div class="entry">
+            <img src="/src/assets/menu.png" class="image" />
+            <div class="details">
                 <div class="title">Certificate IV in Cyber Security</div>
                 <div class="subtext">Kangan Institute - 2023 - 2024</div>
             </div>
