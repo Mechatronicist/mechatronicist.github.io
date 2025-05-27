@@ -2,7 +2,7 @@
     <div class="bio">
         <img src="/src/assets/menu.png" class="headshot" />
         <div class="info">
-            <div class="title">Bio</div>
+            <div class="title">Lewis Parmenter</div>
             <div>Software Developer with 3+ years of experience developing software in languages such as: C# (ASP.NET), JavaScript/TypeScript, Python, C++. Additional experience with Git, Terraform, AWS + Azure, and Docker.</div>
 
             <div class="title">Socials</div>
