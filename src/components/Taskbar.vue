@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
-import { createWindow, toggleMinimizeWindow, windowDefinitions, windows } from '../lib/windows';
+import { createWindow, minimizeOrFocusWindow, windowDefinitions, windows } from '../lib/windows';
 
 const isMenuVisible = ref<boolean>(false);
 const currentTime = ref<string>("");
@@ -86,9 +86,11 @@ let orderedWindowDefinitions = computed(() => {
             <div id="taskbar-windows">
                 <TransitionGroup name="fade-in">
                     <div v-for="window in windows" :key="window.id"
-                        :class="`taskbar-window ${window.isMinimized ? 'taskbar-window-minimized' : ''}`" @click="toggleMinimizeWindow(window.id)">
+                        :class="`${window.isMinimized ? 'taskbar-window-inactive' : 'taskbar-window-active'}`" 
+                        :style="`${window.isFocused && !window.isMinimized ? 'border-bottom-color: dodgerblue' : ''}`"
+                        @click="minimizeOrFocusWindow(window.id)">
                         <img :src="`${window.definition.iconPath ?? '/default.png'}`" class="icon" />
-                        <div class="title">{{ window.definition.name }}</div>
+                        <!-- <div class="title">{{ window.definition.name }}</div> -->
                     </div>
                 </TransitionGroup>
             </div>
@@ -188,44 +190,43 @@ let orderedWindowDefinitions = computed(() => {
 
         gap: 0.5rem;
     }
-    .taskbar-window {
-        max-width: 150px;
 
+    .taskbar-window-active {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
 
-        align-items: center;
+        padding: 0.5rem;
 
-        gap: 1rem;
-
-        border: 1px solid #404040;
-        border-radius: 5px;
-
-        color: white;
-        background-color: #202020;
-
-        padding: 0.5rem 1rem;
+        border-bottom: 2px solid rgb(54, 54, 54);
+        border-radius: 5px 5px 0 0;
     }
-    .taskbar-window:hover {
-        cursor: pointer;
-        background-color: #303030;
+    .taskbar-window-active:hover {
+        background-color: rgba(255, 255, 255, 0.15);
     }
-    .taskbar-window .title {
-        font-size: 0.75rem;
-        
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .taskbar-window .icon {
+    .taskbar-window-active .icon {
         width: 20px;
         height: 20px;
     }
-    .taskbar-window-minimized {
-        color: gray !important;
-        background-color: transparent !important;
-        border: 0 !important;
+
+    .taskbar-window-inactive {
+        display: flex;
+        flex-direction: column;
+
+        padding: 0.5rem;
+
+        border-bottom: 2px solid transparent;
+        border-radius: 5px;
     }
+    .taskbar-window-inactive:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+    .taskbar-window-inactive .icon {
+        width: 20px;
+        height: 20px;
+
+        filter:grayscale();
+    }
+
     #taskbar-tray {
         color: white;
         padding-right: 1rem;

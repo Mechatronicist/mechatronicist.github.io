@@ -22,6 +22,7 @@ interface WindowState {
     isDragging: boolean;
     isResizing: boolean;
     isMinimized: boolean;
+    isFocused: boolean;
     zIndex: number;
 }
 
@@ -67,8 +68,10 @@ export function createWindow(definitionId: string) {
     let posX = (window.innerWidth - definition.initialSize.x) / 2;
     let posY = (window.innerHeight - definition.initialSize.y) / 2;
 
+    const windowId = crypto.randomUUID();
+
     windows.value.push({
-            id: crypto.randomUUID(),
+            id: windowId,
             definition: definition,
             position: {
                 x: posX,
@@ -81,8 +84,11 @@ export function createWindow(definitionId: string) {
             isDragging: false,
             isResizing: false,
             isMinimized: false,
+            isFocused: true,
             zIndex: 1
     });
+
+    focusWindow(windowId);
 }
 
 export function launchStartupWindows() {
@@ -97,8 +103,10 @@ export function focusWindow(id: string) {
     for(let window of windows.value) {
         if(window.id === id) {
             window.zIndex = 1;
+            window.isFocused = true;
         } else {
             window.zIndex = 0;
+            window.isFocused = false;
         }
     }    
 }
@@ -112,15 +120,32 @@ export function minimizeWindow(id: string) {
         return;
     }
 
+    window.isFocused = false;
     window.isMinimized = true;
 }
-export function toggleMinimizeWindow(id: string) {
+export function minimizeOrFocusWindow(id: string) {
     const window = windows.value.find(w => w.id == id);
     if (!window) {
         return;
     }
 
+    if(!window.isFocused && !window.isMinimized) {
+        focusWindow(window.id);
+        return;
+    }
+
     window.isMinimized = !window.isMinimized;
+
+    if(!window.isMinimized) {
+        focusWindow(window.id);
+    }
+    else {
+        // If the current window is minimized, focus the first unminimized window that is open.
+        let nextWindow = windows.value.find(w => !w.isFocused && !w.isMinimized);
+        if (nextWindow) {
+            focusWindow(nextWindow.id);
+        }
+    }
 }
 
 export function registerWindowEvents() {
