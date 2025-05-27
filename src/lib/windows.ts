@@ -149,33 +149,24 @@ export function minimizeOrFocusWindow(id: string) {
 }
 
 export function registerWindowEvents() {
-    addEventListener('mousedown', handleDragStartEvents);
-    addEventListener('mousemove', (event: MouseEvent) => {
+    addEventListener('pointerdown', handleDragStartEvents);
+    addEventListener('pointermove', (event: PointerEvent) => {
         handleDragResizeEvents(event);
+        console.log("Move");
 
         lastMouseX = event.clientX;
         lastMouseY = event.clientY;
     });
-    addEventListener('mouseup', handleDragResizeStopEvents);
-
-    addEventListener('touchstart', handleDragStartEvents);
-    addEventListener('touchmove', (event: TouchEvent) => {
-        handleDragResizeEvents(event);
-
-        lastMouseX = event.touches[0].clientX;
-        lastMouseY = event.touches[0].clientY;
-    });
-    addEventListener('touchend', handleDragResizeStopEvents);
+    addEventListener('pointerup', handleDragResizeStopEvents);
 }
 
-function handleDragStartEvents(event: MouseEvent | TouchEvent) {
-     const isTouch = event instanceof TouchEvent;
-
-    lastMouseX = (isTouch ? (event as TouchEvent).touches[0].clientX : (event as MouseEvent).clientX);
-    lastMouseY = (isTouch ? (event as TouchEvent).touches[0].clientY : (event as MouseEvent).clientY);
+function handleDragStartEvents(event: PointerEvent) {
+    lastMouseX = event.clientX;
+    lastMouseY = event.clientY;
 }
 
 function handleDragResizeStopEvents() {
+    console.log("Stop");
     for(let window of windows.value) {
         if(window.isDragging) {
             window.isDragging = false;
@@ -187,11 +178,9 @@ function handleDragResizeStopEvents() {
     }
 }
 
-function handleDragResizeEvents(event: MouseEvent | TouchEvent) {
-    const isTouch = event instanceof TouchEvent;
-
-    const deltaX = (isTouch ? (event as TouchEvent).touches[0].clientX : (event as MouseEvent).clientX) - lastMouseX
-    const deltaY = (isTouch ? (event as TouchEvent).touches[0].clientY : (event as MouseEvent).clientY) - lastMouseY
+function handleDragResizeEvents(event: PointerEvent) {
+    const deltaX = event.clientX - lastMouseX;
+    const deltaY = event.clientY - lastMouseY;
 
     for(let window of windows.value) {
         if(window.isDragging) {

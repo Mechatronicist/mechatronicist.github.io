@@ -12,6 +12,8 @@ body {
     background-size: cover;
 
     overflow: hidden;
+
+    touch-action: none;
 }
 
 #app {
