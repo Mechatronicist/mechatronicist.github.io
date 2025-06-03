@@ -1,16 +1,42 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+
+interface WorkExperience {
+    title: string;
+    subtitle: string;
+    description: string;
+    image: string;
+}
+
+const experiences = ref<WorkExperience[]>([
+    {
+        title: "Web Developer",
+        subtitle: "Kangan Institute - Nov 2024",
+        description: "Collaborated on the design and development of a website for Kangan Insitutes Enchanted 2024 fashion event.",
+        image: "/kangan.png"
+    },
+    {
+        title: "Junior Software Developer",
+        subtitle: "AdvancedIT Ltd - Jun 2023 - Jul 2023, Feb 2025 - Apr 2025",
+        description: "Designed, developed and maintained software to manage client configurations.",
+        image: "/advancedit.png"
+    }
+]);
+</script>
+
 <template>
     <div class="experience">
-        <div class="entry">
-            <img src="/advancedit.png" class="image" style="background-color: white; padding: 0.5rem; border-radius: 10px" />
+        <div class="entry" v-for="experience in experiences">
+            <img :src="experience.image" class="image" />
             <div class="details">
                 <div class="title">
-                    Junior Software Developer
+                    {{ experience.title }}
                 </div>
                 <div class="subtitle">
-                    AdvancedIT Ltd - Jun 2023 - Jul 2023, Feb 2025 - Apr 2025
+                    {{ experience.subtitle }}
                 </div>
                 <div class="description">
-                    Designed, developed and maintained software to manage client configurations.
+                    {{ experience.description }}
                 </div>
             </div>
         </div>
@@ -32,11 +58,15 @@
 
     align-items: center;
 
-    gap: 0.5rem;
+    gap: 1rem;
 }
 .experience .entry .image {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
+
+    background-color: white; 
+    padding: 0.5rem; 
+    border-radius: 50%;
 
     object-fit: contain;
 }

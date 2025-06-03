@@ -1,31 +1,44 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+
+interface Education {
+    title: string;
+    subtitle: string;
+    description: string;
+    image: string;
+}
+
+const educations = ref<Education[]>([
+    {
+        title: "Diploma of Information Technology",
+        subtitle: "Kangan Institute - 2024 - Current",
+        description: "",
+        image: "/kangan.png"
+    },
+    {
+        title: "Certificate IV in Cyber Security",
+        subtitle: "Kangan Institute - 2023 - 2024",
+        description: "",
+        image: "/kangan.png"
+    }
+    ,
+    {
+        title: "Certificate III in Information Technology",
+        subtitle: "Victoria University - 2023",
+        description: "",
+        image: "/vu.png"
+    }
+]);
+</script>
+
 <template>
     <div class="education">
-        <div class="entry">
-            <img src="/src/assets/menu.png" class="image" />
+        <div class="entry" v-for="education in educations">
+            <img :src="education.image" class="image" />
             <div class="details">
-                <div class="title">Diploma of Information Technology</div>
+                <div class="title">{{ education.title }}</div>
                 <div class="subtext">
-                    <a href="https://www.kangan.edu.au/" target="_blank">Kangan Institute</a> - 2025 - Current
-                </div>
-            </div>
-        </div>
-
-        <div class="entry">
-            <img src="/src/assets/menu.png" class="image" />
-            <div class="details">
-                <div class="title">Certificate IV in Cyber Security</div>
-                <div class="subtext">
-                    <a href="https://www.kangan.edu.au/" target="_blank">Kangan Institute</a> - 2023 - 2024
-                </div>
-            </div>
-        </div>
-
-        <div class="entry">
-            <img src="/src/assets/menu.png" class="image" />
-            <div class="details">
-                <div class="title">Certificate III in Information Technology</div>
-                <div class="subtext">
-                    <a href="https://www.vu.edu.au/" target="_blank">Victoria University</a> - 2023
+                    {{ education.subtitle }}
                 </div>
             </div>
         </div>
@@ -46,11 +59,13 @@
     display: flex;
     flex-direction: row;
 
-    gap: 0.5rem;
+    gap: 1rem;
 }
 .education .entry .image {
     width: 40px;
     height: 40px;
+
+    border-radius: 50%;
 
     object-fit: contain;
 }

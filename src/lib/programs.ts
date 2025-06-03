@@ -40,12 +40,13 @@ export function registerPrograms() {
         openOnStartup: true,
         initialSize: {
             x: 500,
-            y: 180
+            y: 240
         },
         initialPosition: {
             x: 640,
             y: 20
-        }
+        },
+        iconPath: "/education.png"
     });
 
     registerWindow({
@@ -55,7 +56,7 @@ export function registerPrograms() {
         openOnStartup: true,
         initialSize: {
             x: 600,
-            y: 160
+            y: 250
         },
         initialPosition: {
             x: 20,
@@ -74,8 +75,9 @@ export function registerPrograms() {
         },
         initialPosition: {
             x: 640,
-            y: 220
-        }
+            y: 280
+        },
+        iconPath: "/projects.png"
     });
 
     registerWindow({
