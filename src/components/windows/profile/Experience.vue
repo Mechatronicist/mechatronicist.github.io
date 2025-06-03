@@ -10,6 +10,12 @@ interface WorkExperience {
 
 const experiences = ref<WorkExperience[]>([
     {
+        title: "Junior Software Developer",
+        subtitle: "AdvancedIT Ltd - Feb 2025 - Apr 2025",
+        description: "Designed, developed and improved upon an existing in-house tool to maintain and manage WireGuard client configurations.",
+        image: "/advancedit.png"
+    },
+    {
         title: "Web Developer",
         subtitle: "Kangan Institute - Nov 2024",
         description: "Collaborated on the design and development of a website for Kangan Insitutes Enchanted 2024 fashion event.",
@@ -17,8 +23,8 @@ const experiences = ref<WorkExperience[]>([
     },
     {
         title: "Junior Software Developer",
-        subtitle: "AdvancedIT Ltd - Jun 2023 - Jul 2023, Feb 2025 - Apr 2025",
-        description: "Designed, developed and maintained software to manage client configurations.",
+        subtitle: "AdvancedIT Ltd - Jun 2023 - Jul 2023",
+        description: "Designed and developed an open source tool (WireGuard Command) to manage WireGuard configurations for clients.",
         image: "/advancedit.png"
     }
 ]);

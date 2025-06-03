@@ -56,7 +56,7 @@ export function registerPrograms() {
         openOnStartup: true,
         initialSize: {
             x: 600,
-            y: 250
+            y: 370
         },
         initialPosition: {
             x: 20,
