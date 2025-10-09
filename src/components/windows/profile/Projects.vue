@@ -1,37 +1,74 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+
+interface Projects {
+    title: string;
+    description: string;
+    image: string;
+    tags: string[];
+    links: ProjectLink[];
+}
+
+interface ProjectLink {
+    name: string;
+    url: string;
+}
+
+const projects = ref<Projects[]>([
+    {
+        title: "MyPiUI",
+        description: "A UI Framework for Raspberry Pi using the Linux Frame Buffer.",
+        image: "/mypiui.png",
+        tags: ["C#", "Linux", "Graphics"],
+        links: [{ name: "GitHub", url: "https://github.com/lewpar/MyPiUI" }]
+    },
+    {
+        title: "GTNUCL1633 Serial Driver",
+        description: "A Python driver for the GTNUCL1633 Fingerprint Reader.",
+        image: "/src/assets/menu.png",
+        tags: ["Python", "Serial Communication"],
+        links: [{ name: "GitHub", url: "https://github.com/lewpar/gtnucl1633" }]
+    },
+    {
+        title: "WireGuard Command",
+        description: "A tool designed for generating road-warrior style WireGuard configuration files. It also supports generating commands for each peer through the use of macros.",
+        image: "/wgc.png",
+        tags: ["C#", ".NET"],
+        links: [{ name: "GitHub", url: "https://github.com/lewpar/WireGuardCommand" }]
+    },
+    {
+        title: "Cyber Bilby",
+        description: "An open-source tech blog built using AstroJS.",
+        image: "/src/assets/menu.png",
+        tags: ["JavaScript", "HTML", "CSS", "Markdown"],
+        links: [{ name: "Visit", url: "https://cyberbilby.com" }]
+    },
+    {
+        title: "AssettoNet",
+        description: "A lightweight interface for receiving real-time telemetry from Assetto Corsa's UDP broadcast.",
+        image: "/src/assets/menu.png",
+        tags: ["C#", "UDP Networking", "Graphics"],
+        links: [{ name: "GitHub", url: "https://github.com/lewpar/AssettoNet" }]
+    }
+]);
+</script>
+
 <template>
     <div class="projects">
-        <div class="entry">
-            <img src="/wgc.png" class="image" />
+         <div class="entry" v-for="project in projects">
+            <img :src="project.image" class="image" />
             <div class="details">
-                <div class="title">WireGuard Command</div>
-                <div class="subtext">
-                    A tool designed for generating road-warrior style WireGuard configuration files. It also supports generating commands for each peer through the use of macros.
+                <div class="title">{{ project.title }}</div>
+                <div class="description">
+                    {{ project.description }}
                 </div>
                 <div class="tags">
-                    <div class="tag">C#</div>
-                    <div class="tag">.NET</div>
+                    <div class="tag" v-for="tag in project.tags">
+                        {{ tag }}
+                    </div>
                 </div>
                 <div class="links">
-                    <a href="https://github.com/lewpar/WireGuardCommand" target="_blank">GitHub</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="entry">
-            <img src="/src/assets/menu.png" class="image" />
-            <div class="details">
-                <div class="title">Cyber Bilby</div>
-                <div class="subtext">
-                    An open-source tech blog built using AstroJS.
-                </div>
-                <div class="tags">
-                    <div class="tag">JavaScript</div>
-                    <div class="tag">HTML</div>
-                    <div class="tag">CSS</div>
-                    <div class="tag">Markdown</div>
-                </div>
-                <div class="links">
-                    <a href="https://cyberbilby.com" target="_blank">Visit</a>
+                    <a v-for="link in project.links" :href="`${link.url}`" target="_blank">{{ link.name }}</a>
                 </div>
             </div>
         </div>
