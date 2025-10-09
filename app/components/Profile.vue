@@ -27,6 +27,14 @@ const Profile = ref<Profile>(ProfileData);
 </template>
 
 <style scoped>
+#profile {
+    top: 0;
+    position: sticky;
+    flex: 1;
+    
+    display: flex;
+    flex-direction: column;
+}
 #profile #name {
     font-weight: bold;
     font-size: 1.25rem;

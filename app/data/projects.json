@@ -1,6 +1,6 @@
 [
     {
-        "title": "MyPiUI",
+        "name": "MyPiUI",
         "description": "A UI Framework for Raspberry Pi using the Linux Frame Buffer.",
         "image": "/mypiui.png",
         "tags": [
@@ -16,7 +16,7 @@
         ]
     },
     {
-        "title": "GTNUCL1633 Serial Driver",
+        "name": "GTNUCL1633 Serial Driver",
         "description": "A Python driver for the GTNUCL1633 Fingerprint Reader.",
         "image": "/src/assets/menu.png",
         "tags": [
@@ -31,7 +31,7 @@
         ]
     },
     {
-        "title": "WireGuard Command",
+        "name": "WireGuard Command",
         "description": "A tool designed for generating road-warrior style WireGuard configuration files. It also supports generating commands for each peer through the use of macros.",
         "image": "/wgc.png",
         "tags": [
@@ -46,7 +46,7 @@
         ]
     },
     {
-        "title": "Cyber Bilby",
+        "name": "Cyber Bilby",
         "description": "An open-source tech blog built using AstroJS.",
         "image": "/src/assets/menu.png",
         "tags": [
@@ -63,7 +63,7 @@
         ]
     },
     {
-        "title": "AssettoNet",
+        "name": "AssettoNet",
         "description": "A lightweight interface for receiving real-time telemetry from Assetto Corsa's UDP broadcast.",
         "image": "/src/assets/menu.png",
         "tags": [
