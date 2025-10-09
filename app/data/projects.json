@@ -1,0 +1,81 @@
+[
+    {
+        "title": "MyPiUI",
+        "description": "A UI Framework for Raspberry Pi using the Linux Frame Buffer.",
+        "image": "/mypiui.png",
+        "tags": [
+            "C#", 
+            "Linux", 
+            "Graphics"
+        ],
+        "links": [
+            { 
+                "name": "GitHub", 
+                "url": "https://github.com/lewpar/MyPiUI" 
+            }
+        ]
+    },
+    {
+        "title": "GTNUCL1633 Serial Driver",
+        "description": "A Python driver for the GTNUCL1633 Fingerprint Reader.",
+        "image": "/src/assets/menu.png",
+        "tags": [
+            "Python", 
+            "Serial Communication"
+        ],
+        "links": [
+            { 
+                "name": "GitHub", 
+                "url": "https://github.com/lewpar/gtnucl1633" 
+            }
+        ]
+    },
+    {
+        "title": "WireGuard Command",
+        "description": "A tool designed for generating road-warrior style WireGuard configuration files. It also supports generating commands for each peer through the use of macros.",
+        "image": "/wgc.png",
+        "tags": [
+            "C#", 
+            ".NET"
+        ],
+        "links": [
+            { 
+                "name": "GitHub", 
+                "url": "https://github.com/lewpar/WireGuardCommand" 
+            }
+        ]
+    },
+    {
+        "title": "Cyber Bilby",
+        "description": "An open-source tech blog built using AstroJS.",
+        "image": "/src/assets/menu.png",
+        "tags": [
+            "JavaScript", 
+            "HTML", 
+            "CSS", 
+            "Markdown"
+        ],
+        "links": [
+            { 
+                "name": "Visit", 
+                "url": "https://cyberbilby.com" 
+            }
+        ]
+    },
+    {
+        "title": "AssettoNet",
+        "description": "A lightweight interface for receiving real-time telemetry from Assetto Corsa's UDP broadcast.",
+        "image": "/src/assets/menu.png",
+        "tags": [
+            "C#", 
+            "UDP Networking", 
+            "Graphics"
+        ],
+        "links": [
+            { 
+                "name": "GitHub", 
+                "url": "https://github.com/lewpar/AssettoNet" 
+            }
+        ]
+    }
+]
