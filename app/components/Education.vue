@@ -16,9 +16,16 @@ const Education = ref<Education[]>(EducationData);
         <h2>Education</h2>
 
         <div id="education">
-            <div v-for="education in Education">
-                <h3>{{ education.title }}</h3>
-                <p>{{ education.subtitle }}</p>
+            <div class="card" v-for="education in Education">
+                <div class="flex col gap-1">
+                    <div class="image">
+                        <img :src="`${education.image}`" />
+                    </div>
+                    <div class="flex col">
+                        <b>{{ education.title }}</b>
+                        <p>{{ education.subtitle }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -27,8 +34,25 @@ const Education = ref<Education[]>(EducationData);
 <style scoped>
 #education {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 
-    gap: 0.25rem;
+    flex-wrap: wrap;
+
+    gap: 1rem;
+}
+
+#education .image {
+    background-color: white;
+    padding: 1rem;
+
+    max-height: 40px;
+
+    border-radius: 5px;
+}
+#education .image img {
+    height: 100%;
+    width: 100%;
+
+    object-fit: contain;
 }
 </style>

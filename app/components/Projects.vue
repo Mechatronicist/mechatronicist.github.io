@@ -6,22 +6,20 @@ interface Project {
     description: string;
     image: string;
     tags: string[];
-    links: ProjectLink[];
-}
-
-interface ProjectLink {
-    name: string;
-    url: string;
+    link: string;
 }
 
 const Projects = ref<Project[]>(ProjectData);
 </script>
 
 <template>
-    <h2>What am I working on?</h2>
+    <h2>Projects</h2>
 
     <div id="projects">
-        <div class="project" v-for="project in Projects">
+        <a class="project card" v-for="project in Projects" :href="`${project.link}`" target="_blank">
+            <div class="image">
+                <img :src="`${project.image}`" />
+            </div>
             <div class="name">{{ project.name }}</div>
             <div class="description">{{ project.description }}</div>
             <div class="tags">
@@ -29,7 +27,7 @@ const Projects = ref<Project[]>(ProjectData);
                     {{ tag }}
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 </template>
 
@@ -47,19 +45,17 @@ const Projects = ref<Project[]>(ProjectData);
     overflow-y: auto;
 }
 #projects .project {
-    flex: 1 1 200px;
+    flex: 1;
 
     display: flex;
     flex-direction: column;
 
     gap: 0.5rem;
 
-    border: 1px solid #202020;
-    border-radius: 5px;
-
-    background-color: #191919;
-
-    padding: 1rem;
+    transition: border-color 0.25s;
+}
+#projects .project:hover {
+    border: 1px solid rgba(106, 106, 106, 0.473);
 }
 #projects .project .name {
     font-weight: bold;
@@ -82,5 +78,16 @@ const Projects = ref<Project[]>(ProjectData);
     background-color: dodgerblue;
 
     padding: 0.25rem;
+}
+
+.image {
+    width: 60px;
+    height: 60px;
+}
+.image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
 }
 </style>
