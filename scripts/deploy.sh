@@ -1,4 +1,4 @@
 #!/bin/bash
 rm -fr ./docs
 npm run generate
-mv ./dist ./docs
+cp -r .output/public ./docs
