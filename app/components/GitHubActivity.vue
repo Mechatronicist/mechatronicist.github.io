@@ -30,15 +30,29 @@ onMounted(async () => {
 		<div v-if="events != null" v-for="event in events">
 			<a v-if="(event.type === 'PushEvent')" v-for="commit in (event.payload as PushPayload).commits"
 				class="activity-link" :href="`${commit.url}`" target="_blank">
-				<img :src="`${event.actor.avatar_url}`" width="32" />
-				<b>{{ event.repo.name }}</b>
-				<div>{{ commit.message }}</div>
+
+				<div class="flex col gap-05">
+					<div class="flex row gap-05 center-align">
+						<img :src="`${event.actor.avatar_url}`" width="32" />
+
+						<div class="flex col">
+							<b>{{ event.repo.name }}</b>
+							<div>{{ event.created_at.toLocaleDateString() }}</div>
+						</div>
+					</div>
+					<div>{{ commit.message }}</div>
+				</div>
+
 			</a>
 
 			<a v-if="(event.type === 'PullRequestEvent')"
 				class="activity-link" :href="`${(event.payload as PullRequestPayload).pull_request.url}`" target="_blank">
 				<img :src="`${event.actor.avatar_url}`" width="32" />
-				<b>{{ event.repo.name }} - {{ (event.payload as PullRequestPayload).action }} a pull request</b>
+				<div class="flex col">
+					<b>{{ event.repo.name }} - {{ (event.payload as PullRequestPayload).action }} a pull request</b>
+					<div>{{ event.created_at.toLocaleDateString() }}</div>
+				</div>
+
 				<div>{{ (event.payload as PullRequestPayload).pull_request.title }}</div>
 			</a>
 		</div>
