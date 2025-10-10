@@ -53,6 +53,7 @@ h2 {
     border: 1px solid #202020;
     border-radius: 5px;
 
+	opacity: 0;
     background-color: #19191994;
 
     padding: 1rem;
@@ -60,6 +61,10 @@ h2 {
 
 	box-shadow: rgb(14, 14, 14) 1px 1px 10px;
 	backdrop-filter: blur(5px);
+
+	animation-name: fade-in;
+	animation-duration: 1s;
+	animation-fill-mode: both;
 }
 
 .flex {
@@ -86,5 +91,15 @@ h2 {
 .center {
 	align-items: center;
 	justify-content: center;
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
 }
 </style>
