@@ -16,7 +16,7 @@ const Profile = ref<Profile>(ProfileData);
 </script>
 
 <template>
-    <div id="profile" class="box">
+    <div id="profile" class="card">
         <div id="name">{{ Profile.name }}</div>
         <div id="description">{{ Profile.description }}</div>
         <div id="socials">
