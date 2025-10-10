@@ -34,4 +34,10 @@ import Projects from '~/components/Projects.vue';
 #portfolio #right {
     flex: 10;
 }
+
+@media screen and (max-width: 800px) {
+    #portfolio {
+        flex-direction: column;
+    }
+}
 </style>
