@@ -28,6 +28,10 @@ a {
 	color: white;
 }
 
+h2 {
+	text-shadow: black 1px 1px 5px;
+}
+
 .box {
 	border: 1px solid #20202084;
 	border-radius: 5px;

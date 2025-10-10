@@ -9,7 +9,7 @@ import Projects from '~/components/Projects.vue';
             <Profile/>
         </div>
 
-        <div id="right" class="box">
+        <div id="right">
             <Experience/>
             <Projects/>
             <Education/>
