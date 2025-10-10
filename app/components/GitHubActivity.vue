@@ -29,7 +29,7 @@ onMounted(async () => {
 	<div class="flex col gap-1">
 		<div v-if="events != null" v-for="event in events">
 			<a v-if="(event.type === 'PushEvent')" v-for="commit in (event.payload as PushPayload).commits"
-				class="activity-link" :href="`${commit.url}`" target="_blank">
+				class="activity-link" :href="`https://github.com/${event.repo.name}/commit/${commit.sha}`" target="_blank">
 
 				<div class="flex col gap-05">
 					<div class="flex row gap-05 center-align">

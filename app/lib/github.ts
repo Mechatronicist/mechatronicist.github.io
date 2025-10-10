@@ -1,6 +1,7 @@
 import test_data from '~/data/github-test.json';
 
 interface Commit {
+    sha: string;
     message: string;
     url: string;
 }
@@ -41,9 +42,10 @@ export interface UserEvent {
 export async function getRecentEvents(username: string): Promise<UserEvent[] | null> {
     try {
         var url = `https://api.github.com/users/${username}/events`;
-        var result = await fetch(url);
+        //var result = await fetch(url);
 
-        var data = await result.json();
+        //var data = await result.json();
+        var data = test_data;
         const items = (data as any[]).map(event => ({
             ...event,
             created_at: new Date(event.created_at)
