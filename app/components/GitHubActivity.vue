@@ -21,7 +21,6 @@ onMounted(async () => {
   }
 
   events.value = items.slice(0, props.count ?? 5);
-  console.log(items);
 });
 </script>
 
