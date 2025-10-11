@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ProfileData from "~/data/profile.json";
 import GitHubActivity from "./GitHubActivity.vue";
+import { getAwards } from "~/lib/data";
 
 interface Profile {
     name: string;
@@ -15,6 +16,8 @@ interface Social {
 }
 
 const Profile = ref<Profile>(ProfileData);
+
+const awards = getAwards();
 </script>
 
 <template>
@@ -28,7 +31,7 @@ const Profile = ref<Profile>(ProfileData);
         </div>
         
         <div class="flex col">
-            <h2>Socials</h2>
+            <h2 class="flex row gap-05 center-align"><i class="ph ph-globe-hemisphere-east"></i> Socials</h2>
             <div id="socials">
                 <a v-for="social in Profile.socials" :href="`${social.link}`">
                     <img :src="`${social.icon}`" />
@@ -37,8 +40,13 @@ const Profile = ref<Profile>(ProfileData);
             </div>
         </div>
 
+        <div class="flex col">
+            <h2 class="flex row gap-05 center-align"><i class="ph ph-certificate"></i> Awards</h2>
+            <Award v-for="award in awards" :award="award"></Award>
+        </div>
+
         <div id="activity">
-            <h2>Recent Activity (3)</h2>
+            <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity (3)</h2>
             <GitHubActivity username="lewpar" :count="3" />
         </div>
     </div>

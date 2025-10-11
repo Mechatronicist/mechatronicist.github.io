@@ -1,4 +1,5 @@
 import projects from '~/data/projects.json';
+import awards from '~/data/awards.json';
 
 export interface IProject {
     id: string;
@@ -10,6 +11,17 @@ export interface IProject {
     link: string;
 }
 
+export interface IAward {
+    name: string;
+    description: string;
+    grantor: string;
+    link: string;
+}
+
 export function getProjects() : IProject[] {
     return projects as IProject[];
+}
+
+export function getAwards() : IAward[] {
+    return awards as IAward[];
 }
