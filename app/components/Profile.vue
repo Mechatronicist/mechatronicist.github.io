@@ -38,7 +38,7 @@ const Profile = ref<Profile>(ProfileData);
         </div>
 
         <div id="activity">
-            <h2>Recent Activity</h2>
+            <h2>Recent Activity (3)</h2>
             <GitHubActivity username="lewpar" :count="3" />
         </div>
     </div>
