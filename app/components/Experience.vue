@@ -13,7 +13,7 @@ const Experience = ref<Experience[]>(ExperienceData);
 
 <template>
     <div>
-        <h2>Experience</h2>
+        <h2>Work Experience</h2>
 
         <div id="experience">
             <div class="card" v-for="experience in Experience">
@@ -25,9 +25,9 @@ const Experience = ref<Experience[]>(ExperienceData);
                         <h3>{{ experience.title }}</h3>
                     </div>
 
-                    <div class="flex col gap-05">
-                        <p>{{ experience.subtitle }}</p>
-                        <p>{{ experience.description }}</p>
+                    <div class="flex col gap-1">
+                        <div>{{ experience.subtitle }}</div>
+                        <div>{{ experience.description }}</div>
                     </div>
                 </div>
             </div>

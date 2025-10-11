@@ -72,7 +72,7 @@
         "name": "AssettoNet",
         "description": "A lightweight C# interface for receiving and handling real-time telemetry from Assetto Corsa's UDP broadcast for external display or analysis tools.",
         "summary": "C# interface for Assetto Corsa real-time telemetry.",
-        "image": "/default.png",
+        "image": "/nuget.png",
         "tags": [
             "C#", 
             "UDP Networking", 

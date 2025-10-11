@@ -17,14 +17,15 @@ const Profile = ref<Profile>(ProfileData);
 </script>
 
 <template>
-    <div id="profile" class="card">
-        <div class="flex row gap-05">
+    <div id="profile" class="">
+        <div class="flex row gap-1 center-align">
             <img src="/headshot.png" />
-            <div class="flex col gap-1">
+            <div class="flex col gap-05">
                 <div id="name">{{ Profile.name }}</div>
                 <div id="description">{{ Profile.description }}</div>
             </div>
         </div>
+        
         <div id="socials">
             <h2>Socials</h2>
             <a v-for="social in Profile.socials" :href="`${social.link}`">{{ social.name }}</a>
@@ -38,7 +39,8 @@ const Profile = ref<Profile>(ProfileData);
 
 <style scoped>
 #profile {
-    top: 1rem;
+    top: 2rem;
+
     position: sticky;
     flex: 1;
     
@@ -46,7 +48,7 @@ const Profile = ref<Profile>(ProfileData);
     flex-direction: column;
 }
 #profile img {
-    border-radius: 50%;
+    border-radius: 10px;
     width: 150px;
     height: 150px;
 }
@@ -60,7 +62,7 @@ const Profile = ref<Profile>(ProfileData);
 
     gap: 0.25rem;
 }
-#profile #socials h2 {
+h2 {
     font-weight: bold;
     font-size: 1.1rem;
 }

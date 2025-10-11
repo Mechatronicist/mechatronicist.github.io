@@ -25,8 +25,6 @@ import Projects from '~/components/Projects.vue';
     flex-direction: row;
 
     gap: 1rem;
-
-    margin: 1rem;
 }
 
 #portfolio #left {
