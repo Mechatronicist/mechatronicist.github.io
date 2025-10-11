@@ -2,8 +2,8 @@
     {
         "id": "mypiui",
         "name": "MyPiUI",
-        "description": "A UI Framework for Raspberry Pi using the Linux Frame Buffer.",
-        "summary": "",
+        "description": "A lightweight C# UI framework for Raspberry Pi devices that renders directly to the Linux framebuffer, allowing for graphical interfaces without a desktop environment.",
+        "summary": "C# UI framework for Raspberry Pi using the Linux framebuffer.",
         "image": "/mypiui.png",
         "tags": [
             "C#", 
@@ -16,7 +16,7 @@
         "id": "simupgrade",
         "name": "Simulator Upgrade Project",
         "description": "Developed a C# overlay and Arduino-based hardware system that enhanced in-game immersion through real-time telemetry integration. The system featured an in-game overlay displaying live vehicle data, an ABS sensor, a PWM-controlled fan that adjusted speed based on vehicle velocity, and a distance sensor used to dynamically calibrate the optimal field of view (FOV) based on the player's position.",
-        "summary": "",
+        "summary": "Integrated C# overlay and Arduino hardware for immersive driving simulation.",
         "image": "/default.png",
         "tags": [
             "C#",
@@ -31,8 +31,8 @@
     {
         "id": "gtnucl1633",
         "name": "GTNUCL1633 Serial Driver",
-        "description": "A Python driver for the GTNUCL1633 Fingerprint Reader.",
-        "summary": "",
+        "description": "A Python-based driver that communicates with the GTNUCL1633 Fingerprint Reader via serial connection, enabling biometric data capture and control.",
+        "summary": "Python serial driver for the GTNUCL1633 fingerprint sensor.",
         "image": "/default.png",
         "tags": [
             "Python", 
@@ -43,8 +43,8 @@
     {
         "id": "wireguardcommand",
         "name": "WireGuard Command",
-        "description": "A tool for generating road-warrior WireGuard configuration files, with macro support for creating peer-specific commands.",
-        "summary": "",
+        "description": "A C# utility that generates WireGuard configuration files for road-warrior setups. Supports macros for automating peer-specific command creation and configuration management.",
+        "summary": "C# tool for generating WireGuard configs and peer commands.",
         "image": "/wgc.png",
         "tags": [
             "C#", 
@@ -55,8 +55,8 @@
     {
         "id": "cyberbilby",
         "name": "Cyber Bilby",
-        "description": "An open-source tech blog built using AstroJS.",
-        "summary": "",
+        "description": "An open-source technology blog built using AstroJS. It features articles covering programming, electronics, and open-source development projects.",
+        "summary": "Open-source tech blog built with AstroJS.",
         "image": "/default.png",
         "tags": [
             "JavaScript", 
@@ -69,8 +69,8 @@
     {
         "id": "assettonet",
         "name": "AssettoNet",
-        "description": "A lightweight interface for receiving real-time telemetry from Assetto Corsa's UDP broadcast.",
-        "summary": "",
+        "description": "A lightweight C# interface for receiving and handling real-time telemetry from Assetto Corsa’s UDP broadcast for external display or analysis tools.",
+        "summary": "C# interface for Assetto Corsa real-time telemetry.",
         "image": "/default.png",
         "tags": [
             "C#", 

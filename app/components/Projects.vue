@@ -13,12 +13,7 @@ const Projects = ref<Project[]>(getProjects());
                 <img :src="`${project.image}`" />
             </div>
             <div class="name">{{ project.name }}</div>
-            <div class="description">{{ project.description }}</div>
-            <div class="tags">
-                <div class="tag" v-for="tag in project.tags">
-                    {{ tag }}
-                </div>
-            </div>
+            <div class="summary">{{ project.summary }}</div>
         </RouterLink>
     </div>
 </template>
@@ -42,6 +37,9 @@ const Projects = ref<Project[]>(getProjects());
     display: flex;
     flex-direction: column;
 
+    align-items: center;
+    justify-content: center;
+
     gap: 0.5rem;
 
     transition: border-color 0.25s;
@@ -52,26 +50,8 @@ const Projects = ref<Project[]>(getProjects());
 #projects .project .name {
     font-weight: bold;
 }
-#projects .project .tags {
-    display: flex;
-    flex-direction: row;
-
-    flex-wrap: wrap;
-
-    gap: 0.25rem;
-}
-#projects .project .tags .tag {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid rgb(67, 161, 255);
-    border-radius: 5px;
-
-    background-color: dodgerblue;
-
-    padding: 0.25rem;
+#projects .project .summary {
+    text-align: center;
 }
 
 .image {
