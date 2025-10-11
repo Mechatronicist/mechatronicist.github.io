@@ -19,6 +19,8 @@ body {
 	background-size: cover;
 	background-attachment: fixed;
 
+	backdrop-filter: brightness(15%);
+
 	overflow-x: hidden;
 	margin: 0;
 }

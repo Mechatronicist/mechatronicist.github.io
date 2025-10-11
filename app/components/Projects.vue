@@ -64,6 +64,8 @@ const Projects = ref<Project[]>(ProjectData);
     display: flex;
     flex-direction: row;
 
+    flex-wrap: wrap;
+
     gap: 0.25rem;
 }
 #projects .project .tags .tag {
