@@ -1,22 +1,14 @@
 <script setup lang="ts">
-import ProjectData from "~/data/projects.json";
+import { getProjects, type Project } from "~/lib/data";
 
-interface Project {
-    name: string;
-    description: string;
-    image: string;
-    tags: string[];
-    link: string;
-}
-
-const Projects = ref<Project[]>(ProjectData);
+const Projects = ref<Project[]>(getProjects());
 </script>
 
 <template>
     <h2>Projects</h2>
 
     <div id="projects">
-        <a class="project card" v-for="project in Projects" :href="`${project.link}`" target="_blank">
+        <RouterLink class="project card" v-for="project in Projects" :to="`/project/${project.id}`">
             <div class="image">
                 <img :src="`${project.image}`" />
             </div>
@@ -27,7 +19,7 @@ const Projects = ref<Project[]>(ProjectData);
                     {{ tag }}
                 </div>
             </div>
-        </a>
+        </RouterLink>
     </div>
 </template>
 

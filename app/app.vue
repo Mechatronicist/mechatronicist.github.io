@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <NuxtPage/>
-  </div>
+  <NuxtPage/>
 </template>
 
 <style>
@@ -10,6 +8,9 @@
 }
 
 body {
+	display: flex;
+	flex-direction: column;
+	
 	color: white;
 
 	background-color: #101010;
@@ -23,6 +24,8 @@ body {
 
 	overflow-x: hidden;
 	margin: 0;
+
+	min-height: 100vh;
 }
 
 a {
