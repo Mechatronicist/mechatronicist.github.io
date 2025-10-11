@@ -1,0 +1,21 @@
+.tags {
+    display: flex;
+    flex-direction: row;
+
+    flex-wrap: wrap;
+
+    gap: 0.5rem;
+}
+.tag {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgb(67, 161, 255);
+    border-radius: 5px;
+
+    background-color: dodgerblue;
+
+    padding: 0.5rem;
+}

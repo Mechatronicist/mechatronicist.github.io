@@ -47,28 +47,6 @@ const project = projects.find(p => p.id === slug);
     max-width: 100ch;
 }
 
-.project .tags {
-    display: flex;
-    flex-direction: row;
-
-    flex-wrap: wrap;
-
-    gap: 0.25rem;
-}
-.project .tags .tag {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid rgb(67, 161, 255);
-    border-radius: 5px;
-
-    background-color: dodgerblue;
-
-    padding: 0.25rem;
-}
-
 .link {
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 5px;
