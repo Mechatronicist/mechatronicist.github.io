@@ -48,7 +48,8 @@
         "image": "/wgc.png",
         "tags": [
             "C#", 
-            ".NET"
+            ".NET",
+            "SDLC"
         ],
         "link": "https://github.com/lewpar/WireGuardCommand"
     },
@@ -69,13 +70,14 @@
     {
         "id": "assettonet",
         "name": "AssettoNet",
-        "description": "A lightweight C# interface for receiving and handling real-time telemetry from Assetto Corsa’s UDP broadcast for external display or analysis tools.",
+        "description": "A lightweight C# interface for receiving and handling real-time telemetry from Assetto Corsa's UDP broadcast for external display or analysis tools.",
         "summary": "C# interface for Assetto Corsa real-time telemetry.",
         "image": "/default.png",
         "tags": [
             "C#", 
             "UDP Networking", 
-            "Graphics"
+            "Graphics",
+            "Memory Marshalling"
         ],
         "link": "https://github.com/lewpar/AssettoNet"
     }
