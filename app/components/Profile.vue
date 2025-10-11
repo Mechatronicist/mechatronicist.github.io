@@ -11,6 +11,7 @@ interface Profile {
 interface Social {
     name: string;
     link: string;
+    icon: string;
 }
 
 const Profile = ref<Profile>(ProfileData);
@@ -26,10 +27,16 @@ const Profile = ref<Profile>(ProfileData);
             </div>
         </div>
         
-        <div id="socials">
+        <div class="flex col">
             <h2>Socials</h2>
-            <a v-for="social in Profile.socials" :href="`${social.link}`">{{ social.name }}</a>
+            <div id="socials">
+                <a v-for="social in Profile.socials" :href="`${social.link}`">
+                    <img :src="`${social.icon}`" />
+                    {{ social.name }}
+                </a>
+            </div>
         </div>
+
         <div id="activity">
             <h2>Recent Activity</h2>
             <GitHubActivity username="lewpar" :count="3" />
@@ -56,23 +63,42 @@ const Profile = ref<Profile>(ProfileData);
     font-weight: bold;
     font-size: 1.25rem;
 }
-#profile #socials {
-    display: flex;
-    flex-direction: column;
-
-    gap: 0.25rem;
-}
 h2 {
     font-weight: bold;
     font-size: 1.1rem;
 }
 #profile #socials a {
-    color: dodgerblue;
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
+    color: white;
+    background-color: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+
+    padding: 0.5rem;
+
     text-decoration: none;
 
     transition: color 0.25s;
 }
+#profile #socials img {
+    max-width: 24px;
+    max-height: 24px;
+}
 #profile #socials a:hover {
     color: rgb(12, 110, 208);
+}
+
+#socials {
+    display: flex;
+    flex-direction: row;
+
+    gap: 0.25rem;
 }
 </style>

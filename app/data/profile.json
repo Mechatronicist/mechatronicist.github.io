@@ -4,11 +4,13 @@
     "socials": [
         {
             "name": "LinkedIn",
-            "link": "https://linkedin.com/in/lewpar/"
+            "link": "https://linkedin.com/in/lewpar/",
+            "icon": "/linkedin.png"
         },
         {
             "name": "GitHub",
-            "link": "https://github.com/lewpar"
+            "link": "https://github.com/lewpar",
+            "icon": "/github.png"
         }
     ]
 }
