@@ -13,7 +13,7 @@ const Education = ref<Education[]>(EducationData);
 
 <template>
     <div>
-        <h2>Education</h2>
+        <h2 class="flex row gap-05 center-align"><i class="ph ph-graduation-cap"></i> Education</h2>
 
         <div id="education">
             <div class="card" v-for="education in Education">

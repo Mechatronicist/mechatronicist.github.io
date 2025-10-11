@@ -13,7 +13,7 @@ const Experience = ref<Experience[]>(ExperienceData);
 
 <template>
     <div>
-        <h2>Work Experience</h2>
+        <h2 class="flex row gap-05 center-align"><i class="ph ph-brackets-curly"></i> Work Experience</h2>
 
         <div id="experience">
             <div class="card" v-for="experience in Experience">

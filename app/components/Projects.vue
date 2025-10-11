@@ -5,7 +5,7 @@ const Projects = ref<IProject[]>(getProjects());
 </script>
 
 <template>
-    <h2>Projects</h2>
+    <h2 class="flex row gap-05 center-align"><i class="ph ph-folder-open"></i> Projects</h2>
 
     <div id="projects">
         <RouterLink class="project card" v-for="project in Projects" :to="`/project/${project.id}`">
