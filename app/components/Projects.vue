@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { getProjects, type Project } from "~/lib/data";
+import { getProjects, type IProject } from "~/lib/data";
 
-const Projects = ref<Project[]>(getProjects());
+const Projects = ref<IProject[]>(getProjects());
 </script>
 
 <template>

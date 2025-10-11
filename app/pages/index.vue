@@ -4,15 +4,17 @@ import Projects from '~/components/Projects.vue';
 </script>
 
 <template>
-    <div id="portfolio">
-        <div id="left">
-            <Profile/>
-        </div>
-
-        <div id="right">
-            <Experience/>
-            <Projects/>
-            <Education/>
+    <div class="page">
+        <div id="portfolio">
+            <div id="left">
+                <Profile/>
+            </div>
+    
+            <div id="right">
+                <Experience/>
+                <Projects/>
+                <Education/>
+            </div>
         </div>
     </div>
 </template>
