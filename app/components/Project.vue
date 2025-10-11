@@ -9,13 +9,15 @@ const project = props.project;
 </script>
 
 <template>
-	<RouterLink to="/" class="link">Back to Portfolio</RouterLink>
+	<RouterLink to="/" class="back">Back to Portfolio</RouterLink>
 
 	<div class="flex col gap-05">
 		<div class="flex row gap-1">
 			<img :src="`${project.image}`" height="64" />
 			<h1>{{ project.name }}</h1>
 		</div>
+
+		<a :href="project.link" class="link">{{ project.link }}</a>
 	
 		<pre class="description">{{ project.description }}</pre>
 	
@@ -32,6 +34,19 @@ const project = props.project;
 </template>
 
 <style scoped>
+.back {
+	background-color: rgba(255, 255, 255, 0.05);
+	
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 5px;
+
+	padding: 1rem;
+
+	transition: background-color 0.25s;
+}
+.back:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
 .description {
     word-wrap: break-word;
     text-wrap: wrap;
@@ -39,16 +54,10 @@ const project = props.project;
 }
 
 .link {
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 5px;
-
-    background-color: rgba(255, 255, 255, 0.05);
-
-    padding: 1rem;
-
-    transition: background-color 0.25s;
+    color: dodgerblue;
+    transition: color 0.25s;
 }
 .link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    color: rgb(32, 170, 255);
 }
 </style>
