@@ -10,7 +10,8 @@ export default defineNuxtConfig({
     head: {
       title: "Portfolio - Lewis Parmenter",
       link: [
-        { rel: 'icon', type: 'image/png', href: '/default.png' }
+        { rel: "icon", type: "image/png", href: "/default.png" },
+        { rel: "stylesheet", type: "text/css", href: "https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" }
       ]
     }
   }
