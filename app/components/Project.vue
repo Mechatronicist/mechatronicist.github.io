@@ -9,17 +9,26 @@ const project = props.project;
 </script>
 
 <template>
-  <RouterLink to="/" class="link">Back to Portfolio</RouterLink>
+	<RouterLink to="/" class="link">Back to Portfolio</RouterLink>
 
-  <h1>{{ project.name }}</h1>
-  <pre class="description">{{ project.description }}</pre>
+	<div class="flex col gap-05">
+		<div class="flex row gap-1">
+			<img :src="`${project.image}`" height="64" />
+			<h1>{{ project.name }}</h1>
+		</div>
+	
+		<pre class="description">{{ project.description }}</pre>
+	
+		<div class="flex col">
+			<h2>Skills Learned</h2>
+			<div class="tags">
+				<div class="tag" v-for="tag in project.tags">
+					{{ tag }}
+				</div>
+			</div>
+		</div>
+	</div>
 
-  <h2>Skills Learned</h2>
-  <div class="tags">
-      <div class="tag" v-for="tag in project.tags">
-          {{ tag }}
-      </div>
-  </div>
 </template>
 
 <style scoped>
