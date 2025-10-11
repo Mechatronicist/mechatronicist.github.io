@@ -21,7 +21,7 @@ const awards = getAwards();
 </script>
 
 <template>
-    <div id="profile" class="">
+    <div id="profile">
         <div class="flex row gap-1 center-align">
             <img src="/headshot.png" />
             <div class="flex col gap-05">
@@ -61,6 +61,8 @@ const awards = getAwards();
     
     display: flex;
     flex-direction: column;
+
+    gap: 1rem;
 }
 #profile img {
     border-radius: 10px;
