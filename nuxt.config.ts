@@ -5,5 +5,13 @@ export default defineNuxtConfig({
   ssr: false,
   css: [
     "~/assets/global.css"
-  ]
+  ],
+  app: {
+    head: {
+      title: "Portfolio - Lewis Parmenter",
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/default.png' }
+      ]
+    }
+  }
 })
