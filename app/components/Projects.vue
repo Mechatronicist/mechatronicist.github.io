@@ -9,7 +9,7 @@ const Projects = ref<IProject[]>(getProjects());
 
     <div id="projects">
         <RouterLink class="project" v-for="project in Projects" :to="`/project/${project.id}`">
-            <NuxtImg :src="`${project.image}`" :quality="1" height="50" />
+            <NuxtImg :src="`${project.image}`" :quality="1" height="50" loading="lazy" />
             <div class="name">{{ project.name }}</div>
             <div class="summary">{{ project.summary }}</div>
         </RouterLink>

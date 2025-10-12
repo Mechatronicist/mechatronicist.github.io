@@ -18,7 +18,7 @@ const Education = ref<Education[]>(EducationData);
         <div id="education">
             <div class="card" v-for="education in Education">
                 <div class="flex col gap-1 center-align center-justify">
-                    <NuxtImg :src="`${education.image}`" height="64" />
+                    <NuxtImg :src="`${education.image}`" height="64" loading="lazy" />
 
                     <div class="flex col">
                         <b>{{ education.title }}</b>

@@ -19,7 +19,7 @@ const Experience = ref<Experience[]>(ExperienceData);
             <div class="card" v-for="experience in Experience">
                 <div class="flex col gap-05">
                     <div class="flex col gap-1 center-align">
-                        <NuxtImg :src="`${experience.image}`" height="64" />
+                        <NuxtImg :src="`${experience.image}`" height="64" loading="lazy" />
                         <h3>{{ experience.title }}</h3>
                     </div>
 
