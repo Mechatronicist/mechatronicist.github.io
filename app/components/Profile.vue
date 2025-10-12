@@ -22,7 +22,7 @@ const awards = getAwards();
 
 <template>
     <div id="profile">
-        <div class="flex row gap-1 center-align">
+        <div class="headshot">
             <NuxtImg src="/headshot.png" loading="lazy" />
             <div class="flex col gap-05">
                 <div id="name">{{ Profile.name }}</div>
@@ -111,5 +111,23 @@ h2 {
     flex-direction: row;
 
     gap: 0.25rem;
+}
+
+.headshot {
+    display: flex;
+    flex-direction: row;
+
+    gap: 1rem;
+    align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+    .headshot {
+        flex-direction: column;
+    }
+    #profile img {
+        object-fit: contain;
+        width: 100%;
+    }
 }
 </style>
