@@ -11,6 +11,11 @@
             "name": "GitHub",
             "link": "https://github.com/lewpar",
             "icon": "/github.png"
+        },
+        {
+            "name": "Email",
+            "link": "mailto:lop.cybersec@gmail.com",
+            "icon": "/gmail.png"
         }
     ]
 }
