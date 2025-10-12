@@ -13,7 +13,7 @@ const project = props.project;
 
 	<div class="flex col gap-05">
 		<div class="flex row gap-1">
-			<img :src="`${project.image}`" height="64" />
+			<NuxtImg :src="`${project.image}`" height="64" />
 			<h1>{{ project.name }}</h1>
 		</div>
 

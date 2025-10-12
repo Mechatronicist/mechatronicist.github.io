@@ -9,9 +9,7 @@ const Projects = ref<IProject[]>(getProjects());
 
     <div id="projects">
         <RouterLink class="project card" v-for="project in Projects" :to="`/project/${project.id}`">
-            <div class="image">
-                <img :src="`${project.image}`" />
-            </div>
+            <NuxtImg :src="`${project.image}`" :quality="1" height="50" />
             <div class="name">{{ project.name }}</div>
             <div class="summary">{{ project.summary }}</div>
         </RouterLink>
@@ -52,16 +50,5 @@ const Projects = ref<IProject[]>(getProjects());
 }
 #projects .project .summary {
     text-align: center;
-}
-
-.image {
-    width: 60px;
-    height: 60px;
-}
-.image img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
 }
 </style>

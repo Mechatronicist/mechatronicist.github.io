@@ -17,13 +17,12 @@ const Education = ref<Education[]>(EducationData);
 
         <div id="education">
             <div class="card" v-for="education in Education">
-                <div class="flex col gap-1">
-                    <div class="image">
-                        <img :src="`${education.image}`" />
-                    </div>
+                <div class="flex row gap-1 center-align center-justify">
+                    <NuxtImg :src="`${education.image}`" height="64" />
+
                     <div class="flex col">
                         <b>{{ education.title }}</b>
-                        <p>{{ education.subtitle }}</p>
+                        <div>{{ education.subtitle }}</div>
                     </div>
                 </div>
             </div>
@@ -39,20 +38,5 @@ const Education = ref<Education[]>(EducationData);
     flex-wrap: wrap;
 
     gap: 1rem;
-}
-
-#education .image {
-    background-color: white;
-    padding: 1rem;
-
-    max-height: 40px;
-
-    border-radius: 5px;
-}
-#education .image img {
-    height: 100%;
-    width: 100%;
-
-    object-fit: contain;
 }
 </style>
