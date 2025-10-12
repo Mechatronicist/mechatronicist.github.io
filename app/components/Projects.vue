@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { getProjects, type IProject } from "~/lib/data";
+import { getProjects } from "~/lib/data";
 
-const Projects = ref<IProject[]>(getProjects());
+const projects = getProjects();
 </script>
 
 <template>
     <h2 class="flex row gap-05 center-align"><i class="ph ph-folder-open"></i> Projects</h2>
 
     <div id="projects">
-        <RouterLink class="project" v-for="project in Projects" :to="`/project/${project.id}`">
+        <RouterLink class="project" v-for="project in projects" :to="`/project/${project.id}`">
             <NuxtImg :src="`${project.image}`" :quality="1" height="50" loading="lazy" />
             <div class="name">{{ project.name }}</div>
             <div class="summary">{{ project.summary }}</div>

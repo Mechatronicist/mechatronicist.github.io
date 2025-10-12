@@ -1,14 +1,7 @@
 <script setup lang="ts">
-import ExperienceData from "~/data/experience.json";
+import { getExperience } from '~/lib/data';
 
-interface Experience {
-    title: string;
-    subtitle: string;
-    description: string;
-    image: string;
-}
-
-const Experience = ref<Experience[]>(ExperienceData);
+const experiences = getExperience();
 </script>
 
 <template>
@@ -16,7 +9,7 @@ const Experience = ref<Experience[]>(ExperienceData);
         <h2 class="flex row gap-05 center-align"><i class="ph ph-brackets-curly"></i> Work Experience</h2>
 
         <div id="experience">
-            <div class="cardless" v-for="experience in Experience">
+            <div class="cardless" v-for="experience in experiences">
                 <div class="flex col gap-05">
                     <div class="flex col gap-1 center-align">
                         <NuxtImg :src="`${experience.image}`" height="64" loading="lazy" />

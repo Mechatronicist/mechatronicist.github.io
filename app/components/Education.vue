@@ -1,14 +1,7 @@
 <script setup lang="ts">
-import EducationData from "~/data/education.json";
+import { getEducation } from '~/lib/data';
 
-interface Education {
-    title: string;
-    subtitle: string;
-    description: string;
-    image: string;
-}
-
-const Education = ref<Education[]>(EducationData);
+const educations = getEducation();
 </script>
 
 <template>
@@ -16,7 +9,7 @@ const Education = ref<Education[]>(EducationData);
         <h2 class="flex row gap-05 center-align"><i class="ph ph-graduation-cap"></i> Education</h2>
 
         <div id="education">
-            <div class="cardless" v-for="education in Education">
+            <div class="cardless" v-for="education in educations">
                 <div class="flex col gap-1 center-align center-justify" style="text-align: center;">
                     <NuxtImg :src="`${education.image}`" height="64" loading="lazy" />
 
