@@ -50,7 +50,7 @@ const awards = getAwards();
             <GitHubActivity username="lewpar" :count="3" />
         </div>
 
-        <NuxtLink to="/activity" class="read-more">Read More</NuxtLink>
+        <NuxtLink to="/activity" class="read-more"><i class="ph ph-list-magnifying-glass"></i> Read More</NuxtLink>
     </div>
 </template>
 
@@ -124,6 +124,12 @@ h2 {
 }
 
 .read-more {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
     background-color: rgba(255, 255, 255, 0.1);
 
     border: 1px solid rgba(255, 255, 255, 0.2);
