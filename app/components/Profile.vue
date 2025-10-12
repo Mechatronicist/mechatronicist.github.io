@@ -49,6 +49,8 @@ const awards = getAwards();
             <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity (3)</h2>
             <GitHubActivity username="lewpar" :count="3" />
         </div>
+
+        <NuxtLink to="/activity" class="read-more">Read More</NuxtLink>
     </div>
 </template>
 
@@ -119,6 +121,22 @@ h2 {
 
     gap: 1rem;
     align-items: center;
+}
+
+.read-more {
+    background-color: rgba(255, 255, 255, 0.1);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+
+    align-self: center;
+
+    padding: 0.5rem;
+
+    transition: background-color 0.25s;
+}
+.read-more:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 @media screen and (max-width: 600px) {

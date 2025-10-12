@@ -16,11 +16,11 @@ const Education = ref<Education[]>(EducationData);
         <h2 class="flex row gap-05 center-align"><i class="ph ph-graduation-cap"></i> Education</h2>
 
         <div id="education">
-            <div class="card" v-for="education in Education">
-                <div class="flex col gap-1 center-align center-justify">
+            <div class="cardless" v-for="education in Education">
+                <div class="flex col gap-1 center-align center-justify" style="text-align: center;">
                     <NuxtImg :src="`${education.image}`" height="64" loading="lazy" />
 
-                    <div class="flex col">
+                    <div class="flex col gap-05">
                         <b>{{ education.title }}</b>
                         <div>{{ education.subtitle }}</div>
                     </div>
