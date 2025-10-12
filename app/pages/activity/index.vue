@@ -4,10 +4,12 @@ import GitHubActivity from '~/components/GitHubActivity.vue';
 
 <template>
     <div class="page">
-        <NuxtLink to="/" class="back">Back to Portfolio</NuxtLink>
+        <div class="activity">
+            <NuxtLink to="/" class="back">Back to Portfolio</NuxtLink>
 
-        <h1>GitHub Activity</h1>
-        <GitHubActivity :count="100" username="lewpar"></GitHubActivity>
+            <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity</h2>
+            <GitHubActivity :count="100" username="lewpar"></GitHubActivity>
+        </div>
     </div>
 </template>
 
@@ -24,5 +26,13 @@ import GitHubActivity from '~/components/GitHubActivity.vue';
 }
 .back:hover {
 	background-color: rgba(255, 255, 255, 0.1);
+}
+.activity {
+    align-self: center;
+
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
 }
 </style>
