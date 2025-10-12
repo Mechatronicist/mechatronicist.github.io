@@ -8,7 +8,7 @@ const Projects = ref<IProject[]>(getProjects());
     <h2 class="flex row gap-05 center-align"><i class="ph ph-folder-open"></i> Projects</h2>
 
     <div id="projects">
-        <RouterLink class="project card" v-for="project in Projects" :to="`/project/${project.id}`">
+        <RouterLink class="project" v-for="project in Projects" :to="`/project/${project.id}`">
             <NuxtImg :src="`${project.image}`" :quality="1" height="50" />
             <div class="name">{{ project.name }}</div>
             <div class="summary">{{ project.summary }}</div>
@@ -35,15 +35,27 @@ const Projects = ref<IProject[]>(getProjects());
     display: flex;
     flex-direction: column;
 
+    min-width: 200px;
+
     align-items: center;
     justify-content: center;
 
+    text-align: center;
+
+    background-color: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+
     gap: 0.5rem;
 
-    transition: border-color 0.25s;
+    padding: 1rem;
+
+    transition: border-color 0.25s, background-color 0.25s;
 }
 #projects .project:hover {
-    border: 1px solid rgba(106, 106, 106, 0.473);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 #projects .project .name {
     font-weight: bold;

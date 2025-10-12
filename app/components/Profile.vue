@@ -95,14 +95,15 @@ h2 {
 
     text-decoration: none;
 
-    transition: color 0.25s;
+    transition: background-color 0.25s;
 }
+#profile #socials a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
 #profile #socials img {
     max-width: 24px;
     max-height: 24px;
-}
-#profile #socials a:hover {
-    color: rgb(12, 110, 208);
 }
 
 #socials {
