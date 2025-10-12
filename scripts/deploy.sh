@@ -2,8 +2,7 @@
 
 # Generate static website
 rm -fr ./docs
-npm run generate
-npx ipx generate public ./.output/public/_ipx
+npm run generate --prerender
 cp -r ./.output/public ./docs
 
 # Disable GitHub Jekyll
