@@ -6,6 +6,7 @@ import educations from "~/data/education.json";
 export interface IProject {
     id: string;
     name: string;
+    subtext: string;
     description: string;
     summary: string;
     image: string;

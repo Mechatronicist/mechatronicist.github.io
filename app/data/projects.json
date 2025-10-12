@@ -2,6 +2,7 @@
     {
         "id": "mypiui",
         "name": "MyPiUI",
+        "subtext": "Personal Project",
         "description": "A lightweight C# UI framework for Raspberry Pi devices that renders directly to the Linux framebuffer, allowing for graphical interfaces without a desktop environment.",
         "summary": "C# UI framework for Raspberry Pi using the Linux framebuffer.",
         "image": "/mypiui.png",
@@ -15,6 +16,7 @@
     {
         "id": "simupgrade",
         "name": "Simulator Upgrade Project",
+        "subtext": "Student Project",
         "description": "Developed a C# overlay and Arduino-based hardware system that enhanced in-game immersion through real-time telemetry integration. The system featured an in-game overlay displaying live vehicle data, an ABS sensor, a PWM-controlled fan that adjusted speed based on vehicle velocity, and a distance sensor used to dynamically calibrate the optimal field of view (FOV) based on the player's position.",
         "summary": "Integrated C# overlay and Arduino hardware for immersive driving simulation.",
         "image": "/default.png",
@@ -24,16 +26,36 @@
             "Serial Communication",
             "Micro-controllers",
             "Rapid Prototyping",
-            "3D Printing"
+            "3D Printing",
+            "Hardware"
         ],
         "link": "https://github.com/lewpar/AssettoNet"
     },
     {
+        "id": "smartclock",
+        "name": "Smart Clock",
+        "subtext": "Student Project",
+        "description": "A smart clock",
+        "summary": "A smart clock",
+        "image": "/default.png",
+        "tags": [
+            "Python",
+            "MicroPython",
+            "Serial Communication",
+            "Micro-controllers",
+            "Rapid Prototyping",
+            "3D Printing",
+            "Hardware"
+        ]
+
+    },
+    {
         "id": "gtnucl1633",
         "name": "GTNUCL1633 Serial Driver",
+        "subtext": "Personal Project",
         "description": "A Python-based driver that communicates with the GTNUCL1633 Fingerprint Reader via serial connection, enabling biometric data capture and control.",
         "summary": "Python serial driver for the GTNUCL1633 fingerprint sensor.",
-        "image": "/default.png",
+        "image": "/gtnucl1633.png",
         "tags": [
             "Python", 
             "Serial Communication"
@@ -43,6 +65,7 @@
     {
         "id": "wireguardcommand",
         "name": "WireGuard Command",
+        "subtext": "Work Project",
         "description": "A C# utility that generates WireGuard configuration files for road-warrior setups. Supports macros for automating peer-specific command creation and configuration management.",
         "summary": "C# tool for generating WireGuard configs and peer commands.",
         "image": "/wgc.png",
@@ -56,6 +79,7 @@
     {
         "id": "cyberbilby",
         "name": "Cyber Bilby",
+        "subtext": "Personal Project",
         "description": "An open-source technology blog built using AstroJS. It features articles covering programming, electronics, and open-source development projects.",
         "summary": "Open-source tech blog built with AstroJS.",
         "image": "/default.png",
@@ -70,6 +94,7 @@
     {
         "id": "assettonet",
         "name": "AssettoNet",
+        "subtext": "Personal Project",
         "description": "A lightweight C# interface for receiving and handling real-time telemetry from Assetto Corsa's UDP broadcast for external display or analysis tools.",
         "summary": "C# interface for Assetto Corsa real-time telemetry.",
         "image": "/nuget.png",

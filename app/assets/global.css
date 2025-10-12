@@ -133,6 +133,8 @@ h2 {
     background-color: dodgerblue;
 
     padding: 0.5rem;
+
+	user-select: none;
 }
 
 .page {
