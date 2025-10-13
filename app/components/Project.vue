@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type IProject } from '~/lib/data';
+import { openImageViewer } from '~/lib/image-viewer';
 
 const props = defineProps<{
   project: IProject
@@ -31,7 +32,8 @@ const project = props.project;
 		<div class="flex col" v-if="project.images.length > 0">
 			<h2>Images</h2>
 			<div class="images">
-				<NuxtImg class="image" v-for="img in project.images" :src="img" height="128"></NuxtImg>
+				<NuxtImg class="image" v-for="img in project.images" :src="img" height="200"
+					@click="() => openImageViewer(img)"></NuxtImg>
 			</div>
 		</div>
 	
@@ -106,7 +108,5 @@ const project = props.project;
 
 	border: 1px solid rgba(255, 255, 255, 0.1);
 	border-radius: 5px;
-
-	padding: 1rem;
 }
 </style>
