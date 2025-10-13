@@ -25,8 +25,8 @@ import { imageSrc, closeImageViewer } from '~/lib/image-viewer';
     top: 0;
     left: 0;
 
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
 .image {
@@ -37,6 +37,8 @@ import { imageSrc, closeImageViewer } from '~/lib/image-viewer';
     animation-name: pop-in;
     animation-duration: 0.25s;
     animation-fill-mode: both;
+
+    width: 100%;
 }
 
 @keyframes pop-in {
@@ -46,6 +48,12 @@ import { imageSrc, closeImageViewer } from '~/lib/image-viewer';
 
     to {
         transform: scale(100%);
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .image {
+        width: auto;
     }
 }
 </style>
