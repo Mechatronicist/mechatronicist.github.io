@@ -21,12 +21,19 @@ const project = props.project;
 			</div>
 		</div>
 
-		<div class="flex row gap-05">
+		<div class="flex row gap-05" v-if="project.link !== ''">
 			<i class="ph ph-link"></i>
 			<a :href="project.link" class="link">{{ project.link }}</a>
 		</div>
 	
 		<pre class="description">{{ project.description }}</pre>
+
+		<div class="flex col" v-if="project.images.length > 0">
+			<h2>Images</h2>
+			<div class="images">
+				<NuxtImg class="image" v-for="img in project.images" :src="img" height="128"></NuxtImg>
+			</div>
+		</div>
 	
 		<div class="flex col">
 			<h2>Skills Learned</h2>
@@ -85,5 +92,21 @@ const project = props.project;
 }
 .link:hover {
     color: rgb(32, 170, 255);
+}
+
+.images {
+	display: flex;
+	flex-direction: row;
+
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+.image {
+	background-color: rgba(255, 255, 255, 0.05);
+
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 5px;
+
+	padding: 1rem;
 }
 </style>

@@ -12,6 +12,7 @@ export interface IProject {
     image: string;
     tags: string[];
     link: string;
+    images: string[];
 }
 
 export interface IAward {

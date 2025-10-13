@@ -11,7 +11,10 @@
             "Linux", 
             "Graphics"
         ],
-        "link": "https://github.com/lewpar/MyPiUI"
+        "link": "https://github.com/lewpar/MyPiUI",
+        "images": [
+            "/default.png"
+        ]
     },
     {
         "id": "simupgrade",
@@ -29,7 +32,8 @@
             "3D Printing",
             "Hardware"
         ],
-        "link": "https://github.com/lewpar/AssettoNet"
+        "link": "",
+        "images": []
     },
     {
         "id": "smartclock",
@@ -46,8 +50,9 @@
             "Rapid Prototyping",
             "3D Printing",
             "Hardware"
-        ]
-
+        ],
+        "link": "",
+        "images": []
     },
     {
         "id": "gtnucl1633",
@@ -60,7 +65,8 @@
             "Python", 
             "Serial Communication"
         ],
-        "link": "https://github.com/lewpar/gtnucl1633"
+        "link": "https://github.com/lewpar/gtnucl1633",
+        "images": []
     },
     {
         "id": "wireguardcommand",
@@ -74,7 +80,8 @@
             ".NET",
             "SDLC"
         ],
-        "link": "https://github.com/lewpar/WireGuardCommand"
+        "link": "https://github.com/lewpar/WireGuardCommand",
+        "images": []
     },
     {
         "id": "cyberbilby",
@@ -89,7 +96,8 @@
             "CSS", 
             "Markdown"
         ],
-        "link": "https://cyberbilby.com"
+        "link": "https://cyberbilby.com",
+        "images": []
     },
     {
         "id": "assettonet",
@@ -104,6 +112,7 @@
             "Graphics",
             "Memory Marshalling"
         ],
-        "link": "https://github.com/lewpar/AssettoNet"
+        "link": "https://github.com/lewpar/AssettoNet",
+        "images": []
     }
 ]
