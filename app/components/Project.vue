@@ -12,9 +12,13 @@ const project = props.project;
 	<div class="project">
 		<RouterLink to="/" class="back">Back to Portfolio</RouterLink>
 
-		<div class="flex row gap-1">
+		<div class="flex row gap-1 center-align">
 			<NuxtImg :src="`${project.image}`" height="64" />
-			<h1>{{ project.name }}</h1>
+
+			<div class="flex col gap-05">
+				<div class="title">{{ project.name }}</div>
+				<div class="subtext">{{ project.subtext }}</div>
+			</div>
 		</div>
 
 		<a :href="project.link" class="link">{{ project.link }}</a>
@@ -58,6 +62,13 @@ const project = props.project;
 	align-items: start;
 
 	gap: 1rem;
+}
+.title {
+	font-size: 2rem;
+	font-weight: bold;
+}
+.subtext {
+	color: rgb(164, 164, 164);
 }
 .description {
     word-wrap: break-word;
