@@ -5,7 +5,7 @@ import { imageSrc, closeImageViewer } from '~/lib/image-viewer';
 <template>
     <template v-if="imageSrc">
         <div class="image-viewer" @click="closeImageViewer">
-            <img :src="imageSrc" />
+            <img class="image" :src="imageSrc" />
         </div>
     </template>
 </template>
@@ -27,5 +27,25 @@ import { imageSrc, closeImageViewer } from '~/lib/image-viewer';
 
     width: 100vw;
     height: 100vh;
+}
+
+.image {
+    transform: scale(0);
+
+    user-select: none;
+
+    animation-name: pop-in;
+    animation-duration: 0.25s;
+    animation-fill-mode: both;
+}
+
+@keyframes pop-in {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(100%);
+    }
 }
 </style>
