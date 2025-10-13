@@ -21,7 +21,10 @@ const project = props.project;
 			</div>
 		</div>
 
-		<a :href="project.link" class="link">{{ project.link }}</a>
+		<div class="flex row gap-05">
+			<i class="ph ph-link"></i>
+			<a :href="project.link" class="link">{{ project.link }}</a>
+		</div>
 	
 		<pre class="description">{{ project.description }}</pre>
 	
