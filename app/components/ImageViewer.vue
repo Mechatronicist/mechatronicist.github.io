@@ -18,7 +18,7 @@ import { imageSrc, closeImageViewer } from '~/lib/image-viewer';
     align-items: center;
     justify-content: center;
 
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.8);
 
     position: fixed;
 
@@ -26,7 +26,7 @@ import { imageSrc, closeImageViewer } from '~/lib/image-viewer';
     left: 0;
 
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 
 .image {
@@ -38,7 +38,7 @@ import { imageSrc, closeImageViewer } from '~/lib/image-viewer';
     animation-duration: 0.25s;
     animation-fill-mode: both;
 
-    width: 100%;
+    height: 80%;
 }
 
 @keyframes pop-in {

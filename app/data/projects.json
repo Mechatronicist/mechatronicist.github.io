@@ -14,7 +14,8 @@
         "link": "https://github.com/lewpar/MyPiUI",
         "images": [
             "/projects/mypiui/fbviewer.png"
-        ]
+        ],
+        "videos": []
     },
     {
         "id": "simupgrade",
@@ -33,7 +34,15 @@
             "Hardware"
         ],
         "link": "",
-        "images": []
+        "images": [
+            "/projects/simupgrade/pakhub.png",
+            "/projects/simupgrade/fovsensor.png",
+            "/projects/simupgrade/fan.png",
+            "/projects/simupgrade/abspak.png"
+        ],
+        "videos": [
+            "/projects/simupgrade/1.mp4"
+        ]
     },
     {
         "id": "smartclock",
@@ -52,7 +61,8 @@
             "Hardware"
         ],
         "link": "",
-        "images": []
+        "images": [],
+        "videos": []
     },
     {
         "id": "gtnucl1633",
@@ -66,7 +76,8 @@
             "Serial Communication"
         ],
         "link": "https://github.com/lewpar/gtnucl1633",
-        "images": []
+        "images": [],
+        "videos": []
     },
     {
         "id": "wireguardcommand",
@@ -81,7 +92,8 @@
             "SDLC"
         ],
         "link": "https://github.com/lewpar/WireGuardCommand",
-        "images": []
+        "images": [],
+        "videos": []
     },
     {
         "id": "cyberbilby",
@@ -97,7 +109,8 @@
             "Markdown"
         ],
         "link": "https://cyberbilby.com",
-        "images": []
+        "images": [],
+        "videos": []
     },
     {
         "id": "assettonet",
@@ -113,6 +126,7 @@
             "Memory Marshalling"
         ],
         "link": "https://github.com/lewpar/AssettoNet",
-        "images": []
+        "images": [],
+        "videos": []
     }
 ]

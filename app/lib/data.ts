@@ -13,6 +13,7 @@ export interface IProject {
     tags: string[];
     link: string;
     images: string[];
+    videos: string[];
 }
 
 export interface IAward {

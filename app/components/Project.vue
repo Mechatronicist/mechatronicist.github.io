@@ -29,6 +29,14 @@ const project = props.project;
 	
 		<pre class="description">{{ project.description }}</pre>
 
+		<div class="flex col">
+			<div class="tags">
+				<div class="tag" v-for="tag in project.tags">
+					{{ tag }}
+				</div>
+			</div>
+		</div>
+
 		<div class="flex col" v-if="project.images.length > 0">
 			<h2>Images</h2>
 			<div class="images">
@@ -36,13 +44,11 @@ const project = props.project;
 					@click="() => openImageViewer(img)"></NuxtImg>
 			</div>
 		</div>
-	
-		<div class="flex col">
-			<h2>Skills Learned</h2>
-			<div class="tags">
-				<div class="tag" v-for="tag in project.tags">
-					{{ tag }}
-				</div>
+
+		<div class="flex col" v-if="project.videos.length > 0">
+			<h2>Videos</h2>
+			<div class="videos">
+				<video class="video" v-for="video in project.videos" :src="video" controls></video>
 			</div>
 		</div>
 	</div>
@@ -108,5 +114,8 @@ const project = props.project;
 
 	border: 1px solid rgba(255, 255, 255, 0.1);
 	border-radius: 5px;
+}
+.video {
+	max-height: 400px;
 }
 </style>
