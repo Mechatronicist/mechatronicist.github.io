@@ -47,7 +47,7 @@ const awards = getAwards();
 
         <div id="activity">
             <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity (3)</h2>
-            <GitHubActivity username="lewpar" :count="3" />
+            <GitHubActivity username="Mechatronicist" :count="3" />
         </div>
 
         <NuxtLink to="/activity" class="read-more"><i class="ph ph-list-magnifying-glass"></i> Read More</NuxtLink>
