@@ -37,18 +37,14 @@ const project = props.project;
 			</div>
 		</div>
 
-		<div class="flex col" v-if="project.images.length > 0">
-			<h2>Images</h2>
-			<div class="images">
-				<NuxtImg class="image" v-for="img in project.images" :src="img" height="200"
-					@click="() => openImageViewer(img)"></NuxtImg>
-			</div>
-		</div>
-
-		<div class="flex col" v-if="project.videos.length > 0">
-			<h2>Videos</h2>
-			<div class="videos">
-				<video class="video" v-for="video in project.videos" :src="video" controls></video>
+		<div class="flex col" v-if="project.resources.length > 0">
+			<h2>Resources</h2>
+			<div class="resources">
+				<template v-for="resource in project.resources">
+					<NuxtImg v-if="resource.type == 'image'" :src="resource.href" class="resource"></NuxtImg>
+					<!-- <NuxtImg v-if="resource.type == 'image'" :src="resource.href" class="resource" @click="() => openImageViewer(resource.href)"></NuxtImg> -->
+					<video v-if="resource.type == 'video'" :src="resource.href" class="resource" controls></video>
+				</template>
 			</div>
 		</div>
 	</div>
@@ -117,5 +113,22 @@ const project = props.project;
 }
 .video {
 	max-height: 400px;
+}
+
+.resources {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: center;
+
+	flex-wrap: wrap;
+
+	gap: 1rem;
+}
+.resource {
+	border: 2px solid rgba(255, 255, 255, 0.2);
+	border-radius: 5px;
+
+	max-height: 200px;
 }
 </style>

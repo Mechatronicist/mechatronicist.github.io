@@ -22,10 +22,10 @@ import { imageSrc, closeImageViewer } from '~/lib/image-viewer';
 
     position: fixed;
 
-    height: 100%;
-    width: 100%;
+    height: 100px;
+    width: 100px;
 
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: red;
 }
 .image-viewer {
     display: flex;

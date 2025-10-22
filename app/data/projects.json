@@ -15,7 +15,7 @@
         "images": [
             "/projects/mypiui/fbviewer.png"
         ],
-        "videos": []
+        "resources": []
     },
     {
         "id": "simupgrade",
@@ -34,14 +34,32 @@
             "Hardware"
         ],
         "link": "",
-        "images": [
-            "/projects/simupgrade/pakhub.png",
-            "/projects/simupgrade/fovsensor.png",
-            "/projects/simupgrade/fan.png",
-            "/projects/simupgrade/abspak.png"
-        ],
-        "videos": [
-            "/projects/simupgrade/1.mp4"
+        "resources": [
+            {
+                "type": "video",
+                "href": "/projects/simupgrade/1.mp4",
+                "description": ""
+            },
+            {
+                "type": "image",
+                "href": "/projects/simupgrade/pakhub.png",
+                "description": ""
+            },
+            {
+                "type": "image",
+                "href": "/projects/simupgrade/fovsensor.png",
+                "description": ""
+            },
+            {
+                "type": "image",
+                "href": "/projects/simupgrade/fan.png",
+                "description": ""
+            },
+            {
+                "type": "image",
+                "href": "/projects/simupgrade/abspak.png",
+                "description": ""
+            }
         ]
     },
     {
@@ -61,8 +79,7 @@
             "Hardware"
         ],
         "link": "",
-        "images": [],
-        "videos": []
+        "resources": []
     },
     {
         "id": "gtnucl1633",
@@ -76,8 +93,7 @@
             "Serial Communication"
         ],
         "link": "https://github.com/lewpar/gtnucl1633",
-        "images": [],
-        "videos": []
+        "resources": []
     },
     {
         "id": "wireguardcommand",
@@ -92,8 +108,7 @@
             "SDLC"
         ],
         "link": "https://github.com/lewpar/WireGuardCommand",
-        "images": [],
-        "videos": []
+        "resources": []
     },
     {
         "id": "cyberbilby",
@@ -109,8 +124,7 @@
             "Markdown"
         ],
         "link": "https://cyberbilby.com",
-        "images": [],
-        "videos": []
+        "resources": []
     },
     {
         "id": "assettonet",
@@ -126,7 +140,6 @@
             "Memory Marshalling"
         ],
         "link": "https://github.com/lewpar/AssettoNet",
-        "images": [],
-        "videos": []
+        "resources": []
     }
 ]

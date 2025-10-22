@@ -1,22 +1,8 @@
 <script setup lang="ts">
-import ProfileData from "~/data/profile.json";
 import GitHubActivity from "./GitHubActivity.vue";
-import { getAwards } from "~/lib/data";
+import { getAwards, getProfile } from "~/lib/data";
 
-interface Profile {
-    name: string;
-    description: string;
-    socials: Social[];
-}
-
-interface Social {
-    name: string;
-    link: string;
-    icon: string;
-}
-
-const Profile = ref<Profile>(ProfileData);
-
+const profile = getProfile();
 const awards = getAwards();
 </script>
 
@@ -25,15 +11,15 @@ const awards = getAwards();
         <div class="headshot">
             <NuxtImg src="/headshot.png" loading="lazy" />
             <div class="flex col gap-05">
-                <div id="name">{{ Profile.name }}</div>
-                <div id="description">{{ Profile.description }}</div>
+                <div id="name">{{ profile.name }}</div>
+                <div id="description">{{ profile.description }}</div>
             </div>
         </div>
         
         <div class="flex col">
             <h2 class="flex row gap-05 center-align"><i class="ph ph-globe-hemisphere-east"></i> Socials</h2>
             <div id="socials">
-                <a v-for="social in Profile.socials" :href="`${social.link}`">
+                <a v-for="social in profile.socials" :href="`${social.link}`">
                     <NuxtImg :src="`${social.icon}`" loading="lazy" />
                     {{ social.name }}
                 </a>
@@ -47,7 +33,7 @@ const awards = getAwards();
 
         <div id="activity">
             <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity (3)</h2>
-            <GitHubActivity username="lewpar" :count="3" />
+            <GitHubActivity :username="profile.github" :count="3" />
         </div>
 
         <NuxtLink to="/activity" class="read-more"><i class="ph ph-list-magnifying-glass"></i> Read More</NuxtLink>
