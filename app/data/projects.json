@@ -15,7 +15,8 @@
         "images": [
             "/projects/mypiui/fbviewer.png"
         ],
-        "resources": []
+        "resources": [],
+        "visible": true
     },
     {
         "id": "simupgrade",
@@ -60,7 +61,8 @@
                 "href": "/projects/simupgrade/abspak.png",
                 "description": ""
             }
-        ]
+        ],
+        "visible": true
     },
     {
         "id": "smartclock",
@@ -79,7 +81,8 @@
             "Hardware"
         ],
         "link": "",
-        "resources": []
+        "resources": [],
+        "visible": false
     },
     {
         "id": "gtnucl1633",
@@ -93,7 +96,8 @@
             "Serial Communication"
         ],
         "link": "https://github.com/lewpar/gtnucl1633",
-        "resources": []
+        "resources": [],
+        "visible": true
     },
     {
         "id": "wireguardcommand",
@@ -108,7 +112,8 @@
             "SDLC"
         ],
         "link": "https://github.com/lewpar/WireGuardCommand",
-        "resources": []
+        "resources": [],
+        "visible": true
     },
     {
         "id": "cyberbilby",
@@ -124,7 +129,8 @@
             "Markdown"
         ],
         "link": "https://cyberbilby.com",
-        "resources": []
+        "resources": [],
+        "visible": true
     },
     {
         "id": "assettonet",
@@ -140,6 +146,7 @@
             "Memory Marshalling"
         ],
         "link": "https://github.com/lewpar/AssettoNet",
-        "resources": []
+        "resources": [],
+        "visible": true
     }
 ]

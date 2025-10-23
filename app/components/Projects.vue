@@ -8,7 +8,7 @@ const projects = getProjects();
     <h2 class="flex row gap-05 center-align"><i class="ph ph-folder-open"></i> Projects</h2>
 
     <div id="projects">
-        <RouterLink class="project" v-for="project in projects" :to="`/project/${project.id}`">
+        <RouterLink :class="`project ${(project.visible ? '' : 'hidden')}`" v-for="project in projects" :to="`/project/${project.id}`">
             <NuxtImg :src="`${project.image}`" :quality="1" height="50" loading="lazy" />
             <div class="name">{{ project.name }}</div>
             <div class="summary">{{ project.summary }}</div>

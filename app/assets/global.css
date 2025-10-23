@@ -162,3 +162,7 @@ h2 {
   background-color: white;
   border: 3px solid #73AD21;
 }
+
+.hidden {
+	display: none !important;
+}

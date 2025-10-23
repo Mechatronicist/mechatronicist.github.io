@@ -20,6 +20,7 @@ export interface IProject {
     tags: string[];
     link: string;
     resources: IResource[];
+    visible: boolean;
 }
 
 export interface IAward {
