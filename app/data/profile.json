@@ -1,20 +1,20 @@
 {
-    "name": "Lewis Parmenter",
-    "description": "Software Developer with 5+ years of experience developing software in languages and tools such as C# (ASP.NET Core), JavaScript/TypeScript, Python, Java, C++, Git, Terraform, AWS + Azure, and Docker.",
+    "name": "James Kelly",
+    "description": "Software Developer and Data Engineer with 3+ years of experience developing software in languages and tools such as Python, VB & C# (ASP.NET Core), SQL & pgSQL, JavaScript/TypeScript, Java, and Git.",
     "socials": [
         {
             "name": "LinkedIn",
-            "link": "https://linkedin.com/in/lewpar/",
+            "link": "https://www.linkedin.com/in/mechatronicist/",
             "icon": "/linkedin.png"
         },
         {
             "name": "GitHub",
-            "link": "https://github.com/lewpar",
+            "link": "https://github.com/mechatronicist",
             "icon": "/github.png"
         },
         {
             "name": "Email",
-            "link": "mailto:lop.cybersec@gmail.com",
+            "link": "mailto:james.a.kelly.00@gmail.com",
             "icon": "/gmail.png"
         }
     ]
