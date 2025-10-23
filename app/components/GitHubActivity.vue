@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { getRecentEvents, type UserEvent, type PushPayload, type PullRequestPayload } from '~/lib/github';
 
-const props = defineProps({
-  username: String,
-  count: Number
-});
+const props = defineProps<{
+	username: string
+	count: number
+}>();
 
 const events = ref<UserEvent[] | null | undefined>(undefined);
 

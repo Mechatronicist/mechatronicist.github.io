@@ -29,20 +29,22 @@ const project = props.project;
 	
 		<pre class="description">{{ project.description }}</pre>
 
-		<div class="flex col" v-if="project.images.length > 0">
-			<h2>Images</h2>
-			<div class="images">
-				<NuxtImg class="image" v-for="img in project.images" :src="img" height="200"
-					@click="() => openImageViewer(img)"></NuxtImg>
-			</div>
-		</div>
-	
 		<div class="flex col">
-			<h2>Skills Learned</h2>
 			<div class="tags">
 				<div class="tag" v-for="tag in project.tags">
 					{{ tag }}
 				</div>
+			</div>
+		</div>
+
+		<div class="flex col" v-if="project.resources.length > 0">
+			<h2>Resources</h2>
+			<div class="resources">
+				<template v-for="resource in project.resources">
+					<NuxtImg v-if="resource.type == 'image'" :src="resource.href" class="resource"></NuxtImg>
+					<!-- <NuxtImg v-if="resource.type == 'image'" :src="resource.href" class="resource" @click="() => openImageViewer(resource.href)"></NuxtImg> -->
+					<video v-if="resource.type == 'video'" :src="resource.href" class="resource" controls></video>
+				</template>
 			</div>
 		</div>
 	</div>
@@ -108,5 +110,25 @@ const project = props.project;
 
 	border: 1px solid rgba(255, 255, 255, 0.1);
 	border-radius: 5px;
+}
+.video {
+	max-height: 400px;
+}
+
+.resources {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: center;
+
+	flex-wrap: wrap;
+
+	gap: 1rem;
+}
+.resource {
+	border: 2px solid rgba(255, 255, 255, 0.2);
+	border-radius: 5px;
+
+	max-height: 200px;
 }
 </style>

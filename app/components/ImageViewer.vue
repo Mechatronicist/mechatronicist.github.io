@@ -4,13 +4,29 @@ import { imageSrc, closeImageViewer } from '~/lib/image-viewer';
 
 <template>
     <template v-if="imageSrc">
-        <div class="image-viewer" @click="closeImageViewer">
-            <img class="image" :src="imageSrc" />
+        <div class="image-viewer-container">
+            <div class="image-viewer" @click="closeImageViewer">
+                <img class="image" :src="imageSrc" />
+            </div>
         </div>
     </template>
 </template>
 
 <style scoped>
+.image-viewer-container {
+    display: flex;
+    flex-direction: column;
+
+    top: 0;
+    left: 0;
+
+    position: fixed;
+
+    height: 100px;
+    width: 100px;
+
+    background-color: red;
+}
 .image-viewer {
     display: flex;
     flex-direction: row;
@@ -18,15 +34,10 @@ import { imageSrc, closeImageViewer } from '~/lib/image-viewer';
     align-items: center;
     justify-content: center;
 
-    background-color: rgba(0, 0, 0, 0.4);
-
-    position: fixed;
+    position: sticky;
 
     top: 0;
     left: 0;
-
-    width: 100%;
-    height: 100%;
 }
 
 .image {
@@ -38,7 +49,7 @@ import { imageSrc, closeImageViewer } from '~/lib/image-viewer';
     animation-duration: 0.25s;
     animation-fill-mode: both;
 
-    width: 100%;
+    height: 100vh;
 }
 
 @keyframes pop-in {
@@ -51,9 +62,14 @@ import { imageSrc, closeImageViewer } from '~/lib/image-viewer';
     }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (max-width: 800px) {
     .image {
-        width: auto;
+        width: 100%;
+        height: unset;
+    }
+    .image-viewer {
+        height: unset;
+        padding: 1rem;
     }
 }
 </style>

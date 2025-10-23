@@ -2,6 +2,13 @@ import projects from '~/data/projects.json';
 import awards from '~/data/awards.json';
 import experience from "~/data/experience.json";
 import educations from "~/data/education.json";
+import profile from "~/data/profile.json";
+
+export interface IResource {
+    type: string;
+    href: string;
+    description: string;
+}
 
 export interface IProject {
     id: string;
@@ -12,7 +19,8 @@ export interface IProject {
     image: string;
     tags: string[];
     link: string;
-    images: string[];
+    resources: IResource[];
+    visible: boolean;
 }
 
 export interface IAward {
@@ -34,6 +42,23 @@ interface IEducation {
     subtitle: string;
     description: string;
     image: string;
+}
+
+interface IProfile {
+    name: string;
+    description: string;
+    socials: ISocial[];
+    github: string;
+}
+
+interface ISocial {
+    name: string;
+    link: string;
+    icon: string;
+}
+
+export function getProfile() : IProfile {
+    return profile as IProfile;
 }
 
 export function getProjects() : IProject[] {
