@@ -51,7 +51,7 @@ const images = props.project.resources.filter(r => r.type == "image").map(r => (
 			<div class="resources">
 				<Galleria :value="images" :num-visible="5" container-style="max-width: 100%" :show-thumbnail-navigators="false">
 					<template #item="slotProps">
-						<NuxtImg :src="slotProps.item.item" class="resource" style="max-height: 512px; max-width: 100%" ></NuxtImg>
+						<img :src="slotProps.item.item" class="resource" style="max-height: 512px; max-width: 100%"/>
 					</template>
 					<template #thumbnail="slotProps">
 						<img :src="slotProps.item.item" :alt="slotProps.item" style="max-height: 40px" />
