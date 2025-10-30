@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import { type IProject } from '~/lib/data';
-import { openImageViewer } from '~/lib/image-viewer';
+import Galleria from 'primevue/galleria';
 
 const props = defineProps<{
   project: IProject
 }>();
 
+interface GalleryImage {
+	item: string;
+	thumbnail: string;
+}
+
 const project = props.project;
+const images = props.project.resources.filter(r => r.type == "image").map(r => ({
+	item: r.href,
+	thumbnail: r.href
+} as GalleryImage));
 </script>
 
 <template>
@@ -37,11 +46,20 @@ const project = props.project;
 			</div>
 		</div>
 
-		<div class="flex col" v-if="project.resources.length > 0">
+		<div class="flex col" style="width: 100%" v-if="project.resources.length > 0">
 			<h2>Resources</h2>
 			<div class="resources">
+				<Galleria :value="images" :num-visible="5" container-style="max-width: 100%" :show-thumbnail-navigators="false">
+					<template #item="slotProps">
+						<img :src="slotProps.item.item" class="resource" style="max-height: 512px; max-width: 100%"/>
+					</template>
+					<template #thumbnail="slotProps">
+						<img :src="slotProps.item.item" :alt="slotProps.item" style="max-height: 40px" />
+					</template>
+				</Galleria>
+
 				<template v-for="resource in project.resources">
-					<NuxtImg v-if="resource.type == 'image'" :src="resource.href" class="resource"></NuxtImg>
+					
 					<!-- <NuxtImg v-if="resource.type == 'image'" :src="resource.href" class="resource" @click="() => openImageViewer(resource.href)"></NuxtImg> -->
 					<video v-if="resource.type == 'video'" :src="resource.href" class="resource" controls></video>
 				</template>
@@ -117,7 +135,7 @@ const project = props.project;
 
 .resources {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 
 	justify-content: center;
 
@@ -128,7 +146,5 @@ const project = props.project;
 .resource {
 	border: 2px solid rgba(255, 255, 255, 0.2);
 	border-radius: 5px;
-
-	max-height: 200px;
 }
 </style>
