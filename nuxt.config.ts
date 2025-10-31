@@ -21,6 +21,12 @@ export default defineNuxtConfig({
     }
   },
 
+  nitro: {
+    prerender: {
+      failOnError: false
+    }
+  },
+
   primevue: {
       options: {
           theme: {
