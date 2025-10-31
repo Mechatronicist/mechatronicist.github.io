@@ -12,9 +12,9 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: "Portfolio - Lewis Parmenter",
+      title: "Portfolio - James Kelly",
       link: [
-        { rel: "icon", type: "image/png", href: "/default.png" },
+        { rel: "icon", type: "image/png", href: "/favicon.png" },
         { rel: "stylesheet", type: "text/css", href: "https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" }
       ]
     }
