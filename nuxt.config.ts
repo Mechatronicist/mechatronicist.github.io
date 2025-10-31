@@ -20,8 +20,6 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ["@nuxt/image", '@primevue/nuxt-module'],
-
   primevue: {
       options: {
           theme: {
