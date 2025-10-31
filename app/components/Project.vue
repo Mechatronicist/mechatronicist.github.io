@@ -23,7 +23,7 @@ const images = props.project.resources.filter(r => r.type == "image").map(r => (
 		<RouterLink to="/" class="back">Back to Portfolio</RouterLink>
 
 		<div class="flex row gap-1 center-align">
-			<img :src="`${project.image}`" height="64" />
+			<NuxtImg :src="`${project.image}`" height="64" />
 
 			<div class="flex col gap-05">
 				<div class="title">{{ project.name }}</div>
@@ -60,7 +60,7 @@ const images = props.project.resources.filter(r => r.type == "image").map(r => (
 
 				<template v-for="resource in project.resources">
 					
-					<!-- <img v-if="resource.type == 'image'" :src="resource.href" class="resource" @click="() => openImageViewer(resource.href)"></NuxtImg> -->
+					<!-- <NuxtImg v-if="resource.type == 'image'" :src="resource.href" class="resource" @click="() => openImageViewer(resource.href)"></NuxtImg> -->
 					<video v-if="resource.type == 'video'" :src="resource.href" class="resource" controls></video>
 				</template>
 			</div>
