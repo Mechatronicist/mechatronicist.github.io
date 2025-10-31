@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   ],
 
   app: {
+    baseURL: "/",
     head: {
       title: "Portfolio - James Kelly",
       link: [

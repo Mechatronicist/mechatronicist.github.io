@@ -9,7 +9,7 @@ const awards = getAwards();
 <template>
     <div id="profile">
         <div class="headshot">
-            <img src="/headshot.jpg" loading="lazy" />
+            <img :src="`/headshot.jpg`" loading="lazy" />
             <div class="flex col gap-05">
                 <div id="name">{{ profile.name }}</div>
                 <div id="description">{{ profile.description }}</div>
