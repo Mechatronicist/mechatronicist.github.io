@@ -26,6 +26,8 @@ export default defineNuxtConfig({
       failOnError: false
     }
   },
+  
+  modules: ["@nuxt/image", '@primevue/nuxt-module'],
 
   primevue: {
       options: {
