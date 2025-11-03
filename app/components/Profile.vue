@@ -32,7 +32,7 @@ const awards = getAwards();
         </div>
 
         <div id="activity">
-            <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity (3)</h2>
+            <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity</h2>
             <GitHubActivity :username="profile.github" :count="3" />
         </div>
 
