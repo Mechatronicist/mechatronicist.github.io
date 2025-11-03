@@ -22,11 +22,12 @@ jobs:
         run: |
           curl -s -H "Authorization: bearer $GITHUB_TOKEN" \
                -H "Content-Type: application/json" \
-               -d '{"query": "query { user(login: \"${{ github.repository_owner }}\") { contributionsCollection { contributionCalendar { weeks { contributionDays { date contributionCount color } } } } } }"}' \
+               -d '{"query": "query { viewer { contributionsCollection(includePrivateContributions: true) { contributionCalendar { totalContributions weeks { contributionDays { date contributionCount color } } } } } }"}' \
                https://api.github.com/graphql \
-          | jq '.data.user.contributionsCollection.contributionCalendar.weeks
-               | map(.contributionDays)
-               | flatten' \
+          | jq '[.data.viewer.contributionsCollection.contributionCalendar.weeks
+              | map(.contributionDays)
+              | flatten[]
+              | select((.contributionCount | tonumber?)? > 0)]' \
           > public/heatmap.json
 
       - name: Commit and push
