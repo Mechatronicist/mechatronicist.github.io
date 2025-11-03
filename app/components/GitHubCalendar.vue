@@ -47,7 +47,7 @@ const success = ref(true)
 async function loadHeatmap(events: UserEvent[]) {
   try {
     //const res = await fetch('/heatmap_test.json') //test data
-    const res = await fetch('/heatmap.json')
+    const res = await fetch(`https://raw.githubusercontent.com/${props.username}/${props.username}.github.io/master/public/heatmap.json`)
     if (!res.ok) throw new Error(`Failed to load: ${res.status}`)
     const graphData = await res.json()
 

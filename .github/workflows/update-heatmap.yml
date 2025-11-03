@@ -9,18 +9,16 @@ jobs:
   update-heatmap:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Fetch commit heatmap from GitHub GraphQL API
+      - name: Fetch contribution heatmap (GraphQL API)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.CONTRIBUTIONS_GITHUB_TOKEN }}
         run: |
-          curl -s -H "Authorization: bearer $GITHUB_TOKEN" \
+          echo "Fetching contribution data for authenticated user..."
+          curl -s -H "Authorization: bearer ${GH_TOKEN}" \
                -H "Content-Type: application/json" \
                -d '{"query": "query { viewer { contributionsCollection(includePrivateContributions: true) { contributionCalendar { totalContributions weeks { contributionDays { date contributionCount color } } } } } }"}' \
                https://api.github.com/graphql \
@@ -30,10 +28,10 @@ jobs:
               | select((.contributionCount | tonumber?)? > 0)]' \
           > public/heatmap.json
 
-      - name: Commit and push
+      - name: Commit and push updated heatmap
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add public/heatmap.json
-          git diff --cached --quiet || git commit -m "Update heatmap data [skip ci]"
+          git diff --quiet && echo "No changes to commit." || git commit -m "Update heatmap data [skip ci]"
           git push
