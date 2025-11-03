@@ -32,11 +32,16 @@ const awards = getAwards();
         </div>
 
         <div id="activity">
-            <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity (3)</h2>
-            <GitHubActivity :username="profile.github" :count="3" />
+            <div class="flex-container">
+                <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity</h2>
+                <div class="item" style="min-width: 125px;"><NuxtLink to="/activity" class="read-more"><i class="ph ph-list-magnifying-glass"></i> Read More</NuxtLink></div>
+            </div>
+            <GitHubActivity :username="profile.github" :count="profile.github_activity" :showMore="true"/>
         </div>
 
-        <NuxtLink to="/activity" class="read-more"><i class="ph ph-list-magnifying-glass"></i> Read More</NuxtLink>
+        
+
+        
     </div>
 </template>
 
@@ -108,7 +113,6 @@ h2 {
     gap: 1rem;
     align-items: center;
 }
-
 .read-more {
     display: flex;
 
@@ -129,6 +133,11 @@ h2 {
 }
 .read-more:hover {
     background-color: rgba(255, 255, 255, 0.2);
+}
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 @media screen and (max-width: 600px) {

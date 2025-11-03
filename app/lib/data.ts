@@ -49,6 +49,7 @@ interface IProfile {
     description: string;
     socials: ISocial[];
     github: string;
+    github_activity: number;
 }
 
 interface ISocial {
