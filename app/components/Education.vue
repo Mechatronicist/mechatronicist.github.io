@@ -11,7 +11,7 @@ const educations = getEducation();
         <div id="education">
             <div class="cardless" v-for="education in educations">
                 <div class="flex col gap-1 center-align center-justify" style="text-align: center;">
-                    <NuxtImg :src="`${education.image}`" height="64" loading="lazy" />
+                    <img :src="`${education.image}`" height="64" loading="lazy" />
 
                     <div class="flex col gap-05">
                         <b>{{ education.title }}</b>

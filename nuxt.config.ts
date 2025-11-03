@@ -26,6 +26,15 @@ export default defineNuxtConfig({
       failOnError: false
     }
   },
+
+  image: {
+    provider: 'ipx',
+    presets: {},
+    inject: false,
+    domains: [],
+    dir: 'public',
+  },
+
   
   modules: ["@nuxt/image", '@primevue/nuxt-module'],
 
