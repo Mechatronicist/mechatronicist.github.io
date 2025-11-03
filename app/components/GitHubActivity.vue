@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getRecentEvents, type UserEvent } from '~/lib/github';
-import CalendarHeatmap from 'vue3-calendar-heatmap';
+
+import { CalendarHeatmap } from 'vue3-calendar-heatmap';
 import 'vue3-calendar-heatmap/dist/style.css'
 import HeatmapData from '@/data/heatmap.json';
 
