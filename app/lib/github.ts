@@ -44,6 +44,10 @@ export async function getRecentEvents(username: string): Promise<UserEvent[] | n
         var url = `https://api.github.com/users/${username}/events`;
         var result = await fetch(url);
 
+        if(!result.ok) {
+            return null;
+        }
+
         var data = await result.json();
         //var data = test_data;
         const items = (data as any[]).map(event => ({

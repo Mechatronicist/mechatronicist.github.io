@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getRecentEvents, type UserEvent } from '~/lib/github';
-import { CalendarHeatmap } from 'vue3-calendar-heatmap';
+import CalendarHeatmap from 'vue3-calendar-heatmap';
+import 'vue3-calendar-heatmap/dist/style.css'
 import HeatmapData from '@/data/heatmap.json';
 
 const props = defineProps<{
@@ -23,14 +24,14 @@ onMounted(async () => {
 	}) as HeatmapDataPoint);
 
 	if(props.username === undefined) {
-	console.error("No GitHub username defined.");
-	return;
+		console.error("No GitHub username defined.");
+		return;
 	}
 
 	var items = await getRecentEvents(props.username);
 	if(items === null) {
-	events.value = null;
-	return;
+		events.value = null;
+		return;
 	}
 
 	events.value = items.slice(0, props.count ?? 5);
