@@ -39,7 +39,7 @@ onMounted(async () => {
 
 <template>
 	<div class="flex col gap-1">
-		<div class="heatmap">
+		<div>
 			<CalendarHeatmap 
 				:values="heatmap" 
 				:end-date="new Date()"
@@ -65,9 +65,6 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.heatmap {
-}
-
 .activity-link {
 	display: flex;
 	flex-direction: column;
