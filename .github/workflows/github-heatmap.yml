@@ -20,12 +20,12 @@ jobs:
                -d '{"query": "query { user(login: \"${{ github.repository_owner }}\") { contributionsCollection { contributionCalendar { weeks { contributionDays { date contributionCount color } } } } } }"}' \
                https://api.github.com/graphql \
           | jq '.data.user.contributionsCollection.contributionCalendar.weeks | map(.contributionDays) | flatten' \
-          > public/heatmap.json
+          > app/data/heatmap.json
 
       - name: Commit and push
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/heatmap.json
+          git add app/data/heatmap.json
           git commit -m "Update heatmap data [skip ci]" || echo "No changes"
           git push

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { getRecentEvents, type UserEvent, type PushPayload, type PullRequestPayload } from '~/lib/github';
+import { CalendarHeatmap } from 'vue3-calendar-heatmap';
+import HeatmapData from '@/data/heatmap.json';
 
 const props = defineProps<{
 	username: string
@@ -26,6 +28,7 @@ onMounted(async () => {
 
 <template>
 	<div class="flex col gap-1">
+		<CalendarHeatmap :values=""></CalendarHeatmap>
 		<div v-if="events != null" v-for="event in events">
 			<GitHubPushActivity v-if="event.type == 'PushEvent'" :event="event"></GitHubPushActivity>
 			<GitHubPullActivity v-if="event.type == 'PullRequestEvent'" :event="event"></GitHubPullActivity>
