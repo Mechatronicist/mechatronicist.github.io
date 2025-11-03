@@ -4,9 +4,10 @@ import { getRecentEvents, type UserEvent, type PushPayload, type PullRequestPayl
 const props = defineProps<{
 	username: string
 	count: number
+	showMore: boolean
 }>();
 
-const events = ref<UserEvent[] | null | undefined>(undefined);
+const userEvents = ref<UserEvent[] | null | undefined>(undefined);
 
 onMounted(async () => {
   if(props.username === undefined) {
@@ -16,28 +17,18 @@ onMounted(async () => {
 
   var items = await getRecentEvents(props.username);
   if(items === null) {
-	events.value = null;
+	userEvents.value = null;
 	return;
   }
 
-  events.value = items.slice(0, props.count ?? 5);
+  userEvents.value = items;
 });
 </script>
 
 <template>
-	<div class="flex col gap-1">
-		<div v-if="events != null" v-for="event in events">
-			<GitHubPushActivity v-if="event.type == 'PushEvent'" :event="event"></GitHubPushActivity>
-			<GitHubPullActivity v-if="event.type == 'PullRequestEvent'" :event="event"></GitHubPullActivity>
-		</div>
-		<div v-else>
-			<div v-if="events == undefined">
-				Loading..
-			</div>
-			<div v-else>
-				Failed to load recent activity.
-			</div>
-		</div>
+	<div class="item"><GitHubEvent :username="props.username" :count="props.count" :events="userEvents?.slice(0, props.count ?? 5)" /></div>
+	<div v-if="showMore === true">
+		<GitHubCalendar :username="props.username" :events="userEvents"/>
 	</div>
 </template>
 

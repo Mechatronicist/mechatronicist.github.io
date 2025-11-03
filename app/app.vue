@@ -1,3 +1,4 @@
 <template>
+  <CursorGlow/>
   <NuxtPage/>
 </template>
