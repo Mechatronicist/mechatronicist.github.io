@@ -1,20 +1,28 @@
 <template>
-  <div class="github-heatmap">
-    <CalendarHeatmap
-    :values="calendarData"
-      :endDate="endDate"
-      :round="5"
-      :dark-mode="true"
-      :tooltip="true"
-      tooltip-unit="contributions"
-      :max="maxCount">
-    <template #vch__legend-left>
-      <div class="custom-legend-left">
-        <span>{{ events?.length }} Contributions</span>
-      </div>
-    </template>
-    </CalendarHeatmap>
+  <div v-if="!loading">
+      <div class="github-heatmap">
+        <CalendarHeatmap
+          :values="calendarData"
+          :endDate="today"
+          :round="5"
+          :dark-mode="true"
+          :tooltip="true"
+          tooltip-unit="contributions"
+          :max="maxCount">
+          <template #vch__legend-left>
+            <div class="custom-legend-left">
+              <div v-if="success">
+                <span>{{ totalCount }} Contributions</span>
+              </div>
+              <div v-else>
+                <span>Can't get contributions</span>
+              </div>
+            </div>
+          </template>
+        </CalendarHeatmap>
+    </div>
   </div>
+  <div v-else>Loading contributions...</div>
 </template>
 
 <script setup lang="ts">
@@ -30,35 +38,58 @@ const props = defineProps<{
 
 
 const calendarData = ref<{ date: Date | string; count: number }[]>([])
-const endDate = new Date().toISOString().split('T')[0]
+const today = new Date().toISOString().split('T')[0]
 const maxCount = ref<number | undefined>(undefined)
+const totalCount = ref<number>(0)
+const loading = ref(true)
+const success = ref(true)
 
+async function loadHeatmap(events: UserEvent[]) {
+  try {
+    //const res = await fetch('/heatmap_test.json') //test data
+    const res = await fetch('/heatmap.json')
+    if (!res.ok) throw new Error(`Failed to load: ${res.status}`)
+    const graphData = await res.json()
 
-function updateHeatmap(events: UserEvent[]) {
-  if (!events?.length) return
+    // Collect historic events
+    const counts: Record<string, number> = {}
+    for (const d of graphData) {
+      const value = d.contributionCount ?? d.count ?? 0
+      counts[d.date] = (counts[d.date] || 0) + value
+      totalCount.value += value
+    }
 
-  const counts: Record<string, number> = {}
+    // Add today's contributions from the REST events API
+    if (events?.length) {
+      for (const e of events) {
+        const date = new Date(e.created_at).toISOString().split('T')[0]
+        if (date && date === today) {
+          counts[date] = (counts[date] || 0) + 1
+          totalCount.value += 1
+        }
+      }
+    }
 
-  for (const e of events) {
-    const date = new Date(e.created_at).toISOString().split('T')[0]
-    if(!date) continue
-    counts[date] = (counts[date] || 0) + 1
+    // 3️⃣ Convert to sorted array
+    calendarData.value = Object.entries(counts)
+      .map(([date, count]) => ({ date, count }))
+      .sort((a, b) => a.date.localeCompare(b.date))
+
+    maxCount.value = Math.max(...calendarData.value.map((d) => d.count))
+  } catch (err) {
+    success.value = false
+    console.error('Failed to load heatmap data', err)
+  } finally {
+    loading.value = false
   }
-
-  calendarData.value = Object.entries(counts)
-    .map(([date, count]) => ({ date, count }))
-    .sort((a, b) => a.date.localeCompare(b.date))
-
-  maxCount.value = Math.max(...calendarData.value.map((d) => d.count))
 }
 
-// ✅ react to both initial mount and later updates
 watch(
   () => props.events,
   (newEvents) => {
-    if (newEvents) updateHeatmap(newEvents)
+    if (newEvents) loadHeatmap(newEvents)
   },
-  { immediate: true } // run once on mount even if already populated
+  { immediate: true }
 )
 </script>
 

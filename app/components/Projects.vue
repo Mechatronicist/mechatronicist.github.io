@@ -9,7 +9,7 @@ const projects = getProjects();
 
     <div id="projects">
         <RouterLink :class="`project ${(project.visible ? '' : 'hidden')}`" v-for="project in projects" :to="`/project/${project.id}`">
-            <NuxtImg :src="`${project.image}`" :quality="1" height="50" loading="lazy" />
+            <img :src="`${project.image}`" :quality="1" height="50" loading="lazy" />
             <div class="name">{{ project.name }}</div>
             <div class="summary">{{ project.summary }}</div>
         </RouterLink>

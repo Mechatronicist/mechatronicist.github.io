@@ -97,7 +97,7 @@ const updateTrail = () => {
         rotate(${angle}deg)
         scale(${stretch}, ${1 / stretch})
         `
-        el.style.background = `radial-gradient(circle, hsla(${(hue + i * 15) % 360}, 100%, 60%, ${0.25 - i * 0.02}), transparent 40%)`
+        el.style.background = `radial-gradient(circle, hsla(${(hue + i * 15) % 360}, 100%, 60%, ${0.25 - i * 0.02}), transparent 60%)`
     }
   })
 
