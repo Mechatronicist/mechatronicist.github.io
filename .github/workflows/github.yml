@@ -32,17 +32,21 @@ jobs:
           while true; do
             RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
                           "https://api.github.com/users/$USERNAME/events?page=$PAGE&per_page=100")
-            
-            EVENTS=$(echo "$RESPONSE" | jq '[.[] | select(.type=="PushEvent") | .payload.commits[] | {sha: .sha, message: .message, url: .url, repo: .url?}]')
-            
+
+            # Safely extract commits from PushEvent
+            EVENTS=$(echo "$RESPONSE" | jq '[.[] | select(.type=="PushEvent" and .payload.commits != null) | .payload.commits[] | {sha: .sha, message: .message, url: .url, repo: .url?}]')
+
+            # If no events returned, stop fetching
             if [ "$EVENTS" = "[]" ]; then
               break
             fi
 
+            # Merge commits
             ALL_COMMITS=$(echo "$ALL_COMMITS $EVENTS" | jq -s 'add')
             PAGE=$((PAGE+1))
           done
 
+          # Write all commits to file
           echo "$ALL_COMMITS" | jq '.' > "$COMMITS_FILE"
 
       - name: Commit and push
