@@ -99,7 +99,7 @@
         "id": "gtnucl1633",
         "name": "GTNUCL1633 Serial Driver",
         "subtext": "Personal Project",
-        "description": "A Python-based driver that communicates with the GTNUCL1633 Fingerprint Reader via serial connection, enabling biometric data capture and control.",
+        "description": "Developed a Python-based driver for the GTNUCL1633 Fingerprint Reader, enabling biometric data capture and device control via a serial interface. Originally designed for deployment on a Raspberry Pi, the driver supports both fingerprint enrollment and fingerprint recognition functionalities.",
         "summary": "Python serial driver for the GTNUCL1633 fingerprint sensor.",
         "image": "/gtnucl1633.png",
         "tags": [
@@ -107,7 +107,13 @@
             "Serial Communication"
         ],
         "link": "https://github.com/lewpar/gtnucl1633",
-        "resources": [],
+        "resources": [
+            {
+                "type": "video",
+                "href": "/projects/gtnucl1633/c1.mp4",
+                "description": ""
+            }
+        ],
         "visible": true
     },
     {
