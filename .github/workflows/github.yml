@@ -22,18 +22,12 @@ jobs:
           | jq '.data.user.contributionsCollection.contributionCalendar.weeks | map(.contributionDays) | flatten' \
           > app/data/heatmap.json
 
-      - name: Fetch recent commits from public events (first page only)
+      - name: Fetch recent commits (raw data)
         run: |
           USERNAME="${{ github.repository_owner }}"
-          COMMITS_FILE="app/data/commits.json"
-
-          RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                           "https://api.github.com/users/$USERNAME/events?per_page=100")
-
-          # Safely extract commits from PushEvent
-          echo "$RESPONSE" \
-            | jq '[.[] | select(.type=="PushEvent" and .payload.commits != null) | .payload.commits[] | {sha: .sha, message: .message, url: .url, repo: .url?}]' \
-            > "$COMMITS_FILE"
+          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+               "https://api.github.com/users/$USERNAME/events?per_page=100" \
+          > app/data/commits.json
 
       - name: Commit and push
         run: |
