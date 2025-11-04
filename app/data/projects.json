@@ -24,7 +24,7 @@
         "subtext": "Student Project",
         "description": "Developed a C# overlay and Arduino-based hardware system that enhanced in-game immersion through real-time telemetry integration. The system featured an in-game overlay displaying live vehicle data, an ABS sensor, a PWM-controlled fan that adjusted speed based on vehicle velocity, and a distance sensor used to dynamically calibrate the optimal field of view (FOV) based on the player's position.",
         "summary": "Integrated C# overlay and Arduino hardware for immersive driving simulation.",
-        "image": "/default.png",
+        "image": "/projects/simupgrade/icon.png",
         "tags": [
             "C#",
             "C++",
