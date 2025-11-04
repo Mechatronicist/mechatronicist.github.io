@@ -1,0 +1,54 @@
+name: Update Commit Heatmap and All Recent Commits
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # every day at midnight UTC
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Fetch contribution heatmap
+        run: |
+          curl -H "Authorization: bearer ${{ secrets.GITHUB_TOKEN }}" \
+               -H "Content-Type: application/json" \
+               -d '{"query": "query { user(login: \"${{ github.repository_owner }}\") { contributionsCollection { contributionCalendar { weeks { contributionDays { date contributionCount color } } } } } }"}' \
+               https://api.github.com/graphql \
+          | jq '.data.user.contributionsCollection.contributionCalendar.weeks | map(.contributionDays) | flatten' \
+          > app/data/heatmap.json
+
+      - name: Fetch all commits from public events
+        run: |
+          USERNAME="${{ github.repository_owner }}"
+          COMMITS_FILE="app/data/commits.json"
+          PAGE=1
+          ALL_COMMITS="[]"
+
+          while true; do
+            RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                          "https://api.github.com/users/$USERNAME/events?page=$PAGE&per_page=100")
+            
+            EVENTS=$(echo "$RESPONSE" | jq '[.[] | select(.type=="PushEvent") | .payload.commits[] | {sha: .sha, message: .message, url: .url, repo: .url?}]')
+            
+            if [ "$EVENTS" = "[]" ]; then
+              break
+            fi
+
+            ALL_COMMITS=$(echo "$ALL_COMMITS $EVENTS" | jq -s 'add')
+            PAGE=$((PAGE+1))
+          done
+
+          echo "$ALL_COMMITS" | jq '.' > "$COMMITS_FILE"
+
+      - name: Commit and push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add app/data/heatmap.json app/data/commits.json
+          git commit -m "Update heatmap and all recent commits [skip ci]" || echo "No changes"
+          git push
