@@ -41,9 +41,11 @@ onMounted(async () => {
 			<CalendarHeatmap 
 				:values="heatmap" 
 				:end-date="new Date()"
-				:round="5"
+				:round="3"
 				:tooltip="true"
-				:dark-mode="true">
+				:dark-mode="true"
+				:range-color="[ 'rgb(0, 0, 0)', 'rgb(0, 20, 0)', 'rgb(0, 100, 0)', 'rgb(0, 180, 0)', 'rgb(0, 220, 0)', 'rgb(0, 255, 0)' ]"
+				>
 			</CalendarHeatmap>
 		</div>
 
