@@ -66,11 +66,11 @@
     },
     {
         "id": "smartclock",
-        "name": "Smart Clock",
+        "name": "Smart Weather Clock",
         "subtext": "Student Project",
-        "description": "A smart clock",
-        "summary": "A smart clock",
-        "image": "/default.png",
+        "description": "Collaborated with another student to design and develop a smart clock featuring time display, weather updates, and alarm functionality. The system utilized two ESP32 microcontrollers connected via serial communication, configured as main and daughter boards to optimize memory usage and overcome RAM limitations inherent to the ESP32 platform. The device included a captive portal for simplified Wi-Fi configuration and supported integration with a web application through MQTT for remote interaction and monitoring.",
+        "summary": "ESP32 Powered Smart Weather Clock",
+        "image": "/projects/smartclock/icon.png",
         "tags": [
             "Python",
             "MicroPython",
@@ -81,8 +81,19 @@
             "Hardware"
         ],
         "link": "",
-        "resources": [],
-        "visible": false
+        "resources": [
+            {
+                "type": "image",
+                "href": "/projects/smartclock/c1.png",
+                "description": ""
+            },
+            {
+                "type": "image",
+                "href": "/projects/smartclock/c2.png",
+                "description": ""
+            }
+        ],
+        "visible": true
     },
     {
         "id": "gtnucl1633",
