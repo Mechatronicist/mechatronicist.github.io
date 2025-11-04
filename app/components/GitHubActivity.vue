@@ -29,11 +29,7 @@ onMounted(async () => {
 		return;
 	}
 
-	var items = await getRecentEvents(props.username);
-	if(items === null) {
-		events.value = null;
-		return;
-	}
+	var items = getRecentEvents(props.username);
 
 	events.value = items.slice(0, props.count ?? 5);
 });

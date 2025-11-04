@@ -1,4 +1,4 @@
-import test_data from '~/data/github-test.json';
+import commitData from '~/data/commits.json';
 
 interface Commit {
     sha: string;
@@ -39,26 +39,13 @@ export interface UserEvent {
     created_at: Date;
 }
 
-export async function getRecentEvents(username: string): Promise<UserEvent[] | null> {
-    try {
-        var url = `https://api.github.com/users/${username}/events`;
-        var result = await fetch(url);
+export function getRecentEvents(username: string): UserEvent[] {
+    const data = commitData.map(c => ({
+        ...c,
+        created_at: new Date(c.created_at)
+    })) as UserEvent[];
 
-        if(!result.ok) {
-            return null;
-        }
+    console.log(data);
 
-        var data = await result.json();
-        //var data = test_data;
-        const items = (data as any[]).map(event => ({
-            ...event,
-            created_at: new Date(event.created_at)
-        })) as UserEvent[];
-
-        return items;
-    }
-    catch(error) {
-        console.error(error);
-        return null;
-    }
+    return data;
 }
