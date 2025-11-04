@@ -152,7 +152,18 @@
             "Markdown"
         ],
         "link": "https://cyberbilby.com",
-        "resources": [],
+        "resources": [
+            {
+                "type": "image",
+                "href": "/projects/cyberbilby/c2.png",
+                "description": ""
+            },
+            {
+                "type": "image",
+                "href": "/projects/cyberbilby/c1.png",
+                "description": ""
+            }
+        ],
         "visible": true
     },
     {
