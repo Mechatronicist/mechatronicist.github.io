@@ -16,6 +16,14 @@ const images = props.project.resources.filter(r => r.type == "image").map(r => (
 	item: r.href,
 	thumbnail: r.href
 } as GalleryImage));
+
+const activeIndex = ref(0);
+const displayCustom = ref(false);
+
+const imageClick = (index: number) => {
+    activeIndex.value = index;
+    displayCustom.value = true;
+};
 </script>
 
 <template>
@@ -49,18 +57,21 @@ const images = props.project.resources.filter(r => r.type == "image").map(r => (
 		<div class="flex col" style="width: 100%" v-if="project.resources.length > 0">
 			<h2>Resources</h2>
 			<div class="resources">
-				<Galleria :value="images" :num-visible="5" container-style="max-width: 100%" :show-thumbnail-navigators="false">
+				<Galleria v-model:active-index="activeIndex" :value="images" :num-visible="5" 
+							v-model:visible="displayCustom" :circular="true" :fullScreen="true" :showItemNavigators="true" :showThumbnails="false"
+							containerStyle="max-width: 850px">
 					<template #item="slotProps">
-						<img :src="slotProps.item.item" class="resource" style="max-height: 512px; max-width: 100%"/>
-					</template>
-					<template #thumbnail="slotProps">
-						<img :src="slotProps.item.item" :alt="slotProps.item" style="max-height: 40px" />
+						<img :src="slotProps.item.item" :alt="slotProps.item.alt" style="width: 100%; display: block" />
 					</template>
 				</Galleria>
 
+				<div v-if="images" class="images">
+					<div v-for="(image, index) of images" :key="index" class="col-span-4">
+						<img :src="image.thumbnail" style="cursor: pointer; max-width: 256px" @click="imageClick(index)" />
+					</div>
+				</div>
+
 				<template v-for="resource in project.resources">
-					
-					<!-- <img v-if="resource.type == 'image'" :src="resource.href" class="resource" @click="() => openImageViewer(resource.href)" /> -->
 					<video v-if="resource.type == 'video'" :src="resource.href" class="resource" controls></video>
 				</template>
 			</div>
@@ -70,6 +81,12 @@ const images = props.project.resources.filter(r => r.type == "image").map(r => (
 </template>
 
 <style scoped>
+.images {
+	display: grid;
+	grid-template-columns: 12;
+	gap: 4px;
+}
+
 .back {
 	align-self: center;
 	
