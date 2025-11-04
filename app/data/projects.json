@@ -129,7 +129,13 @@
             "SDLC"
         ],
         "link": "https://github.com/lewpar/WireGuardCommand",
-        "resources": [],
+        "resources": [
+            {
+                "type": "video",
+                "href": "/projects/wireguardcommand/c1.mp4",
+                "description": ""
+            }
+        ],
         "visible": true
     },
     {
