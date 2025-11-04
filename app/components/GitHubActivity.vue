@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getRecentEvents, type UserEvent } from '~/lib/github';
+import { getRecentEvents as getRecentCommits, type Commit } from '~/lib/github';
 
 import { CalendarHeatmap } from 'vue3-calendar-heatmap';
 import 'vue3-calendar-heatmap/dist/style.css'
@@ -15,7 +15,7 @@ interface HeatmapDataPoint {
 	count: number;
 }
 
-const events = ref<UserEvent[] | null | undefined>(undefined);
+const commits = ref<Commit[] | null | undefined>(undefined);
 const heatmap = ref<HeatmapDataPoint[]>([]);
 
 onMounted(async () => {
@@ -29,9 +29,9 @@ onMounted(async () => {
 		return;
 	}
 
-	var items = getRecentEvents(props.username);
+	var items = getRecentCommits();
 
-	events.value = items.slice(0, props.count ?? 5);
+	commits.value = items.slice(0, props.count ?? 5);
 });
 </script>
 
@@ -47,12 +47,11 @@ onMounted(async () => {
 			</CalendarHeatmap>
 		</div>
 
-		<div v-if="events != null" v-for="event in events">
-			<GitHubPushActivity v-if="event.type == 'PushEvent'" :event="event"></GitHubPushActivity>
-			<GitHubPullActivity v-if="event.type == 'PullRequestEvent'" :event="event"></GitHubPullActivity>
+		<div v-if="commits != null" v-for="commit in commits">
+			<GitHubPushActivity :commit="commit"></GitHubPushActivity>
 		</div>
 		<div v-else>
-			<div v-if="events == undefined">
+			<div v-if="commits == undefined">
 				Loading..
 			</div>
 			<div v-else>
