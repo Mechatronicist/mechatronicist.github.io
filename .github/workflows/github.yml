@@ -15,19 +15,47 @@ jobs:
 
       - name: Fetch contribution heatmap
         run: |
-          curl -H "Authorization: bearer ${{ secrets.GITHUB_TOKEN }}" \
+          curl -s -H "Authorization: bearer ${{ secrets.GITHUB_TOKEN }}" \
                -H "Content-Type: application/json" \
                -d '{"query": "query { user(login: \"${{ github.repository_owner }}\") { contributionsCollection { contributionCalendar { weeks { contributionDays { date contributionCount color } } } } } }"}' \
                https://api.github.com/graphql \
           | jq '.data.user.contributionsCollection.contributionCalendar.weeks | map(.contributionDays) | flatten' \
           > app/data/heatmap.json
 
-      - name: Fetch recent commits (raw data)
+      - name: Fetch recent commits from PushEvents
         run: |
           USERNAME="${{ github.repository_owner }}"
-          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-               "https://api.github.com/users/$USERNAME/events?per_page=100" \
-          > app/data/commits.json
+          COMMITS_FILE="app/data/commits.json"
+          mkdir -p app/data
+
+          echo "[]" > "$COMMITS_FILE"
+
+          # Get recent events (up to 100)
+          EVENTS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                   "https://api.github.com/users/$USERNAME/events?per_page=100")
+
+          # Extract repo name and head SHA from PushEvents
+          PUSHES=$(echo "$EVENTS" | jq -r '[.[] | select(.type=="PushEvent") | {repo: .repo.name, sha: .payload.head}]')
+
+          # Iterate through each PushEvent and fetch commit details
+          echo "$PUSHES" | jq -c '.[]' | while read -r ITEM; do
+            REPO=$(echo "$ITEM" | jq -r '.repo')
+            SHA=$(echo "$ITEM" | jq -r '.sha')
+
+            if [ -n "$REPO" ] && [ -n "$SHA" ] && [ "$SHA" != "null" ]; then
+              echo "Fetching commit $SHA from $REPO"
+              COMMIT=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                            "https://api.github.com/repos/$REPO/commits/$SHA")
+
+              # Merge into commits.json
+              echo "$COMMIT" | jq -s --argfile old "$COMMITS_FILE" '($old + .)' > tmp.json
+              mv tmp.json "$COMMITS_FILE"
+            fi
+          done
+
+          # Deduplicate commits (by SHA) and sort by date descending
+          jq 'unique_by(.sha) | sort_by(.commit.author.date) | reverse' "$COMMITS_FILE" > tmp.json
+          mv tmp.json "$COMMITS_FILE"
 
       - name: Commit and push
         run: |
