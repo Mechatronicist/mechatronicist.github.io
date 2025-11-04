@@ -9,7 +9,7 @@ const awards = getAwards();
 <template>
     <div id="profile">
         <div class="headshot">
-            <NuxtImg src="/headshot.png" loading="lazy" />
+            <img src="/headshot.png" loading="lazy" />
             <div class="flex col gap-05">
                 <div id="name">{{ profile.name }}</div>
                 <div id="description">{{ profile.description }}</div>
@@ -20,7 +20,7 @@ const awards = getAwards();
             <h2 class="flex row gap-05 center-align"><i class="ph ph-globe-hemisphere-east"></i> Socials</h2>
             <div id="socials">
                 <a v-for="social in profile.socials" :href="`${social.link}`">
-                    <NuxtImg :src="`${social.icon}`" loading="lazy" />
+                    <img :src="`${social.icon}`" loading="lazy" />
                     {{ social.name }}
                 </a>
             </div>

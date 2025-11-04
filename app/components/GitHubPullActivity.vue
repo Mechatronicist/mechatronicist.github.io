@@ -11,7 +11,7 @@ const pullEvent = props.event.payload as PullRequestPayload;
 <template>
     <div class="event">
         <div class="flex row gap-05 center-align">
-            <NuxtImg :src="`${event.actor.avatar_url}`" width="32" />
+            <img :src="`${event.actor.avatar_url}`" width="32" />
 
             <div class="flex col">
                 <b>{{ event.repo.name }}</b>

@@ -19,12 +19,7 @@ export default defineNuxtConfig({
       ]
     }
   },
-
-  image: {
-    provider: "static"
-  },
-  
-  modules: ["@nuxt/image", '@primevue/nuxt-module'],
+  modules: ['@primevue/nuxt-module'],
 
   primevue: {
       options: {

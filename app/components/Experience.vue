@@ -12,7 +12,7 @@ const experiences = getExperience();
             <div class="cardless" v-for="experience in experiences">
                 <div class="flex col gap-05">
                     <div class="flex col gap-1 center-align">
-                        <NuxtImg :src="`${experience.image}`" height="64" loading="lazy" />
+                        <img :src="`${experience.image}`" height="64" loading="lazy" />
                         <h3>{{ experience.title }}</h3>
                     </div>
 
