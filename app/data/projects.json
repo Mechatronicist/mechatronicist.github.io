@@ -120,7 +120,7 @@
         "id": "wireguardcommand",
         "name": "WireGuard Command",
         "subtext": "Work Project",
-        "description": "A C# utility that generates WireGuard configuration files for road-warrior setups. Supports macros for automating peer-specific command creation and configuration management.",
+        "description": "WireGuard Command is a cross-platform desktop tool designed to simplify the creation and management of road-warrior style WireGuard configurations. It provides an intuitive interface for generating configuration files and supports the use of macros to automatically generate commands for each peer, streamlining network setup and deployment.\n\nThis project is not affiliated with or endorsed by the WireGuard® project or trademark.",
         "summary": "C# tool for generating WireGuard configs and peer commands.",
         "image": "/wgc.png",
         "tags": [
