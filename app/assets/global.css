@@ -166,8 +166,3 @@ h2 {
 .hidden {
 	display: none !important;
 }
-
-.vch__day__square {
-	stroke-width: 1px;
-	stroke: rgba(255, 255, 255, 0.12);
-}

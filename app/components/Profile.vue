@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import GitHubActivity from "./GitHubActivity.vue";
+import GitHubHeatmap from "./GitHubHeatmap.vue";
+
 import { getAwards, getProfile } from "~/lib/data";
 
 const profile = getProfile();
@@ -33,6 +35,7 @@ const awards = getAwards();
 
         <div id="activity">
             <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity</h2>
+            <GitHubHeatmap></GitHubHeatmap>
             <GitHubActivity :username="profile.github" :count="3" />
         </div>
 

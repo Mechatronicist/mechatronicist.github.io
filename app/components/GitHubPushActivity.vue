@@ -44,6 +44,8 @@ const props = defineProps<{
 
     padding: 0.5rem;
     border-radius: 5px;
+
+    transition: background-color 0.25s;
 }
 .commit:hover {
     background-color: rgba(255, 255, 255, 0.1);
