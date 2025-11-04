@@ -30,7 +30,7 @@ jobs:
 
           echo "[]" > "$COMMITS_FILE"
 
-          # Get recent events (up to 100)
+          # Fetch recent events (up to 100)
           EVENTS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
                    "https://api.github.com/users/$USERNAME/events?per_page=100")
 
@@ -47,8 +47,9 @@ jobs:
               COMMIT=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
                             "https://api.github.com/repos/$REPO/commits/$SHA")
 
-              # Merge into commits.json
-              echo "$COMMIT" | jq -s --argfile old "$COMMITS_FILE" '($old + .)' > tmp.json
+              # Merge commit into existing array safely
+              OLD=$(cat "$COMMITS_FILE")
+              echo "$OLD" | jq ". + [$COMMIT]" > tmp.json
               mv tmp.json "$COMMITS_FILE"
             fi
           done
