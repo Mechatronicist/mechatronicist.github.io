@@ -2,7 +2,7 @@ name: Update Commit Heatmap and Recent Commits
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # every day at midnight UTC
+    - cron: '0 0 * * *' # every day at midnight UTC
   workflow_dispatch:
 
 jobs:
@@ -22,20 +22,19 @@ jobs:
           | jq '.data.user.contributionsCollection.contributionCalendar.weeks | map(.contributionDays) | flatten' \
           > app/data/heatmap.json
 
-      - name: Fetch recent commits from PushEvents
+      - name: Fetch recent commits (without files)
         run: |
           USERNAME="${{ github.repository_owner }}"
           COMMITS_FILE="app/data/commits.json"
           mkdir -p app/data
 
-          # Fetch recent events (up to 100)
+          # Fetch the user's recent events
           EVENTS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
                    "https://api.github.com/users/$USERNAME/events?per_page=100")
 
-          # Extract repo + head SHA from PushEvents
+          # Extract only PushEvents
           PUSHES=$(echo "$EVENTS" | jq -r '[.[] | select(.type=="PushEvent") | {repo: .repo.name, sha: .payload.head}]')
 
-          # Create an empty temp file to collect all commits
           echo "[" > "$COMMITS_FILE"
           FIRST=true
 
@@ -46,9 +45,10 @@ jobs:
             if [ -n "$REPO" ] && [ -n "$SHA" ] && [ "$SHA" != "null" ]; then
               echo "Fetching commit $SHA from $REPO"
               COMMIT=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                            "https://api.github.com/repos/$REPO/commits/$SHA")
+                            "https://api.github.com/repos/$REPO/commits/$SHA" \
+                        | jq 'del(.files)')
 
-              # Append JSON safely (no giant jq pipes)
+              # Append JSON safely
               if [ "$FIRST" = true ]; then
                 echo "$COMMIT" >> "$COMMITS_FILE"
                 FIRST=false
@@ -60,7 +60,7 @@ jobs:
 
           echo "]" >> "$COMMITS_FILE"
 
-          # Deduplicate and sort by date descending
+          # Deduplicate and sort by date
           cat "$COMMITS_FILE" | jq 'unique_by(.sha) | sort_by(.commit.author.date) | reverse' > tmp.json
           mv tmp.json "$COMMITS_FILE"
 
