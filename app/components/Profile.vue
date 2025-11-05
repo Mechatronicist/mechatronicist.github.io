@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import GitHubActivity from "./GitHubActivity.vue";
+import GitHubHeatmap from "./GitHubHeatmap.vue";
+
 import { getAwards, getProfile } from "~/lib/data";
 
 const profile = getProfile();
@@ -32,11 +34,9 @@ const awards = getAwards();
         </div>
 
         <div id="activity">
-            <div class="flex-container">
-                <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity</h2>
-                <div class="item" style="min-width: 125px;"><NuxtLink to="/activity" class="read-more"><i class="ph ph-list-magnifying-glass"></i> Read More</NuxtLink></div>
-            </div>
-            <GitHubActivity :username="profile.github" :count="profile.github_activity" :showMore="true"/>
+            <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity</h2>
+            <GitHubHeatmap></GitHubHeatmap>
+            <GitHubActivity :username="profile.github" :count="3"/>
         </div>
 
         

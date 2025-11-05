@@ -14,8 +14,17 @@ interface GalleryImage {
 const project = props.project;
 const images = props.project.resources.filter(r => r.type == "image").map(r => ({
 	item: r.href,
+	desc: r.description,
 	thumbnail: r.href
 } as GalleryImage));
+
+const activeIndex = ref(0);
+const displayCustom = ref(false);
+
+const imageClick = (index: number) => {
+    activeIndex.value = index;
+    displayCustom.value = true;
+};
 </script>
 
 <template>
@@ -49,18 +58,24 @@ const images = props.project.resources.filter(r => r.type == "image").map(r => (
 		<div class="flex col" style="width: 100%" v-if="project.resources.length > 0">
 			<h2>Resources</h2>
 			<div class="resources">
-				<Galleria :value="images" :num-visible="5" container-style="max-width: 100%" :show-thumbnail-navigators="false">
+				<Galleria v-model:active-index="activeIndex" :value="images" :num-visible="5" 
+							v-model:visible="displayCustom" :circular="true" :fullScreen="true" :showItemNavigators="true" :showThumbnails="false">
 					<template #item="slotProps">
-						<img :src="slotProps.item.item" class="resource" style="max-height: 512px; max-width: 100%"/>
-					</template>
-					<template #thumbnail="slotProps">
-						<img :src="slotProps.item.item" :alt="slotProps.item" style="max-height: 40px" />
+						<img :src="slotProps.item.item" :alt="slotProps.item.alt" class="overlay-image">
+							<div v-if="slotProps.item.desc" class="overlay-description">
+								{{ slotProps.item.desc }}
+							</div>
+						</img>
 					</template>
 				</Galleria>
 
+				<div v-if="images" class="images">
+					<div v-for="(image, index) of images" :key="index">
+						<img class="image" :src="image.thumbnail" @click="imageClick(index)" />
+					</div>
+				</div>
+
 				<template v-for="resource in project.resources">
-					
-					<!-- <img v-if="resource.type == 'image'" :src="resource.href" class="resource" @click="() => openImageViewer(resource.href)"></img> -->
 					<video v-if="resource.type == 'video'" :src="resource.href" class="resource" controls></video>
 				</template>
 			</div>
@@ -70,6 +85,41 @@ const images = props.project.resources.filter(r => r.type == "image").map(r => (
 </template>
 
 <style scoped>
+.images {
+	display: grid;
+	grid-template-columns: 12;
+	gap: 4px;
+}
+.image {
+	border-radius: 15px;
+	cursor: pointer; 
+	max-width: 256px;
+}
+.overlay-image {
+	border: 3px solid rgba(255, 255, 255, 0.25);
+	object-fit: contain;
+	max-height: 85vh;
+}
+@media screen and (max-width: 800px) {
+	.image {
+		max-width: 128px;
+	}
+	.overlay-image {
+		max-width: 50vh;
+	}
+}
+.overlay-description {
+	position: absolute;
+
+	bottom: 0;
+	left: 0;
+
+	width: 100%;
+	padding: 1rem;
+
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
 .back {
 	align-self: center;
 	
@@ -146,5 +196,7 @@ const images = props.project.resources.filter(r => r.type == "image").map(r => (
 .resource {
 	border: 2px solid rgba(255, 255, 255, 0.2);
 	border-radius: 5px;
+
+	max-width: 100%;
 }
 </style>

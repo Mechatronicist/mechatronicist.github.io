@@ -1,28 +1,26 @@
 <script setup lang="ts">
-import type { PushPayload, UserEvent } from '~/lib/github';
+import { type Commit } from '~/lib/github';
 
 const props = defineProps<{
-    event: UserEvent
+    commit: Commit
 }>();
-
-const pushEvent = props.event.payload as PushPayload;
 </script>
 
 <template>
     <div class="event">
         <div class="flex row gap-05 center-align">
-            <img :src="`${event.actor.avatar_url}`" width="32" />
+            <img :src="`${commit.author.avatar_url}`" width="32" />
 
             <div class="flex col">
-                <b>{{ event.repo.name }}</b>
-                <div>{{ event.created_at.toLocaleDateString() }}</div>
+                <b><a :href="commit.author.html_url">{{ commit.author.login }}</a></b>
+                <div>{{ new Date(commit.commit.author.date).toLocaleDateString() }}</div>
             </div>
         </div>
 
-        <a v-for="commit in pushEvent.commits" class="commit" 
-            :href="`https://github.com/${props.event.repo.name}/commit/${commit.sha}`" target="_blank">
+        <a class="commit" 
+            :href="commit.html_url" target="_blank">
             <i class="ph ph-git-commit"></i>
-            {{ commit.message }}
+            {{ commit.commit.message }}
         </a>
     </div>
 </template>
@@ -46,6 +44,8 @@ const pushEvent = props.event.payload as PushPayload;
 
     padding: 0.5rem;
     border-radius: 5px;
+
+    transition: background-color 0.25s;
 }
 .commit:hover {
     background-color: rgba(255, 255, 255, 0.1);

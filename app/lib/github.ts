@@ -1,60 +1,31 @@
-import test_data from '~/data/github-test.json';
+import commitData from '~/data/commits.json';
 
-interface Commit {
-    sha: string;
-    message: string;
-    url: string;
-}
-
-interface PullRequest {
-    title: string;
-    url: string;
-}
-
-export interface PushPayload {
-    commits: Commit[];
-}
-
-export interface PullRequestPayload {
-    action: string;
-    pull_request: PullRequest;
-}
-
-interface User {
-    display_login: string;
-    url: string;
-    avatar_url: string;
-}
-
-interface Repository {
+interface CommitAuthor {
     name: string;
-    url: string;
+    email: string;
+    date: string;
 }
 
-export interface UserEvent {
-    type: string;
-    actor: User;
-    repo: Repository;
-    payload: object;
-    created_at: Date;
+interface RootAuthor {
+    login: string;
+    avatar_url: string;
+    html_url: string;
 }
 
-export async function getRecentEvents(username: string): Promise<UserEvent[] | null> {
-    try {
-        var url = `https://api.github.com/users/${username}/events`;
-        var result = await fetch(url);
+interface CommitDetail {
+    author: CommitAuthor;
+    message: string;
+}
 
-        var data = await result.json();
-        //var data = test_data;
-        const items = (data as any[]).map(event => ({
-            ...event,
-            created_at: new Date(event.created_at)
-        })) as UserEvent[];
+export interface Commit {
+    sha: string;
+    commit: CommitDetail;
+    html_url: string;
+    author: RootAuthor;
+}
 
-        return items;
-    }
-    catch(error) {
-        console.error(error);
-        return null;
-    }
+export function getRecentEvents(): Commit[] {
+    const data = commitData as Commit[];
+
+    return data;
 }

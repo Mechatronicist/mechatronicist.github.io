@@ -2,7 +2,7 @@ name: Update Commit Heatmap and Recent Commits
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # daily
+    - cron: '0 0 * * *' # every day at midnight UTC
   workflow_dispatch:
 
 jobs:
@@ -13,14 +13,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Fetch contribution heatmap (GraphQL API)
-        env:
-          GH_TOKEN: ${{ secrets.CONTRIBUTIONS_GITHUB_TOKEN }}
+      - name: Fetch contribution heatmap
         run: |
-          echo "Fetching contribution data for authenticated user..."
-          curl -s -H "Authorization: bearer ${GH_TOKEN}" \
+          curl -s -H "Authorization: bearer ${{ secrets.GITHUB_TOKEN }}" \
                -H "Content-Type: application/json" \
-               -d '{"query": "query { viewer { contributionsCollection { contributionCalendar { totalContributions weeks { contributionDays { date contributionCount color } } } } } }"}' \
+               -d '{"query": "query { user(login: \"${{ github.repository_owner }}\") { contributionsCollection { contributionCalendar { weeks { contributionDays { date contributionCount color } } } } } }"}' \
                https://api.github.com/graphql \
           | jq '.data.user.contributionsCollection.contributionCalendar.weeks | map(.contributionDays) | flatten' \
           > app/data/heatmap.json
@@ -74,4 +71,3 @@ jobs:
           git add app/data/heatmap.json app/data/commits.json
           git commit -m "Update heatmap and recent commits [skip ci]" || echo "No changes"
           git push
-          

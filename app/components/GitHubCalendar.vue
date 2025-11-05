@@ -29,11 +29,11 @@
 import { ref, watch } from 'vue'
 import { CalendarHeatmap } from 'vue3-calendar-heatmap'
 import 'vue3-calendar-heatmap/dist/style.css'
-import type { UserEvent } from '~/lib/github';
+import type { Commit } from '~/lib/github';
 
 const props = defineProps<{
 	username: string
-  events: UserEvent[] | null | undefined
+  events: Commit[] | null | undefined
 }>();
 
 
@@ -44,7 +44,7 @@ const totalCount = ref<number>(0)
 const loading = ref(true)
 const success = ref(true)
 
-async function loadHeatmap(events: UserEvent[]) {
+async function loadHeatmap(events: Commit[]) {
   try {
     //const res = await fetch('/heatmap_test.json') //test data
     const res = await fetch(`https://raw.githubusercontent.com/${props.username}/${props.username}.github.io/master/public/heatmap.json`)
@@ -62,7 +62,7 @@ async function loadHeatmap(events: UserEvent[]) {
     // Add today's contributions from the REST events API
     if (events?.length) {
       for (const e of events) {
-        const date = new Date(e.created_at).toISOString().split('T')[0]
+        const date = new Date(e.commit.author.date).toISOString().split('T')[0]
         if (date && date === today) {
           counts[date] = (counts[date] || 0) + 1
           totalCount.value += 1
@@ -70,7 +70,7 @@ async function loadHeatmap(events: UserEvent[]) {
       }
     }
 
-    // 3️⃣ Convert to sorted array
+    // Convert to sorted array
     calendarData.value = Object.entries(counts)
       .map(([date, count]) => ({ date, count }))
       .sort((a, b) => a.date.localeCompare(b.date))
