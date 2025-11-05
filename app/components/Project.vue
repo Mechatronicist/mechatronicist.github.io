@@ -71,7 +71,7 @@ const imageClick = (index: number) => {
 
 				<div v-if="images" class="images">
 					<div v-for="(image, index) of images" :key="index">
-						<img class="image" :src="image.thumbnail" style="cursor: pointer; max-width: 256px" @click="imageClick(index)" />
+						<img class="image" :src="image.thumbnail" @click="imageClick(index)" />
 					</div>
 				</div>
 
@@ -92,6 +92,8 @@ const imageClick = (index: number) => {
 }
 .image {
 	border-radius: 15px;
+	cursor: pointer; 
+	max-width: 256px;
 }
 .overlay-image {
 	border: 3px solid rgba(255, 255, 255, 0.25);
@@ -99,6 +101,9 @@ const imageClick = (index: number) => {
 	max-height: 85vh;
 }
 @media screen and (max-width: 800px) {
+	.image {
+		max-width: 128px;
+	}
 	.overlay-image {
 		max-width: 50vh;
 	}
