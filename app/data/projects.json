@@ -5,7 +5,7 @@
         "subtext": "Personal Project",
         "description": "A lightweight C# UI framework for Raspberry Pi devices that renders directly to the Linux framebuffer, allowing for graphical interfaces without a desktop environment.",
         "summary": "C# UI framework for Raspberry Pi using the Linux framebuffer.",
-        "image": "/mypiui.png",
+        "image": "/projects/mypiui/icon.png",
         "tags": [
             "C#", 
             "Linux", 
@@ -101,7 +101,7 @@
         "subtext": "Personal Project",
         "description": "Developed a Python-based driver for the GTNUCL1633 Fingerprint Reader, enabling biometric data capture and device control via a serial interface. Originally designed for deployment on a Raspberry Pi, the driver supports both fingerprint enrollment and fingerprint recognition functionalities.",
         "summary": "Python serial driver for the GTNUCL1633 fingerprint sensor.",
-        "image": "/gtnucl1633.png",
+        "image": "/projects/gtnucl1633/icon.png",
         "tags": [
             "Python", 
             "Serial Communication"
@@ -122,7 +122,7 @@
         "subtext": "Work Project",
         "description": "WireGuard Command is a cross-platform desktop tool designed to simplify the creation and management of road-warrior style WireGuard configurations. It provides an intuitive interface for generating configuration files and supports the use of macros to automatically generate commands for each peer, streamlining network setup and deployment.\n\nThis project is not affiliated with or endorsed by the WireGuard® project or trademark.",
         "summary": "C# tool for generating WireGuard configs and peer commands.",
-        "image": "/wgc.png",
+        "image": "/projects/wireguardcommand/icon.png",
         "tags": [
             "C#", 
             ".NET",
