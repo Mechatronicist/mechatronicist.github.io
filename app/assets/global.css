@@ -168,3 +168,13 @@ h2 {
 .hidden {
 	display: none !important;
 }
+
+.p-galleria-prev-button,
+.p-galleria-next-button {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.p-galleria-prev-button:not(.p-disabled):hover,
+.p-galleria-next-button:not(.p-disabled):hover {
+	background-color: rgba(0, 0, 0, 0.25);
+}
