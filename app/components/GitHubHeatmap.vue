@@ -12,12 +12,17 @@ const heatmap =  HeatmapData.map(d => ({
     date: d.date,
     count: d.contributionCount
 }) as HeatmapDataPoint);
+
+let endDate = new Date();
+
+// Shift by one week to fix cutoff month label
+endDate.setHours(endDate.getHours() + 24 * 7);
 </script>
 
 <template>
     <CalendarHeatmap 
         :values="heatmap" 
-        :end-date="new Date()"
+        :end-date="endDate"
         :round="3"
         :tooltip="true"
         :dark-mode="true"
