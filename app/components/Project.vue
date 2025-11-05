@@ -62,7 +62,7 @@ const imageClick = (index: number) => {
 							v-model:visible="displayCustom" :circular="true" :fullScreen="true" :showItemNavigators="true" :showThumbnails="false">
 					<template #item="slotProps">
 						<img :src="slotProps.item.item" :alt="slotProps.item.alt" class="overlay-image">
-							<div class="overlay-description">
+							<div v-if="slotProps.item.desc" class="overlay-description">
 								{{ slotProps.item.desc }}
 							</div>
 						</img>
