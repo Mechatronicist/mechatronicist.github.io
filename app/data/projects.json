@@ -44,22 +44,22 @@
             {
                 "type": "image",
                 "href": "/projects/simupgrade/pakhub.png",
-                "description": ""
+                "description": "Houses the Arduino controller and handles all serial communcation with the PC."
             },
             {
                 "type": "image",
                 "href": "/projects/simupgrade/fovsensor.png",
-                "description": ""
+                "description": "Used for detecting the distance the player is from the screen to calculate the optimal field of view."
             },
             {
                 "type": "image",
                 "href": "/projects/simupgrade/fan.png",
-                "description": ""
+                "description": "Dynamically adjusted fan speed based on speed on the car."
             },
             {
                 "type": "image",
                 "href": "/projects/simupgrade/abspak.png",
-                "description": ""
+                "description": "Rumble motors that trigger based on the status of the cars ABS module."
             }
         ],
         "visible": true

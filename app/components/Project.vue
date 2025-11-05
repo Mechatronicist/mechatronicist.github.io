@@ -14,6 +14,7 @@ interface GalleryImage {
 const project = props.project;
 const images = props.project.resources.filter(r => r.type == "image").map(r => ({
 	item: r.href,
+	desc: r.description,
 	thumbnail: r.href
 } as GalleryImage));
 
@@ -58,16 +59,19 @@ const imageClick = (index: number) => {
 			<h2>Resources</h2>
 			<div class="resources">
 				<Galleria v-model:active-index="activeIndex" :value="images" :num-visible="5" 
-							v-model:visible="displayCustom" :circular="true" :fullScreen="true" :showItemNavigators="true" :showThumbnails="false"
-							containerStyle="max-width: 850px">
+							v-model:visible="displayCustom" :circular="true" :fullScreen="true" :showItemNavigators="true" :showThumbnails="false">
 					<template #item="slotProps">
-						<img :src="slotProps.item.item" :alt="slotProps.item.alt" style="width: 100%; display: block" />
+						<img :src="slotProps.item.item" :alt="slotProps.item.alt" class="overlay-image">
+							<div class="overlay-description">
+								{{ slotProps.item.desc }}
+							</div>
+						</img>
 					</template>
 				</Galleria>
 
 				<div v-if="images" class="images">
-					<div v-for="(image, index) of images" :key="index" class="col-span-4">
-						<img :src="image.thumbnail" style="cursor: pointer; max-width: 256px" @click="imageClick(index)" />
+					<div v-for="(image, index) of images" :key="index">
+						<img class="image" :src="image.thumbnail" style="cursor: pointer; max-width: 256px" @click="imageClick(index)" />
 					</div>
 				</div>
 
@@ -85,6 +89,25 @@ const imageClick = (index: number) => {
 	display: grid;
 	grid-template-columns: 12;
 	gap: 4px;
+}
+.image {
+	border-radius: 15px;
+}
+.overlay-image {
+	border: 3px solid rgba(255, 255, 255, 0.25);
+	object-fit: contain;
+	max-height: 512px;
+}
+.overlay-description {
+	position: absolute;
+
+	bottom: 0;
+	left: 0;
+
+	width: 100%;
+	padding: 1rem;
+
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 .back {
