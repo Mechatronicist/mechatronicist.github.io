@@ -29,6 +29,13 @@ import Projects from '~/components/Projects.vue';
 
 #portfolio #left {
     flex: 5;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+
+    padding: 1rem;
+
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 #portfolio #right {

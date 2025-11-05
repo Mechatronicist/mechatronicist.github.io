@@ -36,10 +36,10 @@ const awards = getAwards();
         <div id="activity">
             <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity</h2>
             <GitHubHeatmap></GitHubHeatmap>
-            <GitHubActivity :username="profile.github" :count="3" />
+            <GitHubActivity :username="profile.github" :count="3" class="recent-commits" />
         </div>
 
-        <NuxtLink to="/activity" class="read-more"><i class="ph ph-list-magnifying-glass"></i> Read More</NuxtLink>
+        <NuxtLink to="/activity" class="read-more"><i class="ph ph-list-magnifying-glass"></i> Recent Commits</NuxtLink>
     </div>
 </template>
 
@@ -141,6 +141,9 @@ h2 {
     #profile img {
         object-fit: contain;
         width: 100%;
+    }
+    #activity .recent-commits {
+        display: none;
     }
 }
 </style>
