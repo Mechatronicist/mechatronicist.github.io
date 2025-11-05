@@ -96,7 +96,12 @@ const imageClick = (index: number) => {
 .overlay-image {
 	border: 3px solid rgba(255, 255, 255, 0.25);
 	object-fit: contain;
-	max-height: 95vh;
+	max-height: 85vh;
+}
+@media screen and (max-width: 800px) {
+	.overlay-image {
+		max-width: 50vh;
+	}
 }
 .overlay-description {
 	position: absolute;
