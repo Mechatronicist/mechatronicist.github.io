@@ -29,11 +29,11 @@
 import { ref, watch } from 'vue'
 import { CalendarHeatmap } from 'vue3-calendar-heatmap'
 import 'vue3-calendar-heatmap/dist/style.css'
-import type { Commit } from '~/lib/github';
+import type { UserEvent } from '~/lib/github';
 
 const props = defineProps<{
 	username: string
-  events: Commit[] | null | undefined
+  events: UserEvent[] | null | undefined
 }>();
 
 
@@ -44,10 +44,10 @@ const totalCount = ref<number>(0)
 const loading = ref(true)
 const success = ref(true)
 
-async function loadHeatmap(events: Commit[]) {
+async function loadHeatmap(events: UserEvent[]) {
   try {
     //const res = await fetch('/heatmap_test.json') //test data
-    const res = await fetch(`https://raw.githubusercontent.com/${props.username}/${props.username}.github.io/master/public/heatmap.json`)
+    const res = await fetch(`https://raw.githubusercontent.com/${props.username}/${props.username}.github.io/master/app/data/heatmap.json`)
     if (!res.ok) throw new Error(`Failed to load: ${res.status}`)
     const graphData = await res.json()
 
@@ -55,6 +55,7 @@ async function loadHeatmap(events: Commit[]) {
     const counts: Record<string, number> = {}
     for (const d of graphData) {
       const value = d.contributionCount ?? d.count ?? 0
+      if (value === 0) continue
       counts[d.date] = (counts[d.date] || 0) + value
       totalCount.value += value
     }
@@ -62,7 +63,7 @@ async function loadHeatmap(events: Commit[]) {
     // Add today's contributions from the REST events API
     if (events?.length) {
       for (const e of events) {
-        const date = new Date(e.commit.author.date).toISOString().split('T')[0]
+        const date = new Date(e.created_at).toISOString().split('T')[0]
         if (date && date === today) {
           counts[date] = (counts[date] || 0) + 1
           totalCount.value += 1

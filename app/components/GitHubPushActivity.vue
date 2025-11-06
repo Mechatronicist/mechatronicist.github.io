@@ -4,6 +4,8 @@ import { type Commit } from '~/lib/github';
 const props = defineProps<{
     commit: Commit
 }>();
+
+console.log(props.commit)
 </script>
 
 <template>
