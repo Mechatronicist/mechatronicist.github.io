@@ -1,20 +1,23 @@
 [
     {
-        "title": "Junior Software Developer",
-        "subtitle": "AdvancedIT Ltd - Feb 2025 - Apr 2025",
-        "description": "Designed, developed and improved upon an existing in-house tool to maintain and manage WireGuard client configurations.",
-        "image": "/advancedit.png"
+        "title": "Lead Software Developer",
+        "subtitle": "Property Predictions Pty. Ltd.",
+        "date": "Sep 2025 - Current",
+        "description": "Developing AI forecasting systems and backend integrations to predict property market trends.",
+        "image": "/predictions.png"
     },
     {
-        "title": "Web Application Developer",
-        "subtitle": "Kangan Institute - Nov 2024",
-        "description": "Collaborated on the design and development of a website for Kangan Insitutes Enchanted 2024 fashion event.",
-        "image": "/kangan.png"
+        "title": "Software Engineer",
+        "subtitle": "Exponic Pty. Ltd.",
+        "date": "Sep 2023 - Current",
+        "description": "Building automation tools and predictive algorithms that boost data performance and reliability.",
+        "image": "/exponic.webp"
     },
     {
-        "title": "Junior Software Developer",
-        "subtitle": "AdvancedIT Ltd - Jun 2023 - Jul 2023",
-        "description": "Designed and developed an open source tool (WireGuard Command) to manage WireGuard configurations for clients.",
-        "image": "/advancedit.png"
+        "title": "Telephone Interviewer",
+        "subtitle": "Ipsos Pty. Ltd.",
+        "date": "Apr 2024 - Current",
+        "description": "Collecting accurate survey data and ensuring quality insights through clear, adaptive communication.",
+        "image": "/ipsos.png"
     }
 ]

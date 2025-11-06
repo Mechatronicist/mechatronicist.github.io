@@ -27,17 +27,20 @@ const awards = getAwards();
             </div>
         </div>
 
-        <div class="flex col">
-            <h2 class="flex row gap-05 center-align"><i class="ph ph-certificate"></i> Awards</h2>
-            <Award v-for="award in awards" :award="award"></Award>
+        <div v-if="awards.length > 0">
+            <div class="flex col">
+                <h2 class="flex row gap-05 center-align"><i class="ph ph-certificate"></i> Awards</h2>
+                <Award v-for="award in awards" :award="award"></Award>
+            </div>
         </div>
+        
 
         <div id="activity">
             <div class="flex-container">
                 <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity</h2>
                 <div class="item" style="min-width: 125px;"><NuxtLink to="/activity" class="read-more"><i class="ph ph-list-magnifying-glass"></i> Read More</NuxtLink></div>
             </div>
-            <GitHubActivity :username="profile.github" :count="profile.github_activity" :showMore="true"/>
+            <GitHubActivity :username="profile.github" :count="profile.github_activity" :showMore="true" class="recent-commits"/>
         </div>
 
         
@@ -57,6 +60,13 @@ const awards = getAwards();
     flex-direction: column;
 
     gap: 1rem;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+
+    padding: 1rem;
+
+    background-color: rgba(255, 255, 255, 0.05);
 }
 #profile img {
     border-radius: 10px;
@@ -135,11 +145,6 @@ h2 {
 .read-more:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
-.flex-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 @media screen and (max-width: 600px) {
     .headshot {
@@ -148,6 +153,9 @@ h2 {
     #profile img {
         object-fit: contain;
         width: 100%;
+    }
+     #activity .recent-commits {
+        display: none;
     }
 }
 </style>

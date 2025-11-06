@@ -15,7 +15,10 @@ const educations = getEducation();
 
                     <div class="flex col gap-05">
                         <b>{{ education.title }}</b>
-                        <div>{{ education.subtitle }}</div>
+                        <div class="flex-container">
+                            <div>{{ education.subtitle }}</div>
+                            <div class="sub-item">{{ education.date }}</div>
+                        </div>
                     </div>
                 </div>
             </div>

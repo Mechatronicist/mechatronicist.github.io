@@ -12,12 +12,15 @@ const experiences = getExperience();
             <div class="cardless" v-for="experience in experiences">
                 <div class="flex col gap-05">
                     <div class="flex col gap-1 center-align">
-                        <img :src="`${experience.image}`" height="64" loading="lazy" />
+                        <img class="mobile-friendly" :src="`${experience.image}`" height="64" loading="lazy" />
                         <h3>{{ experience.title }}</h3>
                     </div>
 
                     <div class="flex col gap-1">
-                        <div>{{ experience.subtitle }}</div>
+                        <div class="flex-container">
+                            <div>{{ experience.subtitle }}</div>
+                            <div class="sub-item">{{ experience.date }}</div>
+                        </div>
                         <div>{{ experience.description }}</div>
                     </div>
                 </div>
@@ -35,5 +38,11 @@ const experiences = getExperience();
 
     flex-wrap: wrap;
     gap: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+    .mobile-friendly {
+        height: 50px;
+    }
 }
 </style>
