@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import GitHubActivity from "./GitHubActivity.vue";
+
 import { getAwards, getProfile } from "~/lib/data";
 
 const profile = getProfile();

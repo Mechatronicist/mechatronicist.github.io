@@ -47,7 +47,7 @@ const success = ref(true)
 async function loadHeatmap(events: UserEvent[]) {
   try {
     //const res = await fetch('/heatmap_test.json') //test data
-    const res = await fetch(`https://raw.githubusercontent.com/${props.username}/${props.username}.github.io/master/public/heatmap.json`)
+    const res = await fetch(`https://raw.githubusercontent.com/${props.username}/${props.username}.github.io/master/app/data/heatmap.json`)
     if (!res.ok) throw new Error(`Failed to load: ${res.status}`)
     const graphData = await res.json()
 
@@ -55,6 +55,7 @@ async function loadHeatmap(events: UserEvent[]) {
     const counts: Record<string, number> = {}
     for (const d of graphData) {
       const value = d.contributionCount ?? d.count ?? 0
+      if (value === 0) continue
       counts[d.date] = (counts[d.date] || 0) + value
       totalCount.value += value
     }
@@ -70,7 +71,7 @@ async function loadHeatmap(events: UserEvent[]) {
       }
     }
 
-    // 3️⃣ Convert to sorted array
+    // Convert to sorted array
     calendarData.value = Object.entries(counts)
       .map(([date, count]) => ({ date, count }))
       .sort((a, b) => a.date.localeCompare(b.date))

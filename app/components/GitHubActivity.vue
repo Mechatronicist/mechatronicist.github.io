@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { getRecentEvents, type UserEvent, type PushPayload, type PullRequestPayload } from '~/lib/github';
+import { getRecentCommits, getTodayEvents,  type Commit, type UserEvent } from '~/lib/github';
+import GitHubPushActivity from '~/components/GitHubPushActivity.vue';
 
 const props = defineProps<{
 	username: string
@@ -7,28 +8,32 @@ const props = defineProps<{
 	showMore: boolean
 }>();
 
-const userEvents = ref<UserEvent[] | null | undefined>(undefined);
+const uEvents = ref<UserEvent[] | null | undefined>(undefined);
+const commits = ref<Commit[] | null | undefined>(undefined);
 
 onMounted(async () => {
+	// get live event data for up to date heatmap
   if(props.username === undefined) {
     console.error("No GitHub username defined.");
     return;
   }
-
-  var items = await getRecentEvents(props.username);
-  if(items === null) {
-	userEvents.value = null;
+  var res = await getTodayEvents(props.username);
+  if(res === null) {
+	uEvents.value = null;
 	return;
   }
+  uEvents.value = res;
 
-  userEvents.value = items;
+  // get detailed stored data for commit messages
+  var items = getRecentCommits();
+  commits.value = items.slice(0, props.count ?? 5);
 });
 </script>
 
 <template>
-	<div class="item"><GitHubEvent :username="props.username" :count="props.count" :events="userEvents?.slice(0, props.count ?? 5)" /></div>
+	<div class="item"><GitHubPushActivity v-for="commit in commits" :commit="commit"></GitHubPushActivity></div>
 	<div v-if="showMore === true">
-		<GitHubCalendar :username="props.username" :events="userEvents"/>
+		<GitHubCalendar :username="props.username" :events="uEvents"/>
 	</div>
 </template>
 

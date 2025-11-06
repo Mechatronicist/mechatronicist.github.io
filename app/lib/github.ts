@@ -1,29 +1,20 @@
-import test_data from '~/data/github-test.json';
+import commitData from '~/data/commits.json';
 
-interface Commit {
-    sha: string;
-    message: string;
-    url: string;
+interface CommitAuthor {
+    name: string;
+    email: string;
+    date: string;
 }
 
-interface PullRequest {
-    title: string;
-    url: string;
-}
-
-export interface PushPayload {
-    commits: Commit[];
-}
-
-export interface PullRequestPayload {
-    action: string;
-    pull_request: PullRequest;
-}
-
-interface User {
-    display_login: string;
-    url: string;
+interface RootAuthor {
+    login: string;
     avatar_url: string;
+    html_url: string;
+}
+
+interface CommitDetail {
+    author: CommitAuthor;
+    message: string;
 }
 
 interface Repository {
@@ -33,19 +24,30 @@ interface Repository {
 
 export interface UserEvent {
     type: string;
-    actor: User;
+    actor: RootAuthor;
     repo: Repository;
     payload: object;
     created_at: Date;
 }
 
-export async function getRecentEvents(username: string): Promise<UserEvent[] | null> {
+export interface Commit {
+    sha: string;
+    commit: CommitDetail;
+    html_url: string;
+    author: RootAuthor;
+}
+
+export function getRecentCommits(): Commit[] {
+    const data = commitData as Commit[];
+    return data;
+}
+
+export async function getTodayEvents(username: string): Promise<UserEvent[] | null> {
     try {
         var url = `https://api.github.com/users/${username}/events`;
         var result = await fetch(url);
 
         var data = await result.json();
-        //var data = test_data;
         const items = (data as any[]).map(event => ({
             ...event,
             created_at: new Date(event.created_at)

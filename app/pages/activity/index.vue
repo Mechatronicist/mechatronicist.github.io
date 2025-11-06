@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import GitHubActivity from '~/components/GitHubActivity.vue';
+import { getProfile } from '~/lib/data';
+
+const profile = getProfile();
 </script>
 
 <template>
@@ -8,7 +11,7 @@ import GitHubActivity from '~/components/GitHubActivity.vue';
             <NuxtLink to="/" class="back">Back to Portfolio</NuxtLink>
 
             <h2 class="flex row gap-05 center-align"><i class="ph ph-github-logo"></i> Recent Activity</h2>
-            <GitHubActivity :count="100" username="Mechatronicist" :showMore="false"></GitHubActivity>
+            <GitHubActivity :count="100" :username="profile.github" :showMore="false"></GitHubActivity>
         </div>
     </div>
 </template>
