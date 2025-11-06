@@ -20,10 +20,13 @@ jobs:
           echo "Fetching contribution data for authenticated user..."
           curl -s -H "Authorization: bearer ${GH_TOKEN}" \
                -H "Content-Type: application/json" \
-               -d '{"query": "query { viewer { contributionsCollection(includePrivateContributions: true) { contributionCalendar { totalContributions weeks { contributionDays { date contributionCount color } } } } } }"}' \
+               -d '{"query": "query { viewer { contributionsCollection { contributionCalendar { totalContributions weeks { contributionDays { date contributionCount color } } } } } }"}' \
                https://api.github.com/graphql \
-          | jq '.data.user.contributionsCollection.contributionCalendar.weeks | map(.contributionDays) | flatten' \
-          > app/data/heatmap.json
+          | jq '.data.viewer.contributionsCollection.contributionCalendar.weeks 
+                | map(.contributionDays) 
+                | flatten 
+                | map(select(.contributionCount > 0))' \
+          > public/heatmap.json
 
       - name: Fetch recent commits (without files)
         run: |
