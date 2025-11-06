@@ -26,7 +26,7 @@ jobs:
                 | map(.contributionDays) 
                 | flatten 
                 | map(select(.contributionCount > 0))' \
-          > public/heatmap.json
+          > app/data/heatmap.json
 
       - name: Fetch recent commits (without files)
         run: |
