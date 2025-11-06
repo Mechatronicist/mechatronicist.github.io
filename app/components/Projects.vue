@@ -63,4 +63,13 @@ const projects = getProjects();
 #projects .project .summary {
     text-align: center;
 }
+
+@media screen and (max-width: 600px) {
+    #projects .project {
+        min-width: 128px;
+    }
+    #projects .project .summary {
+        display: none;
+    }
+}
 </style>

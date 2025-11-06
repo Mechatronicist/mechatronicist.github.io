@@ -1,21 +1,24 @@
 [
     {
         "title": "Diploma of Information Technology",
-        "subtitle": "Kangan Institute - 2025 - Current",
+        "subtitle": "Kangan Institute",
+        "date": "2025 - Current",
         "description": "",
         "image": "/kangan.png"
     },
     {
         "title": "Certificate IV in Information Technology",
-        "subtitle": "Kangan Institute - 2024 - 2025",
+        "subtitle": "Kangan Institute",
+        "date": "2024 - 2025",
         "description": "",
         "image": "/kangan.png"
     }
     ,
     {
         "title": "Certificate III in Information Technology",
-        "subtitle": "Kangan Institute - 2024 - 2024",
+        "subtitle": "Kangan Institute",
+        "date": "2024 - 2024",
         "description": "",
-        "image": "/vu.png"
+        "image": "/kangan.png"
     }
 ]

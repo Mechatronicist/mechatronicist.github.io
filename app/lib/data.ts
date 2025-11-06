@@ -33,6 +33,7 @@ export interface IAward {
 interface IExperience {
     title: string;
     subtitle: string;
+    date: string;
     description: string;
     image: string;
 }
@@ -40,6 +41,7 @@ interface IExperience {
 interface IEducation {
     title: string;
     subtitle: string;
+    date: string;
     description: string;
     image: string;
 }
