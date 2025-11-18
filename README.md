@@ -6,9 +6,9 @@ To use this template follow the `Get Started` section below.
 
 ### Forking the Repository
 1. Click the `Fork` button at the top of the repository.
-![Fork-Button](./assets/get-started-1.png)
+![Fork-Button](./.github/assets/get-started-1.png)
 2. Rename the Repository name to your GitHub name followed by `github.io`. For example if your GitHub name is `lewpar` your repository name should be `lewpar.github.io`.
-![Rename-Fork](./assets/get-started-2.png)
+![Rename-Fork](./.github/assets/get-started-2.png)
 3. Clone the repository onto your system, replacing `YOUR-USERNAME` with your GitHub username:
 ```
 git clone https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io
