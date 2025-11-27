@@ -33,7 +33,6 @@ import type { UserEvent } from '~/lib/github';
 
 const props = defineProps<{
 	username: string
-  events: UserEvent[] | null | undefined
 }>();
 
 
@@ -44,13 +43,15 @@ const totalCount = ref<number>(0)
 const loading = ref(true)
 const success = ref(true)
 
-async function loadHeatmap(events: UserEvent[]) {
+onMounted(async () =>  {
   try {
     //const res = await fetch('/heatmap_test.json') //test data
+    console.log(`Fetching heatmap`);
     const res = await fetch(`https://raw.githubusercontent.com/${props.username}/${props.username}.github.io/master/app/data/heatmap.json`)
     if (!res.ok) throw new Error(`Failed to load: ${res.status}`)
+    console.log(`got heatmap response`);
     const graphData = await res.json()
-
+    console.log(`built json`);
     // Collect historic events
     const counts: Record<string, number> = {}
     for (const d of graphData) {
@@ -59,23 +60,23 @@ async function loadHeatmap(events: UserEvent[]) {
       counts[d.date] = (counts[d.date] || 0) + value
       totalCount.value += value
     }
-
-    // Add today's contributions from the REST events API
-    if (events?.length) {
-      for (const e of events) {
-        const date = new Date(e.created_at).toISOString().split('T')[0]
-        if (date && date === today) {
-          counts[date] = (counts[date] || 0) + 1
-          totalCount.value += 1
-        }
-      }
-    }
-
+    console.log(`sorted data`);
+    // // Add today's contributions from the REST events API
+    // if (events?.length) {
+    //   for (const e of events) {
+    //     const date = new Date(e.created_at).toISOString().split('T')[0]
+    //     if (date && date === today) {
+    //       counts[date] = (counts[date] || 0) + 1
+    //       totalCount.value += 1
+    //     }
+    //   }
+    // }
+    console.log(`building data array`);
     // Convert to sorted array
     calendarData.value = Object.entries(counts)
       .map(([date, count]) => ({ date, count }))
       .sort((a, b) => a.date.localeCompare(b.date))
-
+    console.log(`calculating max`);
     maxCount.value = Math.max(...calendarData.value.map((d) => d.count))
   } catch (err) {
     success.value = false
@@ -83,15 +84,7 @@ async function loadHeatmap(events: UserEvent[]) {
   } finally {
     loading.value = false
   }
-}
-
-watch(
-  () => props.events,
-  (newEvents) => {
-    if (newEvents) loadHeatmap(newEvents)
-  },
-  { immediate: true }
-)
+})
 </script>
 
 <style scoped>

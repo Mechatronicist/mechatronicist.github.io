@@ -8,7 +8,6 @@ const props = defineProps<{
 	showMore: boolean
 }>();
 
-const uEvents = ref<UserEvent[] | null | undefined>(undefined);
 const commits = ref<Commit[] | null | undefined>(undefined);
 
 onMounted(async () => {
@@ -17,23 +16,20 @@ onMounted(async () => {
     console.error("No GitHub username defined.");
     return;
   }
-  var res = await getTodayEvents(props.username);
-  if(res === null) {
-	uEvents.value = null;
-	return;
-  }
-  uEvents.value = res;
-
   // get detailed stored data for commit messages
   var items = getRecentCommits();
+  if (items === null) {
+	commits.value = null;
+	return;
+  }
   commits.value = items.slice(0, props.count ?? 5);
 });
 </script>
 
 <template>
-	<div class="item"><GitHubPushActivity v-for="commit in commits" :commit="commit"></GitHubPushActivity></div>
+	<div class="item" v-if="commits"><GitHubPushActivity v-for="commit in commits" :commit="commit"></GitHubPushActivity></div>
 	<div v-if="showMore === true">
-		<GitHubCalendar :username="props.username" :events="uEvents"/>
+		<GitHubCalendar :username="props.username"/>
 	</div>
 </template>
 

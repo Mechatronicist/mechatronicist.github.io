@@ -46,7 +46,10 @@ export async function getTodayEvents(username: string): Promise<UserEvent[] | nu
     try {
         var url = `https://api.github.com/users/${username}/events`;
         var result = await fetch(url);
-
+        if (!result.ok) {
+            console.error(`GitHub API returned status ${result.status}`);
+            return null;
+        }
         var data = await result.json();
         const items = (data as any[]).map(event => ({
             ...event,
