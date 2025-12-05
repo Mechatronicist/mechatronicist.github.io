@@ -1,5 +1,25 @@
 [
     {
+        "id": "easydag",
+        "name": "EasyDAG",
+        "subtext": "Personal Project",
+        "description": "EasyDAG lets you define tasks (nodes), their dependencies, and run them in parallel—while sending structured messages back to the main thread for logging, progress reporting, or asynchronous operations such as database uploads.",
+        "summary": "A lightweight, multiprocessing-friendly Directed Acyclic Graph (DAG) execution engine for Python.",
+        "image": "/pypi.svg",
+        "tags": [
+            "Python",
+            "DAG", 
+            "multiprocessing",
+            "parallel", 
+            "tasks", 
+            "workflow" 
+        ],
+        "link": "https://pypi.org/project/easydag/",
+        "resources": [
+        ],
+        "visible": true
+    },
+    {
         "id": "simupgrade",
         "name": "Simulator Upgrade Project",
         "subtext": "Student Project",
@@ -106,7 +126,7 @@
             "Graphics",
             "Data Handling"
         ],
-        "link": "https://github.com/lewpar/AssettoNet",
+        "link": "https://github.com/Mechatronicist/Wendy-Art-Cataloging-Tool",
         "resources": [
             {
                 "type": "video",
