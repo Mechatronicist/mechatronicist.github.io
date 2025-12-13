@@ -1,5 +1,179 @@
 [
   {
+    "sha": "a6f358a210088cf69962c39c88dc556e2a2e4959",
+    "node_id": "C_kwDOQkGPL9oAKGE2ZjM1OGEyMTAwODhjZjY5OTYyYzM5Yzg4ZGM1NTZlMmEyZTQ5NTk",
+    "commit": {
+      "author": {
+        "name": "github-actions[bot]",
+        "email": "github-actions[bot]@users.noreply.github.com",
+        "date": "2025-12-12T12:31:44Z"
+      },
+      "committer": {
+        "name": "github-actions[bot]",
+        "email": "github-actions[bot]@users.noreply.github.com",
+        "date": "2025-12-12T12:31:44Z"
+      },
+      "message": "Remove unused import",
+      "tree": {
+        "sha": "71f4b28dc86e8b64a85c479372ffe85fb03becc9",
+        "url": "https://api.github.com/repos/Mechatronicist/easyDAGManager/git/trees/71f4b28dc86e8b64a85c479372ffe85fb03becc9"
+      },
+      "url": "https://api.github.com/repos/Mechatronicist/easyDAGManager/git/commits/a6f358a210088cf69962c39c88dc556e2a2e4959",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/Mechatronicist/easyDAGManager/commits/a6f358a210088cf69962c39c88dc556e2a2e4959",
+    "html_url": "https://github.com/Mechatronicist/easyDAGManager/commit/a6f358a210088cf69962c39c88dc556e2a2e4959",
+    "comments_url": "https://api.github.com/repos/Mechatronicist/easyDAGManager/commits/a6f358a210088cf69962c39c88dc556e2a2e4959/comments",
+    "author": {
+      "login": "github-actions[bot]",
+      "id": 41898282,
+      "node_id": "MDM6Qm90NDE4OTgyODI=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+      "html_url": "https://github.com/apps/github-actions",
+      "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+      "type": "Bot",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "github-actions[bot]",
+      "id": 41898282,
+      "node_id": "MDM6Qm90NDE4OTgyODI=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+      "html_url": "https://github.com/apps/github-actions",
+      "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+      "type": "Bot",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "dc4c42e9266332b58d44198a1edbef86c248188b",
+        "url": "https://api.github.com/repos/Mechatronicist/easyDAGManager/commits/dc4c42e9266332b58d44198a1edbef86c248188b",
+        "html_url": "https://github.com/Mechatronicist/easyDAGManager/commit/dc4c42e9266332b58d44198a1edbef86c248188b"
+      }
+    ],
+    "stats": {
+      "total": 2,
+      "additions": 1,
+      "deletions": 1
+    }
+  },
+  {
+    "sha": "dc4c42e9266332b58d44198a1edbef86c248188b",
+    "node_id": "C_kwDOQkGPL9oAKGRjNGM0MmU5MjY2MzMyYjU4ZDQ0MTk4YTFlZGJlZjg2YzI0ODE4OGI",
+    "commit": {
+      "author": {
+        "name": "github-actions[bot]",
+        "email": "github-actions[bot]@users.noreply.github.com",
+        "date": "2025-12-12T11:43:52Z"
+      },
+      "committer": {
+        "name": "github-actions[bot]",
+        "email": "github-actions[bot]@users.noreply.github.com",
+        "date": "2025-12-12T11:43:52Z"
+      },
+      "message": "Setup Vue-flow example",
+      "tree": {
+        "sha": "7b31c2d0884578c94b201d4b833106487df5260c",
+        "url": "https://api.github.com/repos/Mechatronicist/easyDAGManager/git/trees/7b31c2d0884578c94b201d4b833106487df5260c"
+      },
+      "url": "https://api.github.com/repos/Mechatronicist/easyDAGManager/git/commits/dc4c42e9266332b58d44198a1edbef86c248188b",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/Mechatronicist/easyDAGManager/commits/dc4c42e9266332b58d44198a1edbef86c248188b",
+    "html_url": "https://github.com/Mechatronicist/easyDAGManager/commit/dc4c42e9266332b58d44198a1edbef86c248188b",
+    "comments_url": "https://api.github.com/repos/Mechatronicist/easyDAGManager/commits/dc4c42e9266332b58d44198a1edbef86c248188b/comments",
+    "author": {
+      "login": "github-actions[bot]",
+      "id": 41898282,
+      "node_id": "MDM6Qm90NDE4OTgyODI=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+      "html_url": "https://github.com/apps/github-actions",
+      "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+      "type": "Bot",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "github-actions[bot]",
+      "id": 41898282,
+      "node_id": "MDM6Qm90NDE4OTgyODI=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+      "html_url": "https://github.com/apps/github-actions",
+      "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+      "type": "Bot",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "a0b26ba2342416659dedbd9c293265b656c2eb1d",
+        "url": "https://api.github.com/repos/Mechatronicist/easyDAGManager/commits/a0b26ba2342416659dedbd9c293265b656c2eb1d",
+        "html_url": "https://github.com/Mechatronicist/easyDAGManager/commit/a0b26ba2342416659dedbd9c293265b656c2eb1d"
+      }
+    ],
+    "stats": {
+      "total": 2335,
+      "additions": 1802,
+      "deletions": 533
+    }
+  },
+  {
     "sha": "b9b715dd4b001adfc1c8465e695619abd8e1838f",
     "node_id": "C_kwDOQkGPL9oAKGI5YjcxNWRkNGIwMDFhZGZjMWM4NDY1ZTY5NTYxOWFiZDhlMTgzOGY",
     "commit": {
